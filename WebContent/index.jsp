@@ -1,11 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!doctype html>
 
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="index.css">
-		<script src="libraries/jquery.js"></script>
-		<script src="index.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<jsp:include page="include/imports.jsp"></jsp:include>
+		
+		<script src="js/index.js"></script>
+		
 	</head>
 	 <body>
 		<div id="add">+</div>
@@ -33,9 +39,9 @@
 		<header>
 			<h1>Usuario</h1>
 			<nav>
-				<span class="seleccionado" data-dir="listado-especialistas.html">listado especialistas</span>
-				<span data-dir="alta-medico.html">alta m&eacute;dico</span>
-				<span data-dir="alta-paciente.html">alta paciente</span>
+				<span class="seleccionado" data-dir="listado-especialistas.jsp">listado especialistas</span>
+				<span data-dir="alta-medico.jsp">alta m&eacute;dico</span>
+				<span data-dir="alta-paciente.jsp">alta paciente</span>
 				<span data-dir="">nueva cita</span>
 				<span data-dir="">ficha paciente</span>
 				<div></div>
