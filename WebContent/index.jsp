@@ -1,20 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <!doctype html>
 
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<jsp:include page="include/imports.jsp"></jsp:include>
-		
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script src="libraries/jquery.js"></script>
 		<script src="js/index.js"></script>
-		
 	</head>
 	 <body>
-		<div id="add">+</div>
+		<div id="search">
+			<img src="/images/search.svg">
+		</div>
 		<div id="cortina"></div>
 		<div id="login">
 			<form>
@@ -23,7 +19,7 @@
 				<div>
 					<div>
 						<span>recordar</span>
-						<input type="checkbox" id="onoffswitch" name="recordar" checked>
+						<input type="checkbox" id="onoffswitch" name="recordar">
 						<label for="onoffswitch">
 							<div></div>
 							<span></span>

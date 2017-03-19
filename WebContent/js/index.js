@@ -3,12 +3,14 @@ $(document).ready(function(){
 	//------------------LOGIN
 	$('#login form').submit(function(){
 		opacidadCortina(1);
+		var usuario = $('input[name="usuario"]').val();
 		$.post('login', $(this).serialize(), function(data){
 			var estado = $.trim(data);
 			if(estado == "true"){
 				$.get($('nav span:first').data().dir,
 					function(data){
 						$('main').html(data);
+						$('header h1').text(usuario);
 					}
 				).fail(function() {
 					alert('Error al cargar la pagina');
@@ -24,31 +26,30 @@ $(document).ready(function(){
 
 	$('nav span').click(function(){ cambioPestana($(this)) });
 
-
 	$(window).resize(function(){ adaptacion(); });
 
 	$( window ).scroll(function(){
 		if($(window).width() > 800)
 			if($(window).scrollTop() > 164)
-				$('#add').css({'position' : 'fixed',
+				$('#search').css({'position' : 'fixed',
 						'top': $(window).height() - 85});
 			else
-				$('#add').css({'position' : 'absolute',
+				$('#search').css({'position' : 'absolute',
 						'top' : 190});
 	});
 });
 
-//------------------ADAPTA ELEMENTOS AL TAMAÑO DE PANTALLA
-function adaptacion(){
+
+function adaptacion(){ // adapta elementos al tamaño de pantalla
 	//Adapta marcador menu
 	$('nav div').width($('nav .seleccionado').outerWidth());
-	//Adapta botón #add
+	//Adapta botón #search
 	if($(window).scrollTop() < 164){
 		if($(window).width() < 800){
-			$('#add').css({'position' : 'fixed',
+			$('#search').css({'position' : 'fixed',
 					'top': $(window).height() - 85});
 		} else {
-			$('#add').css({'position' : 'absolute', 'top' : 190});
+			$('#search').css({'position' : 'absolute', 'top' : 190});
 		}
 	}
 	//Adapta .calendario-semanal
@@ -87,16 +88,18 @@ function accesoDenegado(){
 	});
 }
 
-//------------------CAMBIO PESTAÑAS
 function cambioPestana(e) {
 	$('nav span.seleccionado').attr('class', '');
 	e.attr('class', 'seleccionado');
 	$('nav div').css({'margin-left': (e.position().left - 20),
 			'width': e.outerWidth()});
 	var dir = e.data().dir;
-	$.get(dir, function(data){
-		$('main').html(data);
-	}).fail(function() {
-		alert('Error al cargar la pagina');
-	});
+	if(dir != ''){
+		$.get(dir, function(data){
+			$('main').html(data);
+		}).fail(function() {
+			alert('Error al cargar la pagina');
+		});
+	}
+	else $('main').html('');
 }
