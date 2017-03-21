@@ -2,18 +2,16 @@
 
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<script src="libraries/jquery.js"></script>
 		<script src="js/index.js"></script>
 	</head>
-	 <body>
-		<div id="search">
-			<img src="/images/search.svg">
-		</div>
+	<body>
 		<div id="cortina"></div>
 		<div id="login">
-			<form>
+			<form autocomplete="off">
 				<input type="text" placeholder="Usuario" name="usuario">
 				<input type="password" placeholder="Contrase&ntilde;a" name="pass">
 				<div>
@@ -33,7 +31,14 @@
 			<div>ACCESO<br>DENEGADO</div>
 		</div>
 		<header>
-			<h1>Usuario</h1>
+			<div>
+				<div id="mostrar_menu">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<h1>&nbsp;</h1>
+			</div>
 			<nav>
 				<span class="seleccionado" data-dir="listado-especialistas.jsp">listado especialistas</span>
 				<span data-dir="alta-medico.jsp">alta m&eacute;dico</span>
@@ -42,8 +47,11 @@
 				<span data-dir="">ficha paciente</span>
 				<div></div>
 			</nav>
+			<div id="search">
+				<img src="/images/search.svg">
+			</div>
 		</header>
 		<main></main>
-		<!--<footer></footer>-->
+		<footer></footer>
 	</body>
 </html>
