@@ -1,6 +1,7 @@
 <style scoped>
 	input[name=apellidos] { float: right;}
 	input[name=esp] { width: 100%; }
+	.calendario-semanal span { cursor: pointer; }
 </style>
 <section>
 	<form>
@@ -14,10 +15,22 @@
 
 		<label>&#8226; D&iacute;as semanales disponible: </label>
 		<div class="calendario-semanal">
-			<div>L</div><div>M</div><div>X</div><div>J</div><div>V</div><div>S</div><div>D</div>
+			<span>L</span>
+			<span>M</span>
+			<span>X</span>
+			<span>J</span>
+			<span>V</span>
+			<span>S</span>
+			<span>D</span>
 		</div>
 
 		<br>
 		<input type="submit" value="enviar" class="boton-azul">
 	</form>
 </section>
+
+<script>
+	$('.calendario-semanal span').click(function(){
+		$(this).toggleClass('dia-seleccionado');
+	});
+</script>

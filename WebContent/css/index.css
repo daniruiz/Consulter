@@ -40,6 +40,7 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
 	opacity: 0;
 }
 *::-webkit-scrollbar { width: 0 !important }
+* { box-sizing: border-box;}
 body {
 
 	min-width: 300px;
@@ -64,6 +65,7 @@ body {
 	float: right;
 }
 #search {
+	cursor: pointer;
 	height: 56px;
 	width: 56px;
 	position: absolute;
@@ -102,8 +104,6 @@ body {
 }
 #login input:not([type=submit]) {
 	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	margin: 7px 0;
 	border: 2px solid #09C;
 	color: #FFF;
@@ -145,7 +145,7 @@ body {
 	position: relative;
 	margin: 5px 7px 0 0;
 	float: right;
-	width: 90px;
+	width: 96px;
 	display: block;
 	overflow: hidden;
 	cursor: pointer;
@@ -168,7 +168,6 @@ body {
 	height: 40px;
 	line-height: 40px;
 	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 }
 #login label div:before {
 	content: "si";
@@ -240,6 +239,8 @@ h1 {
 }
 nav {
 	display: block;
+	top: 0;
+	width: 100%;
 	position: relative;
 	background-color: #512DA8;
 	padding: 0 20px;
@@ -300,8 +301,6 @@ section.con-sombra {
 }
 input:not([type=submit]), textarea {
 	width: 49%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	margin: 7px 0;
 	border: 2px solid black;
 	color: black;
@@ -333,24 +332,26 @@ footer {
 	background-color: #424242;
 	box-shadow: 0px -2px 10px rgba(0,0,0,0.4);
 }
-.calendario-semanal{
+.calendario-semanal {
+	overflow: auto;
+	max-width: 420px;
 	margin: auto;
 	width: 70%;
 	transition: width .2s;
 	-webkit-transition: width .6s;
 }
-.calendario-semanal div {
-	display: inline-block;
+.calendario-semanal span {
+	display: inline;
+	float: left;
 	width: 12.2%;
 	margin: 1%;
-	box-sizing: border-box;
 	text-align: center;
-	font-size: 120%;
+	font-size: 18px;
 	line-height: 42px;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 2px;
-	color: black
+	color: black;
 }
 .dia-seleccionado {
 	background-color: #2A96E7;
@@ -362,22 +363,16 @@ footer {
 		max-width: inherit;
 		margin: 50px 20px;
 	}
-	nav span {
-		font-size: 10px;
-	}
+	nav span { font-size: 10px; }
 }
 @media only screen and (max-width: 800px) {
-	nav {
-		zoom: 95%;
-	}
+	nav { zoom: 95%; }
 	#search{
 		width: 45px;
 		height: 45px;
 		line-height: 45px;
 	}
-	.calendario-semanal {
-		width: 100%;
-	}
+	.calendario-semanal { width: 100%; }
 }
 @media only screen and (max-width: 650px) {
 	nav { zoom: 87%; }
@@ -400,18 +395,11 @@ footer {
 	}
 }
 @media only screen and (max-width: 500px) {
-	input[type=text] {
-		width: 100%;
-	}
+	input[type=text] { width: 100%; }
+	.calendario-semanal span { font-size: 12px; }
 }
 @media only screen and (max-width: 450px) {
-	label {
-		margin: 20px 0 5px;
-	}
-	section{
-		padding: 20px!important;
-	}
-	section form {
-		width: 100%;
-	}
+	label {	margin: 20px 0 5px; }
+	section{ padding: 20px!important; }
+	section form { width: 100%; }
 }

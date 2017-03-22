@@ -7,14 +7,8 @@ $(document).ready(function(){
 		$.post('login', $(this).serialize(), function(data){
 			var estado = $.trim(data);
 			if(estado == "true"){
-				$.get($('nav span:first').data().dir,
-					function(data){
-						$('main').html(data);
-						$('header h1').text(usuario);
-					}
-				).fail(function() {
-					alert('Error al cargar la pagina');
-				});
+				$('header h1').text(usuario);
+				cambioPestana($('nav span:first'));
 				$('body').css('overflow', 'auto');
 				$('#login, #cortina').fadeOut(600);
 			} else accesoDenegado();
@@ -37,13 +31,26 @@ $(document).ready(function(){
 	$(window).resize(function(){ adaptacion(); });
 
 	$( window ).scroll(function(){
-		if($(window).width() > 800)
-			if($(window).scrollTop() > 164)
+		var width = $(window).width();
+		var scroll = $(window).scrollTop();
+		if(width > 800){
+			if(scroll > 164){
 				$('#search').css({'position' : 'fixed',
 						'top': $(window).height() - 85});
-			else
+			} else {
 				$('#search').css({'position' : 'absolute',
 						'top' : 190});
+			}
+		}
+		if(width > 580){
+			if(scroll >= $('header > div').outerHeight()){
+				$('header').css('padding-bottom', $('nav').height());
+				$('nav').css('position', 'fixed');
+			} else {
+				$('header').css('padding-bottom', 0);
+				$('nav').css('position', '');
+			}
+		}
 	});
 });
 
@@ -51,7 +58,8 @@ $(document).ready(function(){
 function adaptacion(){ // adapta elementos al tamaño de pantalla
 	//Adapta marcador menu
 	posicionarMarcador();
-	$("nav .selected").on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
+	$("nav .selected").on('transitionend webkitTransitionEnd oTransitionEnd \
+			otransitionend MSTransitionEnd',
 		function() { posicionarMarcador(); }
 	);
 	var width = $(window).width();
@@ -65,13 +73,16 @@ function adaptacion(){ // adapta elementos al tamaño de pantalla
 		}
 	}
 	//Adapta .calendario-semanal
-	$('.calendario-semanal div').each(function(){
+	var tamFuente = $('.calendario-semanal span').css('font-size');
+	$('.calendario-semanal span').each(function(){
 		$(this).css({'height': $(this).width(),
 				'line-height': $(this).width() + 'px'});
 	});
 	//mostrar botón menu
 	if(width <= 580){
 		$('#mostrar_menu').fadeIn();
+		$('header').css('padding-bottom', 0);
+		$('nav').css('position', '');
 	} else{
 		$('#mostrar_menu').fadeOut();
 		$('nav').css('display', '');
@@ -108,16 +119,13 @@ function cambioPestana(e) {
 	$('nav span.seleccionado').attr('class', '');
 	e.attr('class', 'seleccionado');
 	posicionarMarcador();
-	var dir = e.data().dir;
-	if(dir != ''){
-		$.get(dir, function(data){
-			$('main').html(data);
-			adaptacion();
-		}).fail(function() {
-			alert('Error al cargar la pagina');
-		});
-	}
-	else $('main').html('');
+	var dir = 'contenido_dinamico/' + e.data().dir;
+	$.get(dir, function(data){
+		$('main').html(data);
+		adaptacion();
+	}).fail(function() {
+		alert('Error al cargar la pagina');
+	});
 }
 
 function opacidadCortina(valor){
