@@ -11,7 +11,7 @@
 		margin-top: 20px;
 		float: right;
 	}
-	section span {
+	section > span {
 		margin-left: 20px;
 	}
 </style>

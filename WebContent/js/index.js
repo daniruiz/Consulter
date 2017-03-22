@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	adaptacion();
+	$(window).resize(function(){ adaptacion(); });
+
 	//------------------LOGIN
 	$('#login form').submit(function(){
 		opacidadCortina(1);
@@ -20,6 +22,7 @@ $(document).ready(function(){
 
 	$('nav span').click(function(){ cambioPestana($(this)) });
 
+	//------------------MENU LATERAL
 	$('*').click(function(){
 		if($(window).width() <= 580) $('nav').hide();
 	});
@@ -28,15 +31,13 @@ $(document).ready(function(){
 		$('nav').show();
 	});
 
-	$(window).resize(function(){ adaptacion(); });
-
 	$( window ).scroll(function(){
 		var width = $(window).width();
 		var scroll = $(window).scrollTop();
 		if(width > 800){
 			if(scroll > 164){
 				$('#search').css({'position' : 'fixed',
-						'top': $(window).height() - 85});
+						'top': $(window).height() -76});
 			} else {
 				$('#search').css({'position' : 'absolute',
 						'top' : 190});
@@ -44,7 +45,8 @@ $(document).ready(function(){
 		}
 		if(width > 580){
 			if(scroll >= $('header > div').outerHeight()){
-				$('header').css('padding-bottom', $('nav').height());
+				$('header').css('padding-bottom',
+					$('nav').height());
 				$('nav').css('position', 'fixed');
 			} else {
 				$('header').css('padding-bottom', 0);
@@ -54,36 +56,37 @@ $(document).ready(function(){
 	});
 });
 
+function opacidadCortina(valor){
+	$('#cortina').css('background', 'rgba(0, 0, 0, ' + valor + ')');
+}
 
 function adaptacion(){ // adapta elementos al tamaño de pantalla
-	//Adapta marcador menu
 	posicionarMarcador();
-	$("nav .selected").on('transitionend webkitTransitionEnd oTransitionEnd \
-			otransitionend MSTransitionEnd',
-		function() { posicionarMarcador(); }
+	mostrarBotonMenu();
+	$("nav .selected").on('transitionend webkitTransitionEnd \
+			oTransitionEnd otransitionend MSTransitionEnd',
+		function(){ posicionarMarcador(); }
 	);
-	var width = $(window).width();
-	//Adapta botón #search
-	if($(window).scrollTop() < 164){
-		if(width < 800){
+	if($(window).scrollTop() < 164){	//Adapta botón #search
+		if($(window).width() < 800)
 			$('#search').css({'position' : 'fixed',
-					'top': $(window).height() - 85});
-		} else {
-			$('#search').css({'position' : 'absolute', 'top' : 190});
-		}
+					'top': $(window).height() - 76});
+		else $('#search').css({'position' : 'absolute', 'top' : 190});
 	}
-	//Adapta .calendario-semanal
-	var tamFuente = $('.calendario-semanal span').css('font-size');
 	$('.calendario-semanal span').each(function(){
 		$(this).css({'height': $(this).width(),
 				'line-height': $(this).width() + 'px'});
 	});
-	//mostrar botón menu
-	if(width <= 580){
+	$('main').css('min-height', $(window).height() -
+			($('header').height() + $('footer').height() + 100));
+}
+
+function mostrarBotonMenu(){
+	if($(window).width() <= 580){
 		$('#mostrar_menu').fadeIn();
 		$('header').css('padding-bottom', 0);
 		$('nav').css('position', '');
-	} else{
+	} else {
 		$('#mostrar_menu').fadeOut();
 		$('nav').css('display', '');
 	}
@@ -126,10 +129,6 @@ function cambioPestana(e) {
 	}).fail(function() {
 		alert('Error al cargar la pagina');
 	});
-}
-
-function opacidadCortina(valor){
-	$('#cortina').css('background', 'rgba(0, 0, 0, ' + valor + ')');
 }
 
 function posicionarMarcador(){

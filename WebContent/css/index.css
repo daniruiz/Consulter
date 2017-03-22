@@ -42,7 +42,7 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
 *::-webkit-scrollbar { width: 0 !important }
 * { box-sizing: border-box;}
 body {
-
+	overflow: hidden;
 	min-width: 300px;
 	user-select: none;
 	cursor: default;
@@ -72,7 +72,7 @@ body {
 	box-shadow: 0 1px 5px 0 rgba(0,0,0,.5);
 	background-color: rgb(255,64,129);
 	border-radius: 100%;
-	right: 40px;
+	right: 20px;
 	top: 190px;
 	z-index: 1;
 	font-size: 30px;
@@ -218,18 +218,18 @@ header {
 	color: white;
 }
 header > div:first-child { padding: 66px 40px; }
+#mostrar_menu {
+	cursor: pointer;
+	width: 25px;
+	float: left;
+	margin-right: 20px;
+	margin-top: 4px;
+}
 h1 {
 	font-size: 27px;
 	font-weight: normal;
 	text-transform: capitalize;
 	margin: 0;
-}
-#mostrar_menu {
-	cursor: pointer;
-	width: 25px;
-	float: left;
-	margin-right: 40px;
-	margin-top: 4px;
 }
 #mostrar_menu > div {
 	height: 3px;
@@ -367,11 +367,6 @@ footer {
 }
 @media only screen and (max-width: 800px) {
 	nav { zoom: 95%; }
-	#search{
-		width: 45px;
-		height: 45px;
-		line-height: 45px;
-	}
 	.calendario-semanal { width: 100%; }
 }
 @media only screen and (max-width: 650px) {
@@ -379,6 +374,7 @@ footer {
 }
 @media only screen and (max-width: 580px) {
 	nav div { background-color: transparent; }
+	header > div:first-child { padding: 20px 40px; }
 	nav {
 		display: none;
 		width: 300px;
