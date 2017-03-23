@@ -8,7 +8,7 @@ $(document).ready(function(){
 		var usuario = $('input[name="usuario"]').val();
 		$.post('login', $(this).serialize(), function(data){
 			var estado = $.trim(data);
-			if(estado == "true"){
+			if(estado == 'true'){
 				$('header h1').text(usuario);
 				cambioPestana($('nav span:first'));
 				$('body').css('overflow', 'auto');
@@ -24,11 +24,11 @@ $(document).ready(function(){
 
 	//------------------MENU LATERAL
 	$('*').click(function(){
-		if($(window).width() <= 580) $('nav').hide();
+		if($(window).width() <= 580) mostrarMenuLateral(false);
 	});
 	$('#mostrar_menu').click(function(e){
 		e.stopPropagation();
-		$('nav').show();
+		mostrarMenuLateral(true);
 	});
 
 	$( window ).scroll(function(){
@@ -63,7 +63,8 @@ function opacidadCortina(valor){
 function adaptacion(){ // adapta elementos al tamaño de pantalla
 	posicionarMarcador();
 	mostrarBotonMenu();
-	$("nav .selected").on('transitionend webkitTransitionEnd \
+	mostrarMenuLateral(false);
+	$('nav .selected').on('transitionend webkitTransitionEnd \
 			oTransitionEnd otransitionend MSTransitionEnd',
 		function(){ posicionarMarcador(); }
 	);
@@ -78,7 +79,7 @@ function adaptacion(){ // adapta elementos al tamaño de pantalla
 				'line-height': $(this).width() + 'px'});
 	});
 	$('main').css('min-height', $(window).height() -
-			($('header').height() + $('footer').height() + 100));
+			($('header').height() + 130));
 }
 
 function mostrarBotonMenu(){
@@ -89,6 +90,19 @@ function mostrarBotonMenu(){
 	} else {
 		$('#mostrar_menu').fadeOut();
 		$('nav').css('display', '');
+	}
+}
+
+function mostrarMenuLateral(mostrar){
+	if(mostrar) {
+		$('html').css('overflow', 'hidden');
+		$('body, header').addClass('mostar-panel-izquierdo');
+		$('nav').css('opacity', 1);
+		$('nav').width(250);
+	} else {
+		$('html').css('overflow', 'auto');
+		$('body, header').attr('class', '');
+		$('nav').css('width', '');
 	}
 }
 

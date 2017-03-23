@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<script src="lib/jquery.js"></script>
 		<script src="js/index.js"></script>
+		<link rel="icon" href="img/icon.ico">
+		<title>Consulter</title>
 	</head>
 	<body>
 		<div id="cortina"></div>

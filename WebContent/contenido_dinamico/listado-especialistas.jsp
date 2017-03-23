@@ -11,7 +11,11 @@
 		margin-top: 20px;
 		float: right;
 	}
-	section > span {
+	.dia-seleccionado {
+		background: #A32C36;
+		border-color: #551419!important;
+	}
+	section > div:first-child > span {
 		margin-left: 20px;
 	}
 </style>
