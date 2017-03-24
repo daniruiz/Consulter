@@ -1,14 +1,17 @@
-$(document).ready(function(){
+// 18:07 23.04
+
+$(document).ready(function() {
+	//------------------RESPONSIVE DESIGN
 	adaptacion();
-	$(window).resize(function(){ adaptacion(); });
+	$(window).resize(function() { adaptacion(); });
 
 	//------------------LOGIN
-	$('#login form').submit(function(){
+	$('#login form').submit(function() {
 		opacidadCortina(1);
 		var usuario = $('input[name="usuario"]').val();
 		$.post('login', $(this).serialize(), function(data){
 			var estado = $.trim(data);
-			if(estado == 'true'){
+			if(estado == 'true') {
 				$('header h1').text(usuario);
 				cambioPestana($('nav span:first'));
 				$('body').css('overflow', 'auto');
@@ -20,21 +23,25 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$('input[name="usuario"]').val('admin');	// borrar
+	$('input[name="pass"]').val('1234');		// borrar
+	$('#login form').submit();			// borrar
+
 	$('nav span').click(function(){ cambioPestana($(this)) });
 
 	//------------------MENU LATERAL
-	$('*').click(function(){
+	$('body').click(function() {
 		if($(window).width() <= 580) mostrarMenuLateral(false);
 	});
-	$('#mostrar_menu').click(function(e){
+	$('#mostrar_menu').click(function(e) {
 		e.stopPropagation();
-		mostrarMenuLateral(true);
+		mostrarMenuLateral();
 	});
 
-	$( window ).scroll(function(){
+	$( window ).scroll(function() {
 		var width = $(window).width();
 		var scroll = $(window).scrollTop();
-		if(width > 800){
+		if(width > 800) {
 			if(scroll > 164){
 				$('#search').css({'position' : 'fixed',
 						'top': $(window).height() -76});
@@ -43,7 +50,7 @@ $(document).ready(function(){
 						'top' : 190});
 			}
 		}
-		if(width > 580){
+		if(width > 580) {
 			if(scroll >= $('header > div').outerHeight()){
 				$('header').css('padding-bottom',
 					$('nav').height());
@@ -56,57 +63,43 @@ $(document).ready(function(){
 	});
 });
 
-function opacidadCortina(valor){
+function opacidadCortina(valor) {
 	$('#cortina').css('background', 'rgba(0, 0, 0, ' + valor + ')');
 }
 
-function adaptacion(){ // adapta elementos al tamaño de pantalla
+function adaptacion() { // adapta elementos al tamaño de pantalla
 	posicionarMarcador();
-	mostrarBotonMenu();
 	mostrarMenuLateral(false);
-	$('nav .selected').on('transitionend webkitTransitionEnd \
-			oTransitionEnd otransitionend MSTransitionEnd',
-		function(){ posicionarMarcador(); }
-	);
-	if($(window).scrollTop() < 164){	//Adapta botón #search
+	if($(window).width() <= 580) $('nav').css('opacity', 0);
+	else $('nav').css('opacity', 1);
+	// footer siempre al fondo
+	$('#envoltorio').css('min-height', $(window).height()-100)
+	if($(window).scrollTop() < 164) {	//Adapta botón #search
 		if($(window).width() < 800)
 			$('#search').css({'position' : 'fixed',
 					'top': $(window).height() - 76});
 		else $('#search').css({'position' : 'absolute', 'top' : 190});
 	}
-	$('.calendario-semanal span').each(function(){
+	$('.calendario-semanal span').each(function() {
 		$(this).css({'height': $(this).width(),
 				'line-height': $(this).width() + 'px'});
 	});
-	$('main').css('min-height', $(window).height() -
-			($('header').height() + 130));
 }
 
-function mostrarBotonMenu(){
-	if($(window).width() <= 580){
-		$('#mostrar_menu').fadeIn();
-		$('header').css('padding-bottom', 0);
-		$('nav').css('position', '');
-	} else {
-		$('#mostrar_menu').fadeOut();
-		$('nav').css('display', '');
-	}
-}
-
-function mostrarMenuLateral(mostrar){
-	if(mostrar) {
-		$('html').css('overflow', 'hidden');
-		$('body, header').addClass('mostar-panel-izquierdo');
+function mostrarMenuLateral(mostrar) {
+	var yaDesplegado = $('body').hasClass('mostar-panel-izquierdo');
+	if(mostrar || (mostrar == undefined && !yaDesplegado)) {
+		$('body').animate({scrollTop:0}, 200);
 		$('nav').css('opacity', 1);
-		$('nav').width(250);
-	} else {
-		$('html').css('overflow', 'auto');
-		$('body, header').attr('class', '');
-		$('nav').css('width', '');
+		$('html').css('position', 'fixed');
+		$('body').addClass('mostar-panel-izquierdo');
+	} else if(!mostrar || (mostrar == undefined && yaDesplegado)) {
+		$('html').css('position', 'relative');
+		$('body').attr('class', '');
 	}
 }
 
-function accesoDenegado(){
+function accesoDenegado() {
 	$('#login').fadeOut(200);
 	opacidadCortina(1);
 	var texto = $('#denegado div');
@@ -145,7 +138,7 @@ function cambioPestana(e) {
 	});
 }
 
-function posicionarMarcador(){
+function posicionarMarcador() {
 	var e = $('nav span.seleccionado');
 	$('nav div').css({'margin-left': (e.position().left - 20),
 			'width': e.outerWidth()});
