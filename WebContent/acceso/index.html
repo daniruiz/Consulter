@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<!-- saved from url=(0026)http://192.168.1.137:8080/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" />
 		<link rel="stylesheet" type="text/css" href="index.css">
+		<link rel="stylesheet" type="text/css" href="/css/comun.css">
+		<script src="/lib/jquery.js"></script>
+		<script src="acceso.js"></script>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title"content="Consulter">
+		<link rel="icon" href="/img/icon.ico">
+		<title>Inicio - Consulter</title>
 	</head>
-	 <body cz-shortcut-listen="true">
-
+	<body>
+		<div id="cortina"></div>
 		<div id="login">
 			<form autocomplete="off">
-				<input type="text" placeholder="Usuario" name="usuario">
+				<input type="text" placeholder="Usuario" name="usuario" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
 				<input type="password" placeholder="Contrase&ntilde;a" name="pass">
 				<div>
 					<div>
@@ -24,12 +32,5 @@
 				</div>
 			</form>
 		</div>
-		<div id="denegado">
-			<div>ACCESO<br>DENEGADO</div>
-		</div>
-
-
-
-
-
-</body></html>
+	</body>
+</html>

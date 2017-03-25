@@ -1,75 +1,18 @@
-@font-face {
-  font-family: 'Roboto';
-  src: url("fonts/Roboto-Regular.ttf");
-}
-@font-face {
-  font-family: 'Exo';
-  src: url("fonts/Exo-Medium.ttf");
-}
-
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-	opacity: 1;
-	-webkit-transition: opacity .2s;
-	color: inherit;
-}
-input:-moz-placeholder, textarea:-moz-placeholder {
-	opacity: 1;
-	transition: opacity .2s;
-	color: inherit;
-}
-input::-moz-placeholder, textarea::-moz-placeholder {
-	opacity: 1;
-	transition: opacity .2s;
-	color: inherit;
-}
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-	opacity: 1;
-	transition: opacity .2s;
-	color: inherit;
-}
-input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
-	opacity: 0;
-}
-input:focus:-moz-placeholder, textarea:focus:-moz-placeholder {
-	opacity: 0;
-}
-input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
-	opacity: 0;
-}
-input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
-	opacity: 0;
-}
-
-body {
-	min-width: 300px;
-	user-select: none;
-	cursor: default;
-	margin: 0;
-	background-color: #F5F5F5;
-	font-family: Roboto, sans-serif;
-	background: url("fondo.jpg") no-repeat center center fixed;
-	background-size: cover;
+#cortina{
+	display: none;
+	top: 0;
+	z-index: 99;
+	transition: background .6s;
+	-webkit-transition: background .6s;
+	position: fixed;
 	height: 100%;
-	background-repeat: no-repeat;
-}
-.boton-azul {
-	border-radius: 5px;
-	font-weight: bold !important;
-	color: white;
-	margin-top: 5px;
-	text-align: center;
-	border: 3px solid #144D79;
-	cursor: pointer;
-	background: #2A96E7;
-	font: 16px 'Exo';
-	height: 45px;
-	width: 130px;
-	float: right;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 #login {
 	z-index: 100;
 	position: fixed;
-	width: 252px;
+	width: 249px;
 	bottom: 50%;
 	left: 50%;
 	margin-bottom: -95px;
@@ -77,26 +20,16 @@ body {
 	font-size: 16px;
 	font-weight: bold;
 	color: white;
-	padding: 20px 18px 20px;
-	box-sizing: content-box;
-	url("http: //www.wallpaperscharlie.com/wp-content/uploads/2016/09/Full-HD-Wallpapers-Desktop-4.jpg");
-	/* background-color: rgba(0,0,0,0.25); */
-	/* box-shadow: 0 0 25px 3px white; */
-	border-radius: 3px;
-	zoom: 150%;
 }
 #login input:not([type=submit]) {
 	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	margin: 7px 0;
 	border: 2px solid #09C;
-	color: #144D79;
-	background: #fff;
+	color: #FFF;
+	background: transparent;
 	height: 40px;
 	padding: 0 10px;
 	font-size: 14px;
-	font-family: 'Exo', sans-serif;
 	font-weight: bold !important;
 	transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
 	-webkit-transition:  background .2s, box-shadow .2s, color .2s, border-color, .2s;
@@ -106,9 +39,7 @@ body {
 	box-shadow: 0 0 6px rgba(0, 144, 192, 0.5);
 	background: rgba(0, 0, 0, 0.25);
 }
-#login input[type=submit] {
-    width: 50%;
-}
+#login input[type=submit] { width: 50%; }
 #login form > div {	margin-top: 15px; }
 #login div div {
 	float: left;
@@ -123,22 +54,23 @@ body {
 	-ms-transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	position: absolute;
-	bottom: 38px;
-	left: 1px;
+	bottom: 16px;
+	left: -18px;
 }
 #login label {
 	position: relative;
 	margin: 5px 7px 0 0;
 	float: right;
-	width: 90px;
+	width: 96px;
 	display: block;
 	overflow: hidden;
 	cursor: pointer;
 	border: 3px solid #551419;
 	border-radius: 23px;
 	color: white;
-	transition: border 0.2s ease-in 0s;
-	-webkit-transition: border 0.2s ease-in 0s;
+	transition: border-color 0.2s ease-in 0s;
+	-webkit-transition: border-color 0.2s ease-in 0s;
+
 }
 #login input[type=checkbox]{ display: none; }
 #login label div {
@@ -146,6 +78,7 @@ body {
 	margin-left: -100%;
 	transition: margin 0.2s ease-in 0s;
 	-webkit-transition: margin 0.2s ease-in 0s;
+	will-change: margin;
 }
 #login label div:before, label div:after {
 	float: left;
@@ -153,7 +86,6 @@ body {
 	height: 40px;
 	line-height: 40px;
 	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 }
 #login label div:before {
 	content: "si";
@@ -171,8 +103,9 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 50px;
-	transition: all 0.2s ease-in 0s;
-	-webkit-transition: all 0.2s ease-in 0s;
+	transition: right 0.2s ease-in 0s;
+	-webkit-transition: right 0.2s ease-in 0s;
+	will-change: right;
 	height: 34px;
 	width: 34px;
 	border-radius: 17px;
@@ -182,3 +115,20 @@ body {
 #login input[type=checkbox]:checked + label div { margin-left: 0; }
 #login input[type=checkbox]:checked + label span { right: 0; }
 #login input[type=checkbox]:checked  + label { border-color: #144D79; }
+#denegado {
+	z-index: 100;
+	display: none;
+	width: 100%;
+	position: fixed;
+	bottom: 50%;
+	text-align: center;
+	margin: auto;
+	color: #A32C36;
+	text-shadow: 0 7px 0 #551419;
+	font-weight: bold;
+}
+#denegado div {
+	opacity: 0;
+	display: table;
+	margin: auto;
+}
