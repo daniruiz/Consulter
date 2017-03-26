@@ -1,4 +1,5 @@
 <style scoped>
+	body { background: #F6F6F6 }
 	section{
 		margin-bottom: 0;
 		border-bottom: 1px solid rgba(0,0,0,0.05);;
@@ -11,12 +12,13 @@
 		width: 250px;
 	}
 	.calendario-semanal {
-		max-width: 380px;
 		margin-top: 20px;
 		float: right;
+		display: block;
+		width: 365px;
 	}
 	section > div:first-child > span { margin-left: 20px; }
-	@media only screen and (max-width: 780px) {
+	@media only screen and (max-width: 1050px) {
 		section > div:first-child{
 			float: inherit;
 			margin-bottom: 20px;
@@ -27,6 +29,15 @@
 		.calendario-semanal {
 			float: inherit;
 			margin: auto;
+		}
+	}
+	@media only screen and (max-width: 500px) {
+		.calendario-semanal { width: 255px; }
+		.calendario-semanal > div > span, .calendario-semanal > span {
+			height: 30px;
+			width: 30px;
+			line-height: 30px;
+			font-size: 11px;
 		}
 	}
 </style>

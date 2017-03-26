@@ -1,4 +1,5 @@
 nav {
+	background: white;
 	display: block;
 	width: 0;
 	border-right: 2px solid rgba(0,0,0,0.05);
@@ -41,7 +42,7 @@ header {
 	left: 0;
 	top: 0;
 	right: 0;
-	background-color: #673AB7;
+	background-color: #3E50B4;
 	color: white;
 	box-shadow: 0 2px 5px rgba(0,0,0,.26);
 	transition: margin-left .2s;
@@ -56,7 +57,7 @@ header > div:first-child { padding: 20px 40px; }
 	width: 56px;
 	position: absolute;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
-	background-color: rgb(255,64,129);
+	background-color: #ff4081;
 	border-radius: 100%;
 	right: 20px;
 	top: 44px;
@@ -101,15 +102,15 @@ main {
 	display: hidden;
 	min-height: 300px;
 	margin: 50px auto;
-	max-width: 900px;
 	padding-top: 55px;
+	width: 90%;
+	max-width: 800px;
 }
 section {
 	margin-bottom: 40px;
 	overflow: auto;
 }
-section > form{
-	display: block;
+section > form > div {
 	width: 70%;
 	margin: auto;
 }
@@ -125,13 +126,13 @@ footer {
 	height: 100px;
 	background-color: #424242;
 }
-@media only screen and (max-width: 900px) {
-	main {
-		max-width: inherit;
-		margin: 50px 20px;
-	}
+@media only screen and (max-width: 1050px) {
+	main { max-width: 600px; }
 }
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 900px) {
+	section { padding: 20px!important; }
+}
+@media only screen and (max-width: 850px) {
 	header { width: 100%; }
 	nav {
 		border: none;
@@ -144,7 +145,6 @@ footer {
 	#envoltorio, header { margin-left: 0; }
 	.mostrar_panel_lateral #envoltorio, .mostrar_panel_lateral header { margin-left: 250px; }
 }
-@media only screen and (max-width: 450px) {
-	section{ padding: 20px!important; }
-	section form { width: 100%; }
+@media only screen and (max-width: 350px) {
+	main { width: 100%; }
 }

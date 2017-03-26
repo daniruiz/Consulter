@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$(window).resize(function(){ adaptacion(); });
 
 	$('body').click(function(){
-		if($(window).width() <= 830) mostrarMenuLateral(false);
+		if($(window).width() <= 850) mostrarMenuLateral(false);
 	});
 	$('#mostrar_menu').click(function(e) {
 		e.stopPropagation();
@@ -29,7 +29,7 @@ function cambioPestana(e) {
 
 function adaptacion(){
 	tamMain();
-	if($(window).width() <= 830) mostrarMenuLateral(false)
+	if($(window).width() <= 850) mostrarMenuLateral(false)
 	else mostrarMenuLateral(true)
 }
 

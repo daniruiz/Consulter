@@ -1,0 +1,65 @@
+input[name=apellidos] { float: right;}
+input[name=esp] { width: 100%; }
+.calendario-semanal{ width: 100%; }
+.calendario-semanal > div > span { cursor: pointer; }
+.calendario-semanal > div { overflow: auto; }
+form label {
+	width: 207px;
+	display: inline-block;
+}
+.selector-horario, .selector-horario * { box-sizing: content-box; }
+.dia-seleccionado + .selector-horario { opacity: 1; }
+.selector-horario {
+	opacity: .2;
+	display: inline-block;
+	margin-left: 20px;
+	height: 10px;
+	background: #CCC;
+	border-radius: 20px;
+	position: relative;
+	background-color: rgba(0,0,0,0.1);
+	border: 10px solid white;
+	width: 576px;
+}
+.scroll-barra-izquierda, .scroll-barra-derecha {
+	min-width: 5px;
+	width: 25%;
+	height: 100%;
+	background: #009587;
+	position: relative;
+	float: left;
+}
+.scroll-barra-izquierda {
+	margin-left: 216px; 	/* posicion inicial */
+	width: 96px;		/* posicion inicial */
+}
+.scroll-barra-derecha {
+	margin-left: 48px;	/* 2 horas */
+	width: 120px;		/* posicion inicial */
+}
+.scroll-circulo {
+	position: absolute;
+	cursor: pointer;
+	margin-top: -5px;
+	background: white;
+	border: 2px solid black;
+	height: 15px;
+	border-radius: 15px;
+	width: 15px;
+	box-shadow: 0 1px 1px 0.1px rgba(0,0,0,.5);
+}
+.scroll-izquierda { left: -12px; }
+.scroll-derecha { right: -12px; }
+.horas-horario {
+	float:right;
+	clear: both;
+}
+.horas-horario {
+	float: right;
+	clear: both;
+	color: rgba(0,0,0,0.1);
+	margin-top: -20px;
+	margin-bottom: 10px;
+}
+.dia-seleccionado + .selector-horario + .horas-horario { color: rgba(0,0,0,0.7); }
+.horas-horario span { width: 50px; }

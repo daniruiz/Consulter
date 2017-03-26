@@ -1,3 +1,16 @@
+/*
+Colores
+rosa: #FF4081
+
+azul-cabecera: #3E50B4;
+
+azul: #1875D1
+azul-borde: #2F3E9E
+
+granate: #A32C36
+granate-borde: #551419
+
+*/
 @font-face {
 	font-family: 'Roboto';
 	src: url("fonts/Roboto-Regular.ttf");
@@ -57,28 +70,24 @@ html, body{
 	color: white;
 	margin-top: 5px;
 	text-align: center;
-	border: 3px solid #144D79;
+	border: 3px solid #2F3E9E;
 	cursor: pointer;
-	background: #2A96E7!important;
+	background: #1875D1;
 	font-size: 16px;
 	height: 45px;
 	width: 130px;
 	float: right;
 }
-.calendario-semanal {
-	overflow: auto;
-	max-width: 420px;
-	margin: auto;
-	width: 70%;
-}
-.calendario-semanal span {
-	display: inline;
+.calendario-semanal { overflow: auto; }
+.calendario-semanal > div > span, .calendario-semanal > span {
+	display: block;
 	float: left;
-	width: 12.2%;
-	margin: 1%;
+	width: 46px;
+	height: 46px;
+	margin: 3px;
 	text-align: center;
 	font-size: 18px;
-	line-height: 42px;
+	line-height: 46px;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 2px;
@@ -111,26 +120,27 @@ input[type=checkbox]{
 	background: transparent;
 	border-radius: 2px;
 	box-shadow: inset 0 0 0px 2px white;
+	vertical-align: middle;
+	margin: 8px 11px 10px 0;
 }
-input[type=checkbox]:checked { background: #2A96E7 }
+input[type=checkbox]:checked { background: #1875D1 }
 textarea {
 	padding: 10px;
 	max-width: 100%;
 	width: 100%;
 	min-height: 200px;
 }
-label {
+form > div > span {
 	display: block;
 	margin: 20px 30px 5px;
 	font-weight: bold;
 }
-@media only screen and (max-width: 800px) {
-	.calendario-semanal { width: 100%; }
-}
+label { cursor: pointer; }
+
 @media only screen and (max-width: 500px) {
 	input[type=text] { width: 100%; }
-	.calendario-semanal span { font-size: 12px; }
 }
 @media only screen and (max-width: 450px) {
-	label {	margin: 20px 0 5px; }
+	form > span {	margin: 20px 0 5px; }
+	section form { width: 100%; }
 }
