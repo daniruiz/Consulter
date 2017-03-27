@@ -1,25 +1,39 @@
 input[name=apellidos] { float: right;}
 input[name=esp] { width: 100%; }
-.calendario-semanal{ width: 100%; }
+section, main {
+	overflow: auto;
+	width: 100%;
+	max-width: 100%;
+}
+section { padding: 20px 0 0 0!important; }
+.calendario-semanal{
+	width: 650px;
+	overflow: visible;
+}
 .calendario-semanal > div > span { cursor: pointer; }
-.calendario-semanal > div { overflow: auto; }
+.calendario-semanal > div {
+	height: 54px;
+	overflow: visible;
+	margin-bottom: 10px;
+}
 form label {
 	width: 207px;
 	display: inline-block;
 }
 .selector-horario, .selector-horario * { box-sizing: content-box; }
-.dia-seleccionado + .selector-horario { opacity: 1; }
+.dia-seleccionado + .horas-horario + .selector-horario { opacity: 1; }
 .selector-horario {
-	opacity: .2;
 	display: inline-block;
-	margin-left: 20px;
+	margin-top: 9px;
 	height: 10px;
 	background: #CCC;
 	border-radius: 20px;
 	position: relative;
 	background-color: rgba(0,0,0,0.1);
 	border: 10px solid white;
-	width: 576px;
+	width: 590px;
+	margin-right: -30px;
+	opacity: .2
 }
 .scroll-barra-izquierda, .scroll-barra-derecha {
 	min-width: 5px;
@@ -39,7 +53,7 @@ form label {
 }
 .scroll-circulo {
 	position: absolute;
-	cursor: pointer;
+	cursor: pointer!important;
 	margin-top: -5px;
 	background: white;
 	border: 2px solid black;
@@ -51,15 +65,58 @@ form label {
 .scroll-izquierda { left: -12px; }
 .scroll-derecha { right: -12px; }
 .horas-horario {
-	float:right;
+	position: relative;
+	float: left;
 	clear: both;
-}
-.horas-horario {
-	float: right;
-	clear: both;
-	color: rgba(0,0,0,0.1);
+	opacity: 0.1;
 	margin-top: -20px;
-	margin-bottom: 10px;
+	margin-left: 65px;
+	margin-top: -15px;
+	font-size: 12px;
+	color: #616161;
 }
-.dia-seleccionado + .selector-horario + .horas-horario { color: rgba(0,0,0,0.7); }
-.horas-horario span { width: 50px; }
+.dia-seleccionado + .horas-horario { opacity: 1 }
+.horas-horario > div { float: left; }
+.horas-horario .hora {
+	color: #616161;
+	cursor: pointer;
+	font-size: 12px;
+	padding: 0;
+	border: none;
+	margin: 0;
+	display: inline;
+	height: inherit;
+	font-weight: normal!important;
+	width: 31px;
+}
+.horas-horario > span > div {display: inline-block; }
+.horas-horario span:last-child { margin-left: 20px; }
+@media only screen and (max-width: 700px) {
+	.calendario-semanal > div > span { margin-left: 20px; }
+	.calendario-semanal { width: 598px }
+	.calendario-semanal > div { height: 85px; }
+	.horas-horario { margin: -32px 0 0 85px; }
+	.selector-horario {
+		margin-top: 0;
+		margin-left: 1px;
+	}
+	.scroll-circulo { border-width: 3px; }
+}
+@media only screen and (max-width: 615px) {
+	.calendario-semanal {
+		width: 80%;
+		margin: auto;
+	}
+	.calendario-semanal > div > span { margin-left: 0; }
+	.selector-horario { display: none; }
+	.horas-horario { margin: -38px 0 0 22%; }
+	.horas-horario .hora {
+		width: 42px;
+		font-size: 16px;
+		border-bottom: 3px solid #1875D1;
+		display: inline;
+	}
+}
+@media only screen and (max-width: 400px) {
+	.calendario-semanal { width: 85%; }
+}

@@ -1,6 +1,7 @@
 <style scoped>
 	input[name=dni] { float: right;}
 	input[name=seguro], input[name=apellidos]{ width: 100%; }
+	section { padding: 20px 0 0!important; }
 </style>
 <section>
 	<form>

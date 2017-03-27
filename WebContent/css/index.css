@@ -2,18 +2,14 @@ nav {
 	background: white;
 	display: block;
 	width: 0;
-	border-right: 2px solid rgba(0,0,0,0.05);
 	overflow: hidden;
 	height: 100%;
 	position: fixed;
 	left: 0;
 	top: 0;
 	padding: 20px 0;
-	transition: width .2s;
-	-webkit-transition: width .2s;
-	will-change: width;
+	width: 250px;
 }
-.mostrar_panel_lateral nav { width: 250px; }
 nav span {
 	padding: 20px;
 	text-transform: uppercase;
@@ -24,39 +20,55 @@ nav span {
 	width: 250px;
 	font-size: 12px;
 	display: block;
-	color: rgba(0,0,0,0.5);
-	border-bottom: 2px solid rgba(0,0,0,0.05);
+	color: #9c9c9c;
+	border-bottom: 2px solid #f3f3f3;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
-nav span.seleccionado {	color: rgba(0, 0, 0, 0.7); }
+nav span.seleccionado {	color: #212121; }
 #envoltorio {
+	background: white;
 	overflow: auto;
 	position: relative;
 	margin-left: 0;
 	transition: margin-left .2s;
 	-webkit-transition: margin-left .2s;
 	will-change: margin-left;
+	outline: 2px solid #f3f3f3;
 }
-.mostrar_panel_lateral #envoltorio { margin-left: 250px; }
+.mostrar_panel_lateral #envoltorio, .mostrar_panel_lateral header { margin-left: 250px; }
 header {
+	z-index: 10;
 	position: fixed;
-	left: 0;
 	top: 0;
+	left: 0;
 	right: 0;
 	background-color: #3E50B4;
 	color: white;
 	box-shadow: 0 2px 5px rgba(0,0,0,.26);
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+	margin-left: 0;
 	transition: margin-left .2s;
 	-webkit-transition: margin-left .2s;
 	will-change: margin-left;
 }
-.mostrar_panel_lateral header {	margin-left: 250px; }
 header > div:first-child { padding: 20px 40px; }
 #search {
 	cursor: pointer;
 	height: 56px;
 	width: 56px;
 	position: absolute;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
+	box-shadow: 0 2px 5px rgba(0,0,0,.5);
 	background-color: #ff4081;
 	border-radius: 100%;
 	right: 20px;
@@ -76,8 +88,9 @@ header > div:first-child { padding: 20px 40px; }
 	margin-right: 20px;
 	margin-top: 4px;
 	border-width: 0;
-	transition: width .2s ease-in, border-top 0s .2s, border-right-width .2s ease-in .2s;
-	-webkit-transition: width .2s ease-in, border-top 0s .2s, border-right-width .2s ease-in .2s;
+	transition: border-right-width .2s ease-in, border-top 0s .2s, margin 0s .2s, width .2s ease-in .3s;
+	-webkit-transition: border-right-width .2s ease-in, border-top 0s .2s, margin 0s .2s, width .2s ease-in .3s;
+	will-change: width;
 }
 #mostrar_menu > div {
 	height: 3px;
@@ -88,9 +101,14 @@ header > div:first-child { padding: 20px 40px; }
 .mostrar_panel_lateral #mostrar_menu{
 	width: 0;
 	height: 0;
-	border-top: 11px solid transparent;
-	border-bottom: 11px solid transparent;
-	border-right: 11px solid rgba(255, 255, 255, 0.7)
+	border-top: 14px solid transparent;
+	border-bottom: 14px solid transparent;
+	border-right: 14px solid #324193;
+	margin-top: 0;
+	margin-right: 15px;
+	transition: width .2s ease-in, border-top 0s .2s, margin 0s .2s, border-right-width .2s ease-in .3s;
+	-webkit-transition: width .2s ease-in, border-top 0s .2s, margin 0s .2s, border-right-width .2s ease-in .3s;
+	will-change: border-right-width;
 }
 h1 {
 	font-size: 27px;
@@ -99,12 +117,20 @@ h1 {
 	margin: 0;
 }
 main {
+	overflow: visible;
 	display: hidden;
 	min-height: 300px;
 	margin: 50px auto;
 	padding-top: 55px;
 	width: 90%;
 	max-width: 800px;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
 }
 section {
 	margin-bottom: 40px;
@@ -126,24 +152,17 @@ footer {
 	height: 100px;
 	background-color: #424242;
 }
-@media only screen and (max-width: 1050px) {
-	main { max-width: 600px; }
+@media only screen and (max-width: 950px) {
+	nav { border: none; }
+	#envoltorio {
+		outline: none;
+		width: 100%;
+		box-shadow: 0 0px 10px rgba(0,0,0,0.4);
+	}
+	header { width: 100%; }
 }
 @media only screen and (max-width: 900px) {
 	section { padding: 20px!important; }
-}
-@media only screen and (max-width: 850px) {
-	header { width: 100%; }
-	nav {
-		border: none;
-		width: 0;
-		box-shadow: inset -7px 0px 10px -7px rgba(0,0,0,0.4);
-		transition: transition: width .2s, box-shadow 0s .5s;
-		-webkit-transition: transition: width .2s, box-shadow 0s .5s;
-	}
-	#envoltorio { width: 100%; }
-	#envoltorio, header { margin-left: 0; }
-	.mostrar_panel_lateral #envoltorio, .mostrar_panel_lateral header { margin-left: 250px; }
 }
 @media only screen and (max-width: 350px) {
 	main { width: 100%; }

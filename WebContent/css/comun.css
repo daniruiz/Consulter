@@ -1,5 +1,13 @@
 /*
-Colores
+Colores{
+borde: #f3f3f3;
+
+nav: #9c9c9c;
+nav-seleccionado: #212121
+
+letra-suave: #616161;
+borde-suave/fondo-suave: #f3f3f3;
+
 rosa: #FF4081
 
 azul-cabecera: #3E50B4;
@@ -9,7 +17,7 @@ azul-borde: #2F3E9E
 
 granate: #A32C36
 granate-borde: #551419
-
+}
 */
 @font-face {
 	font-family: 'Roboto';
@@ -54,16 +62,22 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)!important;
 	outline: none;
 }
-html, body{
+html, body {
+	position: absolute;
 	height: 100%;
 	width: 100%;
-	overflow-x: hidden;
-	min-width: 300px;
+	min-width: 315px;
 	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	cursor: default;
 	margin: 0;
 	font-family: Roboto, sans-serif;
 }
+body { overflow-x: hidden; }
 .boton-azul {
 	border-radius: 5px!important;
 	font-weight: bold !important;

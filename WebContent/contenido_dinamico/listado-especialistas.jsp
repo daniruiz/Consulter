@@ -1,8 +1,8 @@
 <style scoped>
-	body { background: #F6F6F6 }
+	#envoltorio { background: #f3f3f3 }
 	section{
 		margin-bottom: 0;
-		border-bottom: 1px solid rgba(0,0,0,0.05);;
+		border-bottom: 1px solid #f3f3f3;
 	}
 	section > h3 {
 		color: black;
@@ -19,6 +19,7 @@
 	}
 	section > div:first-child > span { margin-left: 20px; }
 	@media only screen and (max-width: 1050px) {
+		main { max-width: 600px; }
 		section > div:first-child{
 			float: inherit;
 			margin-bottom: 20px;

@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$(window).resize(function(){ adaptacion(); });
 
 	$('body').click(function(){
-		if($(window).width() <= 850) mostrarMenuLateral(false);
+		if($(window).width() <= 950) mostrarMenuLateral(false);
 	});
 	$('#mostrar_menu').click(function(e) {
 		e.stopPropagation();
@@ -19,7 +19,9 @@ function cambioPestana(e) {
 		e.attr('class', 'seleccionado');
 		var dir = 'contenido_dinamico/' + e.data().dir;
 		$.get(dir, function(data){
-			$('main').html(data);
+			$('main').fadeOut(200, function(){
+				$(this).html(data).fadeIn(200);
+			});
 			tamMain();
 		}).fail(function() {
 			alert('Error al cargar la pagina');
@@ -29,7 +31,7 @@ function cambioPestana(e) {
 
 function adaptacion(){
 	tamMain();
-	if($(window).width() <= 850) mostrarMenuLateral(false)
+	if($(window).width() <= 950) mostrarMenuLateral(false)
 	else mostrarMenuLateral(true)
 }
 
