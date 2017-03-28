@@ -56,7 +56,7 @@ Author: senthil
 	width: 185px;
 	padding: 10px;
 	border-radius: 5px;
-	z-index: 998;
+	z-index: 1;
 	display: none;
 	box-shadow: 0 2px 5px rgba(0,0,0,.26);
 	background: #f6f6f6;

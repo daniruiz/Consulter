@@ -109,7 +109,7 @@ form label {
 	}
 	.calendario-semanal > div > span { margin-left: 0; }
 	.selector-horario { display: none; }
-	.horas-horario { margin: -38px 0 0 22%; }
+	.horas-horario { margin: -38px 0 0 60px; }
 	.horas-horario .hora {
 		width: 42px;
 		font-size: 16px;
@@ -118,7 +118,12 @@ form label {
 	}
 }
 @media only screen and (max-width: 400px) {
-	.calendario-semanal { width: 85%; }
+    .calendario-semanal {
+        width: auto;
+        margin: 0 10px;
+    }
+    .horas-horario .hora { font-size: 14px; }
+    .horas-horario { margin-left: 52px; }
 }
 @media only screen and (max-width: 350px) {
 	.horas-horario span:last-child { margin-left: 8px; }

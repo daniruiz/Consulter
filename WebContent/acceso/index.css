@@ -1,13 +1,10 @@
-#cortina{
-	display: none;
-	top: 0;
-	z-index: 99;
-	transition: background .6s;
-	-webkit-transition: background .6s;
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
+main {
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+h1 {
+    -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white, 2px 2px 0 #2F3E9E, 3px 3px 0 #2F3E9E
 }
 #login {
 	z-index: 100;
@@ -19,25 +16,18 @@
 	margin-left: -124px;
 	font-size: 16px;
 	font-weight: bold;
-	color: white;
 }
 #login input:not([type=submit]) {
+    color: black;
 	width: 100%;
 	margin: 7px 0;
-	border: 2px solid #09C;
-	color: #FFF;
+	border: 2px solid #1875D1;
 	background: transparent;
 	height: 40px;
 	padding: 0 10px;
 	font-size: 14px;
 	font-weight: bold !important;
-	transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
-	-webkit-transition:  background .2s, box-shadow .2s, color .2s, border-color, .2s;
 	border-radius: 2px;
-}
-#login input:not([type=submit]):focus {
-	box-shadow: 0 0 6px rgba(0, 144, 192, 0.5);
-	background: rgba(0, 0, 0, 0.25);
 }
 #login input[type=submit] { width: 50%; }
 #login form > div {	margin-top: 15px; }
@@ -45,9 +35,8 @@
 	float: left;
 	width: 50%;
 	font-size: 14px;
-	color: white;
 	font-weight: bold;
-	text-shadow: 0 0 1px white;
+	text-shadow: 0 0 1px black;
 }
 #login div > span {
 	transform: rotate(-90deg);
@@ -65,9 +54,9 @@
 	display: block;
 	overflow: hidden;
 	cursor: pointer;
+    background: #551419;
 	border: 3px solid #551419;
 	border-radius: 23px;
-	color: white;
 	transition: border-color 0.2s ease-in 0s;
 	-webkit-transition: border-color 0.2s ease-in 0s;
 
@@ -81,6 +70,8 @@
 	will-change: margin;
 }
 #login label div:before, label div:after {
+    text-shadow: 0 0 1px white;
+    color: white;
 	float: left;
 	width: 50%;
 	height: 40px;
@@ -90,7 +81,7 @@
 #login label div:before {
 	content: "si";
 	padding-left: 20px;
-	background: #2A96E7;
+	background: #1875D1;
 }
 #login label div:after {
 	content: "no";
@@ -114,21 +105,7 @@
 }
 #login input[type=checkbox]:checked + label div { margin-left: 0; }
 #login input[type=checkbox]:checked + label span { right: 0; }
-#login input[type=checkbox]:checked  + label { border-color: #144D79; }
-#denegado {
-	z-index: 100;
-	display: none;
-	width: 100%;
-	position: fixed;
-	bottom: 50%;
-	text-align: center;
-	margin: auto;
-	color: #A32C36;
-	text-shadow: 0 7px 0 #551419;
-	font-weight: bold;
-}
-#denegado div {
-	opacity: 0;
-	display: table;
-	margin: auto;
+#login input[type=checkbox]:checked  + label {
+    border-color: #2F3E9E;
+    background: #2F3E9E;
 }

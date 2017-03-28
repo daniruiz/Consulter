@@ -1,8 +1,33 @@
+$('section form').submit(function(e){
+    e.preventDefault();
+    var dias = $('.dia-seleccionado').map(function(){
+        var contenedor = $(this).siblings('.horas-horario');
+        return {[$(this).text()] : {
+            'inicio': contenedor.find('.hora-inicio').val(),
+            'descanso': contenedor.find('.hora-descanso').val(),
+            'fin-descanso': contenedor.find('.hora-fin-descanso').val(),
+            'fin': contenedor.find('.hora-fin').val()
+        }};
+    }).get();
+    var esp = $('input[name=especialidad]:checked').map(function(){
+                return this.value;
+    }).get();
+        
+    var datos = {
+        'nombre': $('input[name=nombre]').val(),
+        'apellidos': $('input[name=apellidos]').val(),
+        'num': $('input[name=num]').val(),
+        'esp': esp,
+        'dias': dias,
+        'minutos': $('input[name=min]').val()
+    };
+    json = JSON.stringify(datos);
+    console.log(json);
+});
 
 $('.calendario-semanal *[class^="dia"] > span').click(function(){
 	$(this).toggleClass('dia-seleccionado');
 });
-
 
 $('.scroll-circulo').on('mousedown touchstart', function(e){
     $('.timepicker_wrap').hide();

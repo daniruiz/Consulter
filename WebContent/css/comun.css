@@ -1,4 +1,4 @@
-/*
+
 Colores{
 borde: #f3f3f3;
 
@@ -18,7 +18,7 @@ azul-borde: #2F3E9E
 granate: #A32C36
 granate-borde: #551419
 }
-*/
+
 @font-face {
 	font-family: 'Roboto';
 	src: url("fonts/Roboto-Regular.ttf");
@@ -76,8 +76,8 @@ html, body {
 	cursor: default;
 	margin: 0;
 	font-family: Roboto, sans-serif;
+	 overflow-x: hidden;
 }
-body { overflow-x: hidden; }
 .boton-azul {
 	border-radius: 5px!important;
 	font-weight: bold !important;
@@ -160,6 +160,6 @@ label { cursor: pointer; }
 	input[type=text] { width: 100%; }
 }
 @media only screen and (max-width: 450px) {
-	form > span {	margin: 20px 0 5px; }
+    form > div > span {	margin: 20px 0 5px!important; }
 	section form { width: 100%; }
 }

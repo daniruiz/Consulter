@@ -14,25 +14,25 @@ $(document).ready(function() {
 });
 
 function cambioPestana(e) {
-	$('body').animate({scrollTop:0}, 200, function(){
-		$('nav span.seleccionado').attr('class', '');
-		e.attr('class', 'seleccionado');
-		var dir = 'contenido_dinamico/' + e.data().dir;
-		$.get(dir, function(data){
-			$('main').fadeOut(200, function(){
-				$(this).html(data).fadeIn(200);
-			});
-			tamMain();
-		}).fail(function() {
-			alert('Error al cargar la pagina');
-		});
+	$('nav span.seleccionado').attr('class', '');
+	e.attr('class', 'seleccionado');
+	var dir = 'contenido_dinamico/' + e.data().dir;
+	$.get(dir, function(data){
+        setTimeout(function(){
+            $('main').fadeOut(200, function(){
+                $(this).html(data).fadeIn(200);
+            });
+            tamMain();
+        }, 200);
+	}).fail(function() {
+		alert('Error al cargar la pagina');
 	});
 }
 
 function adaptacion(){
 	tamMain();
-	if($(window).width() <= 950) mostrarMenuLateral(false)
-	else mostrarMenuLateral(true)
+	if($(window).width() <= 950) mostrarMenuLateral(false);
+	else mostrarMenuLateral(true);
 }
 
 function tamMain(){

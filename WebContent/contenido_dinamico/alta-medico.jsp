@@ -58,6 +58,8 @@
 		<br>
 
 		<div>
+            <span>&#8226; Tiempo m&iacute;nimo para consulta: </span>
+            <input name="min" type="text" placeholder="Minutos necesarios">
 			<input type="submit" value="enviar" class="boton-azul">
 		</div>
 	</form>
@@ -66,14 +68,14 @@
     $('.calendario-semanal > div').append('\
         <div class="horas-horario">\
             <span>\
-                <input class="hora hora-inicio" type="text" value="09:00">\
+                <input class="hora hora-inicio" type="text" value="09:00" readonly>\
                 <b> - </b>\
-                <input class="hora hora-descanso" type="text" value="13:00">\
+                <input class="hora hora-descanso" type="text" value="13:00" readonly>\
             </span>\
             <span>\
-                <input class="hora hora-fin-descanso" type="text" value="15:00">\
+                <input class="hora hora-fin-descanso" type="text" value="15:00" readonly>\
                 <b> - </b>\
-                <input class="hora hora-fin" type="text" value="20:00">\
+                <input class="hora hora-fin" type="text" value="20:00" readonly>\
             </span>\
         </div>\
         <div class="selector-horario">\
