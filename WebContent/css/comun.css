@@ -144,7 +144,12 @@ textarea {
 	width: 100%;
 	min-height: 200px;
 }
-form > div > span {
+section > form > div {
+	width: 70%;
+	margin: auto;
+    overflow: auto;
+}
+section > form > div > span {
 	display: block;
 	margin: 20px 30px 5px;
 	font-weight: bold;

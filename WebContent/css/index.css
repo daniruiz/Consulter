@@ -117,7 +117,6 @@ h1 {
 	margin: 0;
 }
 main {
-	overflow: visible;
 	display: hidden;
 	min-height: 300px;
 	margin: 50px auto;
@@ -133,12 +132,8 @@ main {
 	cursor: default;
 }
 section {
+    overflow: auto;
 	margin-bottom: 40px;
-	overflow: auto;
-}
-section > form > div {
-	width: 70%;
-	margin: auto;
 }
 section.con-sombra {
 	padding: 30px 50px;

@@ -34,178 +34,24 @@
 		<div class="calendario-semanal">
 			<div class="dia-lunes">
 				<span>L</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-martes">
 				<span>M</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-miercoles">
 				<span>X</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-jueves">
 				<span>J</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-viernes">
 				<span>V</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-sabado">
 				<span>S</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 			<div class="dia-domingo">
 				<span>D</span>
-				<div class="horas-horario">
-					<span>
-						<input class="hora hora-inicio" type="text" value="09:00">
-						<b> - </b>
-						<input class="hora hora-descanso" type="text" value="13:00">
-					</span>
-					<span>
-						<input class="hora hora-fin-descanso" type="text" value="15:00">
-						<b> - </b>
-						<input class="hora hora-fin" type="text" value="20:00">
-					</span>
-				</div>
-				<div class="selector-horario">
-					<div class="scroll-barra-izquierda">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-					<div class="scroll-barra-derecha">
-						<span class="scroll-circulo scroll-izquierda"></span>
-						<span class="scroll-circulo scroll-derecha"></span>
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -216,12 +62,37 @@
 		</div>
 	</form>
 </section>
-
-<script src="/contenido_dinamico/js/alta-medico.js"></script>
+<script>
+    $('.calendario-semanal > div').append('\
+        <div class="horas-horario">\
+            <span>\
+                <input class="hora hora-inicio" type="text" value="09:00">\
+                <b> - </b>\
+                <input class="hora hora-descanso" type="text" value="13:00">\
+            </span>\
+            <span>\
+                <input class="hora hora-fin-descanso" type="text" value="15:00">\
+                <b> - </b>\
+                <input class="hora hora-fin" type="text" value="20:00">\
+            </span>\
+        </div>\
+        <div class="selector-horario">\
+            <div class="scroll-barra-izquierda">\
+                <span class="scroll-circulo scroll-izquierda"></span>\
+                <span class="scroll-circulo scroll-derecha"></span>\
+            </div>\
+            <div class="scroll-barra-derecha">\
+                <span class="scroll-circulo scroll-izquierda"></span>\
+                <span class="scroll-circulo scroll-derecha"></span>\
+            </div>\
+        </div>\
+    ');
+</script>
 <script src="/lib/timepicki.js"></script>
 <script>
 	$('.hora-inicio').timepicki({start_time: ["09", "00"]});
 	$('.hora-descanso').timepicki({start_time: ["13", "00"]});
 	$('.hora-fin-descanso').timepicki({start_time: ["15", "00"]});
 	$('.hora-fin').timepicki({start_time: ["20", "00"]});
-</script
+</script>
+<script src="/contenido_dinamico/js/alta-medico.js"></script>

@@ -1,7 +1,7 @@
 input[name=apellidos] { float: right;}
 input[name=esp] { width: 100%; }
 section, main {
-	overflow: auto;
+	overflow: visible;
 	width: 100%;
 	max-width: 100%;
 }
@@ -119,4 +119,7 @@ form label {
 }
 @media only screen and (max-width: 400px) {
 	.calendario-semanal { width: 85%; }
+}
+@media only screen and (max-width: 350px) {
+	.horas-horario span:last-child { margin-left: 8px; }
 }
