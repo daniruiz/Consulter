@@ -1,0 +1,68 @@
+section, main {
+    overflow: visible;
+    width: 100%;
+}
+section { padding: 20px 0 0!important; }
+section > form > div {
+    overflow: visible;
+    display: table;
+}
+form label {
+    width: 183px;
+    display: inline-block;
+}
+.time_pick {
+    float: right;
+    width: 49%;
+}
+input[name=hora] { width: 100%;}
+.timepicker_wrap {
+    top: 50px!important;
+    left: -59px!important;
+}
+.selector-horario {
+    overflow: visible;
+    box-sizing: content-box;
+    display: block;
+    height: 10px;
+    margin: auto;
+    background: #CCC;
+    border-radius: 40px;
+    position: relative;
+    background-color: rgba(0,0,0,0.1);
+    border: 20px solid white;
+    width: 300px;
+}
+.scroll-barra {
+    box-sizing: content-box;
+    border-radius: 40px;
+    min-width: 5px;
+    height: 100%;
+    background: #009587;
+    position: relative;
+    float: left;
+    margin-left: 0;
+    width: 107px;		/* posicion inicial 9:00 */
+}
+.scroll-circulo {
+    box-sizing: content-box;
+    position: absolute;
+    cursor: pointer!important;
+    margin-top: -5px;
+    background: white;
+    border: 2px solid black;
+    height: 15px;
+    border-radius: 15px;
+    width: 15px;
+    box-shadow: 0 1px 1px 0.1px rgba(0,0,0,.5);
+    right: -12px;
+}
+@media only screen and (max-width: 500px) {
+    .time_pick {
+        width: 100%;
+        float: iherit;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .selector-horario { margin-left: -10px; }
+}

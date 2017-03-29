@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	adaptacion()
+	setTimeout(adaptacion, 800);
 	cambioPestana($('nav span:first'));
 	$('nav span').click(function(){ cambioPestana($(this)) });
 	$(window).resize(function(){ adaptacion(); });
@@ -18,12 +18,11 @@ function cambioPestana(e) {
 	e.attr('class', 'seleccionado');
 	var dir = 'contenido_dinamico/' + e.data().dir;
 	$.get(dir, function(data){
-        setTimeout(function(){
-            $('main').fadeOut(200, function(){
-                $(this).html(data).fadeIn(200);
-            });
-            tamMain();
-        }, 200);
+        $('main').fadeOut(200, function(){
+            $(this).html(data).fadeIn(200);
+            $('footer').show();
+        });
+        tamMain();
 	}).fail(function() {
 		alert('Error al cargar la pagina');
 	});

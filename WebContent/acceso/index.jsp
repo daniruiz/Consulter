@@ -7,16 +7,17 @@
 		<link rel="stylesheet" type="text/css" href="index.css">
 		<link rel="stylesheet" type="text/css" href="/css/comun.css">
 		<script src="/lib/jquery.js"></script>
-		<script src="acceso.js"></script>
+        <script src="index.js"></script>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-title"content="Consulter">
 		<link rel="icon" href="/img/icon.ico">
-		<title>Inicio - Consulter</title>
+		<title>Consulter-login</title>
 	</head>
 	<body>
 		<div id="cortina"></div>
 		<main>
-            <h1>Consulter<h1>
+            <h1>Consulter</h1>
+            <div class="login-incorrecto">login incorrecto</div>
             <div id="login">
                 <form autocomplete="off">
                     <input type="text" placeholder="Usuario" name="usuario" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>

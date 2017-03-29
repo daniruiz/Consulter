@@ -3,7 +3,6 @@ input[name=esp] { width: 100%; }
 section, main {
 	overflow: visible;
 	width: 100%;
-	max-width: 100%;
 }
 section { padding: 20px 0 0 0!important; }
 .calendario-semanal{
@@ -17,7 +16,7 @@ section { padding: 20px 0 0 0!important; }
 	margin-bottom: 10px;
 }
 form label {
-	width: 207px;
+	width: 183px;
 	display: inline-block;
 }
 .selector-horario, .selector-horario * { box-sizing: content-box; }
@@ -37,7 +36,6 @@ form label {
 }
 .scroll-barra-izquierda, .scroll-barra-derecha {
 	min-width: 5px;
-	width: 25%;
 	height: 100%;
 	background: #009587;
 	position: relative;
@@ -104,7 +102,7 @@ form label {
 }
 @media only screen and (max-width: 615px) {
 	.calendario-semanal {
-		width: 80%;
+		width: 330px;
 		margin: auto;
 	}
 	.calendario-semanal > div > span { margin-left: 0; }

@@ -10,11 +10,13 @@
 			<input name="dni" type="text" placeholder="DNI">
 			<input name="apellidos" type="text" placeholder="Apellidos">
 
-			<br>
+			<br><br>
+            
 			<span>&#8226; Campo opcional</span>
+            <br>
 			<input name="seguro" type="text" placeholder="Compa&ntilde;&iacute;a de seguro m&eacute;dico">
 
-			<br>
+			<br><br>
 			<input type="submit" value="enviar" class="boton-azul">
 		</div>
 	</form>

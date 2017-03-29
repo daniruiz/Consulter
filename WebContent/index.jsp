@@ -13,13 +13,15 @@
 		<link rel="icon" href="img/icon.ico">
 		<title>Consulter</title>
 	</head>
-	<body class="mostrar_panel_lateral">
+	<body>
 		<nav>
 			<span class="seleccionado" data-dir="listado-especialistas.jsp">listado especialistas</span>
 			<span data-dir="alta-medico.jsp">alta m&eacute;dico</span>
 			<span data-dir="alta-paciente.jsp">alta paciente</span>
-			<!--<span data-dir="">nueva cita</span>
-			<span data-dir="">ficha paciente</span>-->
+			<span data-dir="cita.jsp">nueva cita</span>
+			<span data-dir="ficha.jsp">ficha paciente</span>
+            <span data-dir="modificar-ficha.jsp">modificar ficha</span>
+            <span data-dir="lista citas.jsp">lista citas</span>
 		</nav>
 		<div id="envoltorio">
 			<header>

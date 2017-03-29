@@ -1,5 +1,5 @@
 <style scoped>
-	#envoltorio { background: #f3f3f3 }
+    #envoltorio { background: #f6f6f6; }
 	section{
 		margin-bottom: 0;
 		border-bottom: 1px solid #f3f3f3;

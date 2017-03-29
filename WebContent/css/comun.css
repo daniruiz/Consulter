@@ -1,7 +1,8 @@
-
+/*
 Colores{
 borde: #f3f3f3;
 
+fondo-gris: #f3f3f3
 nav: #9c9c9c;
 nav-seleccionado: #212121
 
@@ -18,10 +19,10 @@ azul-borde: #2F3E9E
 granate: #A32C36
 granate-borde: #551419
 }
-
+*/
 @font-face {
 	font-family: 'Roboto';
-	src: url("fonts/Roboto-Regular.ttf");
+	src: url("/css/fonts/Roboto-Regular.ttf");
 }
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	opacity: 1;
@@ -126,7 +127,7 @@ input[type=text], textarea {
 	-webkit-transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
 	border-radius: 2px;
 }
-input[type=checkbox]{
+input[type=checkbox], input[type=radio] {
 	cursor: pointer;
 	height: 20px;
 	width: 20px;
@@ -137,7 +138,8 @@ input[type=checkbox]{
 	vertical-align: middle;
 	margin: 8px 11px 10px 0;
 }
-input[type=checkbox]:checked { background: #1875D1 }
+input[type=checkbox]:checked, input[type=radio]:checked { background: #1875D1 }
+input[type=radio] { border-radius: 20px; }
 textarea {
 	padding: 10px;
 	max-width: 100%;
