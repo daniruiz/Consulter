@@ -1,10 +1,11 @@
 <link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/cita.css">
 <link rel="stylesheet" type='text/css'href="/lib/css/timepicki.css"/>
+<link rel="stylesheet" type='text/css'href="/lib/css/datepicker.css"/>
 
 <section>
 	<form>
 		<div>
-            <input name="dia" type="text" placeholder="D&iacute;a">
+            <input name="dia" type="text" placeholder="D&iacute;a" readonly>
             <input name="hora" type="text" value="09:00" readonly>
         </div>
         
@@ -49,6 +50,5 @@
 </section>
 
 <script src="/lib/timepicki.js"></script>
-<script>
-	$('input[name="hora"]').timepicki({start_time: ["09", "00"]});
-</script>
+<script src="/lib/bootstrap-datepicker.js"></script>
+<script src="/contenido_dinamico/js/cita.js"></script>

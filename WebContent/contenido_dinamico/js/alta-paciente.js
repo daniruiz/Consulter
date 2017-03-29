@@ -8,7 +8,6 @@ $('section form').submit(function(e){
                     'seguro': $('input[name=seguro]').val()
                 },
                 json = JSON.stringify(datos);
-        console.log(json);
     }
     return false;
 });

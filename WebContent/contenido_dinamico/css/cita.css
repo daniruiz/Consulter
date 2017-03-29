@@ -15,7 +15,14 @@ form label {
     float: right;
     width: 49%;
 }
-input[name=hora] { width: 100%;}
+.date_pick {
+    float: left;
+    width: 49%;
+}
+input[type=text] {
+    width: 100%;
+    cursor: pointer;
+}
 .timepicker_wrap {
     top: 50px!important;
     left: -59px!important;
@@ -36,13 +43,12 @@ input[name=hora] { width: 100%;}
 .scroll-barra {
     box-sizing: content-box;
     border-radius: 40px;
-    min-width: 5px;
     height: 100%;
     background: #009587;
     position: relative;
     float: left;
     margin-left: 0;
-    width: 107px;		/* posicion inicial 9:00 */
+    width: 108px;		/* posicion inicial 9:00 */
 }
 .scroll-circulo {
     box-sizing: content-box;
@@ -56,6 +62,18 @@ input[name=hora] { width: 100%;}
     width: 15px;
     box-shadow: 0 1px 1px 0.1px rgba(0,0,0,.5);
     right: -12px;
+}
+.datepicker {position: absolute;}
+.formulario-incorrecto::after {
+    content: "campo obligatorio";
+    margin-left: 10px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #A32C36;
+    text-shadow: 0 0 0.5px;
 }
 @media only screen and (max-width: 500px) {
     .time_pick {

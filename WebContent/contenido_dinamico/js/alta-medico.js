@@ -1,3 +1,8 @@
+$('.hora-inicio').timepicki({start_time: ["09", "00"]});
+$('.hora-descanso').timepicki({start_time: ["13", "00"]});
+$('.hora-fin-descanso').timepicki({start_time: ["15", "00"]});
+$('.hora-fin').timepicki({start_time: ["20", "00"]});
+
 $('section form').submit(function(e){
     e.preventDefault();
     if(validarFormulario()){
@@ -50,39 +55,6 @@ $('.scroll-circulo').on('mousedown touchstart', function(e){
 	});
 });
 
-$('.time .action-next').click(function(){
-    var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
-    contenedorHora = $(this).parents('.time_pick').children('.hora'),
-    desplazamiento = 24;		/* 1 hora en pixeles*/
-    actualizarSlider(contenedor, contenedorHora, desplazamiento);
-    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
-	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
-});
-$('.time .action-prev').click(function(){
-var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
-    contenedorHora = $(this).parents('.time_pick').children('.hora'),
-    desplazamiento = -24;		/* 1 hora en pixeles*/
-    actualizarSlider(contenedor, contenedorHora, desplazamiento);
-    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
-	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
-});
-$('.mins .action-next').click(function(){
-var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
-    contenedorHora = $(this).parents('.time_pick').children('.hora'),
-    desplazamiento = 2;			/* 5 minutos en pixeles*/
-    actualizarSlider(contenedor, contenedorHora, desplazamiento);
-    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
-	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
-});
-$('.mins .action-prev').click(function(){
-var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
-    contenedorHora = $(this).parents('.time_pick').children('.hora'),
-    desplazamiento = -2;		/* 5 minutos en pixeles*/
-    actualizarSlider(contenedor, contenedorHora, desplazamiento);
-    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
-	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
-});
-
 
 function validarFormulario(){
     $('.formulario-incorrecto').removeClass('formulario-incorrecto');
@@ -102,11 +74,43 @@ function validarFormulario(){
 }
 
 
-
 var ANCHO_DESCANSO = 48,        /* 2 horas */
         ANCHO_BARRRA_HORARIO = 575, /* horas: 00.00 - 23.57 */
         ANCHO_MINIMO_BARRA = 5,
         MINUTOS_POR_PIXEL = 2.5;
+
+$('.time .action-next').click(function(){
+    var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
+    contenedorHora = $(this).parents('.time_pick').children('.hora'),
+    desplazamiento = 60.0/MINUTOS_POR_PIXEL;		/* 1 hora en px*/
+    actualizarSlider(contenedor, contenedorHora, desplazamiento);
+    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
+	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
+});
+$('.time .action-prev').click(function(){
+var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
+    contenedorHora = $(this).parents('.time_pick').children('.hora'),
+    desplazamiento = -60.0/MINUTOS_POR_PIXEL;		/* 1 hora en px*/
+    actualizarSlider(contenedor, contenedorHora, desplazamiento);
+    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
+	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
+});
+$('.mins .action-next').click(function(){
+var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
+    contenedorHora = $(this).parents('.time_pick').children('.hora'),
+    desplazamiento = 5.0/MINUTOS_POR_PIXEL;			/* 5 minutos en px*/
+    actualizarSlider(contenedor, contenedorHora, desplazamiento);
+    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
+	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
+});
+$('.mins .action-prev').click(function(){
+var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario'),
+    contenedorHora = $(this).parents('.time_pick').children('.hora'),
+    desplazamiento = -5.0/MINUTOS_POR_PIXEL;		/* 5 minutos en px*/
+    actualizarSlider(contenedor, contenedorHora, desplazamiento);
+    $(this).parents('.time_pick').find(".ti_tx input").val(contenedorHora.data('timepicki-tim'));
+	$(this).parents('.time_pick').find(".mi_tx input").val(contenedorHora.data('timepicki-mini'));
+});
 
 function moverSlider(diferencia, lado, contenedor) {
 	var  margenIzquierda = parseFloat(contenedor.children('.scroll-barra-izquierda').css('margin-left')),

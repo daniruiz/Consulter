@@ -94,10 +94,4 @@
     ');
 </script>
 <script src="/lib/timepicki.js"></script>
-<script>
-	$('.hora-inicio').timepicki({start_time: ["09", "00"]});
-	$('.hora-descanso').timepicki({start_time: ["13", "00"]});
-	$('.hora-fin-descanso').timepicki({start_time: ["15", "00"]});
-	$('.hora-fin').timepicki({start_time: ["20", "00"]});
-</script>
 <script src="/contenido_dinamico/js/alta-medico.js"></script>

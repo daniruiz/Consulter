@@ -3,18 +3,21 @@
 Created on: 17 Sep, 2014, 4:29:37 PM
 Author: senthil
 */
+.time_pick {
+	position: relative;
+}
 
-.ti_tx,
-.mi_tx,
-.mer_tx {
+.timepicker_wrap  .ti_tx,
+.timepicker_wrap .mi_tx,
+.timepicker_wrap .mer_tx {
 	width: 100%;
 	text-align: center;
 	margin: 10px 0;
 }
 
-.time,
-.mins,
-.meridian {
+.timepicker_wrap .time,
+.timepicker_wrap .mins,
+.timepicker_wrap .meridian {
 	width: 60px;
 	float: left;
 	margin: 0 10px;
@@ -24,8 +27,8 @@ Author: senthil
 	font-weight: 700;
 }
 
-.prev,
-.next {
+.timepicker_wrap .prev,
+.timepicker_wrap .next {
 	cursor: pointer;
 	padding: 18px;
 	width: 28%;
@@ -35,22 +38,19 @@ Author: senthil
 	border-radius: 5px;
 }
 
-.prev:hover,
-.next:hover {
+.timepicker_wrap .prev:hover,
+.timepicker_wrap .next:hover {
 	background-color: #ccc;
 }
 
-.next {
+.timepicker_wrap .next {
 	background-position: 50% 150%;
 }
 
-.prev {
+.timepicker_wrap .prev {
 	background-position: 50% -50%;
 }
 
-.time_pick {
-	position: relative;
-}
 
 .timepicker_wrap {
 	width: 185px;
@@ -67,7 +67,7 @@ Author: senthil
 	left: 0;
 }
 
-.arrow_top {
+.timepicker_wrap .arrow_top {
 	position: absolute;
 	top: -10px;
 	left: 80px;
@@ -76,7 +76,7 @@ Author: senthil
 	height: 10px;
 	z-index: 999;
 }
-input.timepicki-input {
+.timepicker_wrap input.timepicki-input {
 	background: none repeat scroll 0 0 #FFFFFF;
     	border: 1px solid #CCCCCC;
     	border-radius: 5px 5px 5px 5px;
@@ -84,9 +84,4 @@ input.timepicki-input {
     	margin: 0;
     	text-align: center;
     	width: 70%;
-}
-a.reset_time {
-	float: left;
-	margin-top: 5px;
-	color: #000;
 }
