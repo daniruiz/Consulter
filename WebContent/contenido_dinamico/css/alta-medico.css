@@ -19,6 +19,20 @@ form label {
 	width: 183px;
 	display: inline-block;
 }
+.formulario-incorrecto::after {
+    content: "seleccione al menos 1";
+    margin-left: 10px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #A32C36;
+    text-shadow: 0 0 0.5px;
+}
+input.formulario-incorrecto {
+    border-color: #A32C36;
+}
 .selector-horario, .selector-horario * { box-sizing: content-box; }
 .dia-seleccionado + .horas-horario + .selector-horario { opacity: 1; }
 .selector-horario {
@@ -89,6 +103,8 @@ form label {
 }
 .horas-horario > span > div {display: inline-block; }
 .horas-horario span:last-child { margin-left: 20px; }
+#tiempo { display: inline; }
+input[name="min"]{ width: 77px; }
 @media only screen and (max-width: 700px) {
 	.calendario-semanal > div > span { margin-left: 20px; }
 	.calendario-semanal { width: 598px }

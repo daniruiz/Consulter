@@ -1,28 +1,29 @@
 $('section form').submit(function(e){
     e.preventDefault();
-    var dias = $('.dia-seleccionado').map(function(){
-        var contenedor = $(this).siblings('.horas-horario');
-        return {[$(this).text()] : {
-            'inicio': contenedor.find('.hora-inicio').val(),
-            'descanso': contenedor.find('.hora-descanso').val(),
-            'fin-descanso': contenedor.find('.hora-fin-descanso').val(),
-            'fin': contenedor.find('.hora-fin').val()
-        }};
-    }).get();
-    var esp = $('input[name=especialidad]:checked').map(function(){
-                return this.value;
-    }).get();
-        
-    var datos = {
-        'nombre': $('input[name=nombre]').val(),
-        'apellidos': $('input[name=apellidos]').val(),
-        'num': $('input[name=num]').val(),
-        'esp': esp,
-        'dias': dias,
-        'minutos': $('input[name=min]').val()
-    };
-    json = JSON.stringify(datos);
-    console.log(json);
+    if(validarFormulario()){
+        var dias = $('.dia-seleccionado').map(function(){
+                    var contenedor = $(this).siblings('.horas-horario');
+                    return {[$(this).text()] : {
+                        'inicio': contenedor.find('.hora-inicio').val(),
+                        'descanso': contenedor.find('.hora-descanso').val(),
+                        'fin-descanso': contenedor.find('.hora-fin-descanso').val(),
+                        'fin': contenedor.find('.hora-fin').val()
+                    }};
+                }).get(),
+                esp = $('input[name=especialidad]:checked').map(function(){
+                    return this.value;
+                }).get(),
+                datos = {
+                    'nombre': $('input[name=nombre]').val(),
+                    'apellidos': $('input[name=apellidos]').val(),
+                    'num': $('input[name=num]').val(),
+                    'esp': esp,
+                    'dias': dias,
+                    'minutos': $('input[name=min]').val()
+                },
+                json = JSON.stringify(datos);
+    } else $('html, body').animate({scrollTop: 0},200); 
+    return false;
 });
 
 $('.calendario-semanal *[class^="dia"] > span').click(function(){
@@ -83,11 +84,29 @@ var contenedor = $(this).parents('.horas-horario').siblings('.selector-horario')
 });
 
 
+function validarFormulario(){
+    $('.formulario-incorrecto').removeClass('formulario-incorrecto');
+    if(!/^[A-Za-z]+$/.test($('input[name=nombre]').val()))
+            $('input[name=nombre]').addClass('formulario-incorrecto');
+    if(!/^[A-Za-z]+$/.test($('input[name=apellidos]').val()))
+            $('input[name=apellidos]').addClass('formulario-incorrecto');
+    if(!/^\d+$/.test($('input[name=num]').val()))
+            $('input[name=num]').addClass('formulario-incorrecto');
+    if($('input[type=checkbox]:checked').length == 0)
+        $('form > div > span:eq(0)').addClass('formulario-incorrecto');
+    if($('.dia-seleccionado').length == 0)
+        $('form > div > span:eq(1)').addClass('formulario-incorrecto');
+    if(!/^\d{1,3}$/.test($('input[name=min]').val()))
+            $('input[name=min]').addClass('formulario-incorrecto');
+    return $('.formulario-incorrecto').length == 0;
+}
 
-ANCHO_DESCANSO = 48;        /* 2 horas */
-ANCHO_BARRRA_HORARIO = 575; /* horas: 00.00 - 23.57 */
-ANCHO_MINIMO_BARRA = 5;
-MINUTOS_POR_PIXEL = 2.5;
+
+
+var ANCHO_DESCANSO = 48,        /* 2 horas */
+        ANCHO_BARRRA_HORARIO = 575, /* horas: 00.00 - 23.57 */
+        ANCHO_MINIMO_BARRA = 5,
+        MINUTOS_POR_PIXEL = 2.5;
 
 function moverSlider(diferencia, lado, contenedor) {
 	var  margenIzquierda = parseFloat(contenedor.children('.scroll-barra-izquierda').css('margin-left')),

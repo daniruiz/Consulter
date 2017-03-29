@@ -58,10 +58,13 @@
 		<br>
 
 		<div>
-            <span>&#8226; Tiempo m&iacute;nimo para consulta: </span>
-            <input name="min" type="text" placeholder="Minutos necesarios">
-			<input type="submit" value="enviar" class="boton-azul">
-		</div>
+            <span id="tiempo">&#8226; Tiempo m&iacute;nimo para consulta: </span>
+            <input name="min" type="text" placeholder="Minutos">
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="enviar" class="boton-azul">
+        </div>
 	</form>
 </section>
 <script>

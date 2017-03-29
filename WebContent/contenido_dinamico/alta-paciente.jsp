@@ -2,6 +2,9 @@
 	input[name=dni] { float: right;}
 	input[name=seguro], input[name=apellidos]{ width: 100%; }
 	section { padding: 20px 0 0!important; }
+    input.formulario-incorrecto {
+        border-color: #A32C36;
+    }
 </style>
 <section>
 	<form>
@@ -21,3 +24,5 @@
 		</div>
 	</form>
 </section>
+
+<script src="/contenido_dinamico/js/alta-paciente.js"></script>

@@ -77,8 +77,8 @@ html, body {
 	cursor: default;
 	margin: 0;
 	font-family: Roboto, sans-serif;
-	 overflow-x: hidden;
 }
+body.mostrar_panel_lateral { overflow-x: hidden; }
 .boton-azul {
 	border-radius: 5px!important;
 	font-weight: bold !important;
