@@ -1,3 +1,3 @@
 # FIS
 
-DEMO URL http://dra.ddns.net:8080/
+DEMO URL http://dra.ddns.net/
