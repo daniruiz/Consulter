@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/cita.css">
+<link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/pedir-cita.css">
 <link rel="stylesheet" type='text/css'href="/lib/css/timepicki.css"/>
 <link rel="stylesheet" type='text/css'href="/lib/css/datepicker.css"/>
 
@@ -51,4 +51,4 @@
 
 <script src="/lib/timepicki.js"></script>
 <script src="/lib/bootstrap-datepicker.js"></script>
-<script src="/contenido_dinamico/js/cita.js"></script>
+<script src="/contenido_dinamico/js/pedir-cita.js"></script>

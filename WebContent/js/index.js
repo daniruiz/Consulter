@@ -20,6 +20,7 @@ function cambioPestana(e) {
 	$.get(dir, function(data){
         $('main').fadeOut(200, function(){
             $(this).html(data).fadeIn(200);
+			$('body').scrollTop(0);
             $('footer').show();
         });
         tamMain();

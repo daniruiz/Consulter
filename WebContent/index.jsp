@@ -26,7 +26,7 @@
 
 			<!--paciente-->
 			<span data-dir="listado-especialistas.jsp">listado especialistas</span>
-			<span data-dir="cita.jsp">nueva cita</span>
+			<span data-dir="pedir-cita.jsp">nueva cita</span>
 			<span data-dir="citas-paciente.jsp">Mis citas</span>
 
 

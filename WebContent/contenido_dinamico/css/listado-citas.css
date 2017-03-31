@@ -31,6 +31,7 @@ hr {
 	border-top: 1px solid #e0e0e0;
 }
 section {
+	vertical-align: top;
 	padding: 10px 20px!important;
 	display: inline-block;
 	border-bottom: 1px solid #f3f3f3;
@@ -42,7 +43,7 @@ section span { float: right; }
 @media only screen and (max-width: 1160px) {
 	section {
 		display: inline-block;
-		margin: 0;
+		margin: 2px;
 	}
 }
 @media only screen and (max-width: 570px) {
