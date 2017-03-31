@@ -172,6 +172,7 @@ footer {
 	background-color: #424242;
 }
 @media only screen and (max-width: 950px) {
+	body.mostrar_panel_lateral * { cursor: pointer; }
 	nav { border: none; }
 	#envoltorio {
 		outline: none;

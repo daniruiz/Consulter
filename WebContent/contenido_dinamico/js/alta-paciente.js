@@ -8,7 +8,7 @@ $('section form').submit(function(e){
                     'seguro': $('input[name=seguro]').val()
                 },
                 json = JSON.stringify(datos);
-    }
+    } else $('html, body').animate({scrollTop: 0},200); 
     return false;
 });
 

@@ -24,7 +24,7 @@
 	var Datepicker = function(element, options){
 		this.element = $(element);
         this.element.wrap('<div class="date_pick"></div>')
-		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'mm/dd/yyyy');
+		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'dd/mm/yyyy');
 		this.picker = $(DPGlobal.template)
 							.appendTo('.date_pick')
 							.on({
@@ -441,7 +441,7 @@
 		contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>'
 	};
 	DPGlobal.template = '<div class="datepicker dropdown-menu">'+
-							'<div class="datepicker-days">'+
+							'<div class="datepicker-days" style="display:block">'+
 								'<table class=" table-condensed">'+
 									DPGlobal.headTemplate+
 									'<tbody></tbody>'+

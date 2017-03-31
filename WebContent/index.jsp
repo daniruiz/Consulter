@@ -15,13 +15,21 @@
 	</head>
 	<body>
 		<nav>
-			<span class="seleccionado" data-dir="listado-especialistas.jsp">listado especialistas</span>
+			<!-- gestor -->
+			<span data-dir="listado-citas.jsp">lista de citas</span>
 			<span data-dir="alta-medico.jsp">alta m&eacute;dico</span>
 			<span data-dir="alta-paciente.jsp">alta paciente</span>
+
+			<!-- medico -->
+			<span data-dir="ficha.jsp">ficha de paciente</span>
+			<span data-dir="citas-medico.jsp">Mis citas</span>
+
+			<!--paciente-->
+			<span data-dir="listado-especialistas.jsp">listado especialistas</span>
 			<span data-dir="cita.jsp">nueva cita</span>
-			<span data-dir="ficha.jsp">ficha paciente</span>
-            <span data-dir="modificar-ficha.jsp">modificar ficha</span>
-            <span data-dir="lista citas.jsp">lista citas</span>
+			<span data-dir="citas-paciente.jsp">Mis citas</span>
+
+
 		</nav>
 		<div id="envoltorio">
 			<header>

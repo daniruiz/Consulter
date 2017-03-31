@@ -19,7 +19,7 @@ $('section form').submit(function(e){
                 },
                 json = JSON.stringify(datos);
         console.log(json);
-    }
+    }  else $('html, body').animate({scrollTop: 0},200); 
     return false;
 });
 

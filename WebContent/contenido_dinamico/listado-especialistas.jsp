@@ -4,7 +4,7 @@
 		margin-bottom: 0;
 		border-bottom: 1px solid #f3f3f3;
 	}
-	section > h3 {
+	section h3 {
 		color: black;
 	}
 	section > div:first-child{

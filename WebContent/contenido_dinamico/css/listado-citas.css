@@ -1,0 +1,54 @@
+#envoltorio { background: #f6f6f6; }
+main { max-width: 1120px; }
+.date_pick {
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+input {
+	cursor: pointer;
+	width: 100%;
+	border: 2px solid black;
+	color: black;
+	background: transparent;
+	height: 40px;
+	padding: 0 10px;
+	font-size: 14px;
+	font-weight: bold !important;
+	transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
+	-webkit-transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
+	border-radius: 2px;
+	margin: auto;
+	display: block;
+}
+.hora {
+	margin-top: 20px;
+	color: #808080;
+}
+.hora span { margin-left: 10px; }
+hr {
+	border: none;
+	border-top: 1px solid #e0e0e0;
+}
+section {
+	padding: 10px 20px!important;
+	display: inline-block;
+	border-bottom: 1px solid #f3f3f3;
+	margin: 10px;
+	width: 250px;
+}
+section h3 { color: black; }
+section span { float: right; }
+@media only screen and (max-width: 1160px) {
+	section {
+		display: inline-block;
+		margin: 0;
+	}
+}
+@media only screen and (max-width: 570px) {
+	section {
+		width: 80%;
+		display: block;
+		margin: 5px auto;
+	}
+}
