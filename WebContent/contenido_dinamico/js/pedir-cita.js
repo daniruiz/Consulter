@@ -29,10 +29,8 @@ $('.slider-circulo').on('mousedown touchstart', function(e){
 	var lado = $(this).hasClass('slider-circulo-inicio') ? 'inicio' : 'fin';
 	$(window).on('mousemove touchmove', function(e){
 		var posicionX = (e.touches == undefined) ? e.pageX : e.touches[0].pageX,
-			posicionSlider = $('#selector-horario').offset().left + TAM_BORDE_BARRA,
-			posicionRaton = (posicionX - posicionSlider);
-		moverSlider(posicionRaton, lado);
-		actualizarHora();
+			desplazamiento = posicionX < $('.slider-circulo-' + lado).offset().left ? -1 : 1;
+		moverSlider(lado, desplazamiento);
 	}).on('mouseup touchend', function(){
 		$(this).off('mousemove touchmove');
 		$('html, body').css('cursor','initial');
@@ -82,6 +80,7 @@ function moverSlider(lado, desplazamiento) {
 		'width' : (fin - inicio) * 30 / MINUTOS_POR_PIXEL
 	});
 	actualizarHora();
+	quitaMedicosFueraDeRango()
 }
 
 function actualizarHora(){
@@ -107,60 +106,78 @@ function devolverMinuto(m){
 
 
 //------- CARGAR MEDICOS
-
 $('.especialidad, #dia').change(function(){pedirMedicosDisponibles()});
 
-function pedirMedicosDisponibles(){
-	var medicos = {
-		'Roberto Perez' : {
-			'id' : 2,
-			'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00']
-		},
-		'Luis Moreno' : {
-			'id' : 3,
-			'horas' : ['08:00','08:30','09:30','10:30','11:00','12:00','12:30','13:30','14:00']
-		},
-		'Isabel Hernandez' : {
-			'id' : 1,
-			'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00']
+function pedirMedicosDisponibles() {
+	if($('.especialidad:checked').length == 1){
+		var medicos = {
+			'Roberto Perez' : {
+				'id' : 2,
+				'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00']
+			},
+			'Luis Moreno' : {
+				'id' : 3,
+				'horas' : ['08:00','08:30','09:30','10:30','11:00','12:00','12:30','13:30','14:00']
+			},
+			'Isabel Hernandez' : {
+				'id' : 1,
+				'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00']
+			}
 		}
-	}
-	var html = '';
-	$.each(medicos, function(nombre, medico){
-		html += '<div data-id="' + medico.id + '"><h4>' + nombre + '</h4><div>';
-		$.each(medico.horas, function(i, hora){
-			html += '<span>' + hora + '</span> ';
+		var html = '';
+		$.each(medicos, function(nombre, medico){
+			html += '<div data-id="' + medico.id + '"><h4>' + nombre + '</h4><div>';
+			$.each(medico.horas, function(i, hora){
+				html += '<span class="hora-disponible">' + hora + '</span> ';
+			});
+			html += '</div></div>'
 		});
-		html += '</div></div>'
+		$('#medicos-disponibles').html(html);
+
+		$('#medicos-disponibles span').click(function(){
+			$('#medicos-disponibles span.seleccionado').removeClass('seleccionado');
+			$(this).addClass('seleccionado');
+		});
+		quitaMedicosFueraDeRango();
+	}
+}
+
+function quitaMedicosFueraDeRango() {
+	$('#medicos-no-disponibles').hide();
+	$('#medicos-disponibles div').removeClass('oculto');
+	$('.hora-disponible').removeClass('oculto');
+	var inicio = parseInt($('#rango-inicio').val().replace(':', '')),
+		fin = parseInt($('#rango-fin').val().replace(':', ''));
+	$('.hora-disponible').each(function(){
+		var hora = parseInt($(this).text().replace(':', ''));
+		if(inicio > hora || hora > fin) $(this).addClass('oculto');
 	});
-	$('#medicos-disponibles').html(html);
-	
-	$('#medicos-disponibles span').click(function(){
-		$('#medicos-disponibles span.seleccionado').removeClass('seleccionado');
-		$(this).addClass('seleccionado');
+	$('#medicos-disponibles div').each(function(){
+		if($(this).children(':not(.oculto)').length == 0) $(this).parent('div').addClass('oculto');
 	});
+	if($('#medicos-disponibles > div:not(.oculto)').length == 0) $('#medicos-no-disponibles').show();
 }
 
 
 //-------- ENVIAR FORMULARIO
 $('section form').submit(function(e){
 	e.preventDefault();
+	var hora = $('#medicos-disponibles .hora-disponible.seleccionado'),
+		medico = hora.parents('div[data-id]').data('id');
 	if(validarFormulario()){
 		var datos = {
-			'dia': $('#dia').val(),
-			'hora': $('#hora').val(),
-			'especialista': $('.especialidad:checked').val(),
-			'medico': $('.medico:checked').val()
+			'dia': $('#dia').text(),
+			'hora': hora.val(),
+			'medico': medico
 		},
 			json = JSON.stringify(datos);
-		console.log(json);
 	}  else $('html, body').animate({sliderTop: 0},200); 
 	return false;
 });
 
 function validarFormulario(){
 	$('.formulario-incorrecto').removeClass('formulario-incorrecto');
-	if($('.especialidad:checked').length == 0)
-		$('form > div > span:eq(0)').addClass('formulario-incorrecto');
+	if($('.hora-disponible.seleccionado:not(.oculto)').length == 0)
+		$('#texto1').addClass('formulario-incorrecto');
 	return $('.formulario-incorrecto').length == 0;
 }

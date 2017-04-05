@@ -129,7 +129,7 @@ header > div:first-child { padding: 20px 40px; }
 	-webkit-transition: width .2s ease-in, border-top 0s .2s, margin 0s .2s, border-right-width .2s ease-in .3s;
 	will-change: border-right-width;
 }
-h1 {
+header h1 {
     opacity: 0;
     animation: 1.4s animacionOpacidad .2s forwards;
 	font-size: 27px;

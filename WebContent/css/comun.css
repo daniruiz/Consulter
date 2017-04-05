@@ -168,7 +168,7 @@ input.formulario-incorrecto { border-color: #A32C36; }
 	color: #A32C36;
 	text-shadow: 0 0 0.5px;
 }
-
+.oculto { display: none!important; }
 @media only screen and (max-width: 500px) {
 	input[type=text] { width: 100%; }
 }

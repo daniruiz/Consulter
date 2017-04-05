@@ -10,6 +10,7 @@
 				<div class="datepicker_wrap">
 					<input id="dia" type="text" placeholder="D&iacute;a" readonly>
 				</div>
+				
 				<br>
 
 				<span>&#8226; Especialista </span>
@@ -28,6 +29,7 @@
 				<label><input type="radio" class="especialidad" name="especialidad" value="12"> Urolog&iacute;a</label>
 
 				<br><br>
+				
 				<div id="rango-horario">
 					<input id="rango-inicio" type="text" value="08:00" readonly>
 					<input id="rango-fin" type="text" value="20:00" readonly>
@@ -41,12 +43,16 @@
 				</div>
 
 				<br>
-				<span>&#8226; M&eacute;dicos disponibles</span>
+				
+				<span id="texto1">&#8226; M&eacute;dicos disponibles</span>
+				
 				<br>
 
 				<div id="medicos-disponibles"></div>
+				<h1 id="medicos-no-disponibles">No hay m&eacute;dicos disponibles en el d&iacute;a u hora seleccionadas</h1>
 
 				<br>
+				
 				<input type="submit" value="enviar" class="boton-azul">
 			</div>
 		</form>

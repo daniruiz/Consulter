@@ -84,7 +84,11 @@ section input[type="text"] {
 }
 .slider-circulo-inicio { left: -9.5px; }
 .slider-circulo-fin { right: -9.5px; }
-.formulario-incorrecto::after { content: "campo obligatorio"; }
+.formulario-incorrecto::after { content: "No ha seleccionado hora"; }
+#medicos-disponibles h4 {
+	font-size: 20px;
+	font-weight: bold;
+}
 #medicos-disponibles > div > div {
 	margin: 0 20px;
 	color: #9c9c9c;
@@ -100,6 +104,12 @@ section input[type="text"] {
 	font-weight: bold;
 	font-size: 40px;
 	border-bottom: 5px solid #1875D1;
+}
+#medicos-no-disponibles {
+	display: none;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
 }
 @media only screen and (max-width: 500px) {
 	.time_pick {
