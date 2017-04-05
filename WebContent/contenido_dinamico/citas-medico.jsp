@@ -1,3 +1,5 @@
+<!-- listado citas para medico -->
+
 <link rel="stylesheet" type='text/css' href="/contenido_dinamico/css/listado-citas.css"/>
 <link rel="stylesheet" type='text/css' href="/lib/css/datepicker.css"/>
 

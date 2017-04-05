@@ -149,7 +149,7 @@ textarea {
 section > form > div {
 	width: 70%;
 	margin: auto;
-    overflow: auto;
+	overflow: auto;
 }
 section > form > div > span {
 	display: block;
@@ -157,11 +157,22 @@ section > form > div > span {
 	font-weight: bold;
 }
 label { cursor: pointer; }
+input.formulario-incorrecto { border-color: #A32C36; }
+.formulario-incorrecto::after {
+	margin-left: 10px;
+	display: block;
+	position: absolute;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #A32C36;
+	text-shadow: 0 0 0.5px;
+}
 
 @media only screen and (max-width: 500px) {
 	input[type=text] { width: 100%; }
 }
 @media only screen and (max-width: 450px) {
-    form > div > span {	margin: 20px 0 5px!important; }
+	form > div > span {	margin: 20px 0 5px!important; }
 	section form { width: 100%; }
 }

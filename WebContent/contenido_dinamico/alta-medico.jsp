@@ -1,97 +1,128 @@
-<link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/alta-medico.css">
-<link rel="stylesheet" type='text/css'href="/lib/css/timepicki.css"/>
+<%@page contentType="text/html; charset=UTF-8" %>
+
+<style scoped>
+	section { padding: 20px 0 0!important; }
+	#apellidos { float: right; }
+	form label {
+		width: 183px;
+		display: inline-block;
+	}
+	.formulario-incorrecto::after {	content: "seleccione al menos 1"; }
+	.calendario-semanal {
+		width: 365px;
+		margin: auto;
+	}
+	.calendario-semanal > div { cursor: pointer; }
+	@media only screen and (max-width: 600px) {
+		.calendario-semanal { width: 255px; }
+		.calendario-semanal > div > span, .calendario-semanal > span {
+			height: 30px;
+			width: 30px;
+			line-height: 30px;
+			font-size: 11px;
+		}
+		section > form > div { width: 90%; }
+	}
+</style>
 
 <section>
 	<form>
 		<div>
-			<input name="nombre" type="text" placeholder="Nombre">
-			<input name="apellidos" type="text" placeholder="Apellidos">
-			<input name="num" type="text" placeholder="N&ordm; colegio m&eacute;dico">
+			<input id="nombre" type="text" placeholder="Nombre"> 
+			<input id="apellidos" type="text" placeholder="Apellidos">
+			<input id="num" type="text" placeholder="N&ordm; colegio m&eacute;dico">
 
 			<br><br>
 
-			<span>&#8226; Seleccione sus especialidades</span>
+			<span id="texto1">&#8226; Seleccione sus especialidades</span>
 			<br>
 
-			<label><input type="checkbox" name="especialidad" value="Cardiolog&iacute;a"> Cardiolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Dermatolog&iacute;a"> Dermatolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Endocrinolog&iacute;a"> Endocrinolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Gastroenterolog&iacute;a"> Gastroenterolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Geriatr&iacute;a"> Geriatr&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Ginecolog&iacute;a"> Ginecolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Neurolog&iacute;a"> Neurolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Oftalmolog&iacute;a"> Oftalmolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Pediatr&iacute;a"> Pediatr&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Psiquiatr&iacute;a"> Psiquiatr&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Reumatolog&iacute;a"> Reumatolog&iacute;a</label>
-			<label><input type="checkbox" name="especialidad" value="Urolog&iacute;a"> Urolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="1"> Cardiolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="2"> Dermatolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="3"> Endocrinolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="4"> Gastroenterolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="5"> Geriatr&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="6"> Ginecolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="7"> Neurolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="8"> Oftalmolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="9"> Pediatr&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="10"> Psiquiatr&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="11"> Reumatolog&iacute;a</label>
+			<label><input type="checkbox" class="especialidad" name="especialidad" value="12"> Urolog&iacute;a</label>
 
 			<br><br>
 
-			<span>&#8226; D&iacute;as semanales disponible: </span>
+			<span id="texto2">&#8226; D&iacute;as semanales disponible: </span>
+			<br>
+			<div class="calendario-semanal">
+				<div>
+					<span>L</span>
+				</div>
+				<div>
+					<span>M</span>
+				</div>
+				<div>
+					<span>X</span>
+				</div>
+				<div>
+					<span>J</span>
+				</div>
+				<div>
+					<span>V</span>
+				</div>
+				<div>
+					<span>S</span>
+				</div>
+				<div>
+					<span>D</span>
+				</div>
+			</div>
+
 			<br><br>
-		</div>
-		<div class="calendario-semanal">
-			<div class="dia-lunes">
-				<span>L</span>
-			</div>
-			<div class="dia-martes">
-				<span>M</span>
-			</div>
-			<div class="dia-miercoles">
-				<span>X</span>
-			</div>
-			<div class="dia-jueves">
-				<span>J</span>
-			</div>
-			<div class="dia-viernes">
-				<span>V</span>
-			</div>
-			<div class="dia-sabado">
-				<span>S</span>
-			</div>
-			<div class="dia-domingo">
-				<span>D</span>
-			</div>
-		</div>
+			<input type="submit" value="enviar" class="boton-azul">
+			</form>
+		</section>
+	<script>
+		$('section form').submit(function(e){
+			e.preventDefault();
+			if(validarFormulario()){
+				var dias = $('.dia-seleccionado').map(function(){
+					return this.text();
+				}).get(),
+					esp = $('input[name=especialidad]:checked').map(function(){
+						return this.value;
+					}).get(),
+					datos = {
+						'nombre': $('#nombre').val(),
+						'apellidos': $('#apellidos').val(),
+						'num': $('#num').val(),
+						'esp': esp,
+						'dias': dias,
+						'minutos': $('input[name=min]').val()
+					},
+					json = JSON.stringify(datos);
 
-		<br>
+			} else $('html, body').animate({scrollTop: 0},200); 
+			return false;
+		});
 
-		<div>
-            <span id="tiempo">&#8226; Tiempo m&iacute;nimo para consulta: </span>
-            <input name="min" type="text" placeholder="Minutos">
-        </div>
-        <br>
-        <div>
-            <input type="submit" value="enviar" class="boton-azul">
-        </div>
-	</form>
-</section>
-<script>
-    $('.calendario-semanal > div').append('\
-        <div class="horas-horario">\
-            <span>\
-                <input class="hora hora-inicio" type="text" value="09:00" readonly>\
-                <b> - </b>\
-                <input class="hora hora-descanso" type="text" value="13:00" readonly>\
-            </span>\
-            <span>\
-                <input class="hora hora-fin-descanso" type="text" value="15:00" readonly>\
-                <b> - </b>\
-                <input class="hora hora-fin" type="text" value="20:00" readonly>\
-            </span>\
-        </div>\
-        <div class="selector-horario">\
-            <div class="scroll-barra-izquierda">\
-                <span class="scroll-circulo scroll-izquierda"></span>\
-                <span class="scroll-circulo scroll-derecha"></span>\
-            </div>\
-            <div class="scroll-barra-derecha">\
-                <span class="scroll-circulo scroll-izquierda"></span>\
-                <span class="scroll-circulo scroll-derecha"></span>\
-            </div>\
-        </div>\
-    ');
-</script>
-<script src="/lib/timepicki.js"></script>
-<script src="/contenido_dinamico/js/alta-medico.js"></script>
+		$('.calendario-semanal span').click(function(){
+			$(this).toggleClass('dia-seleccionado');
+		});
+
+
+		function validarFormulario(){
+			$('.formulario-incorrecto').removeClass('formulario-incorrecto');
+			if(!/^[A-záéíóúñ]+$/.test($('#nombre').val()))
+				$('#nombre').addClass('formulario-incorrecto');
+			if(!/^[A-záéíóúñ\s]+$/.test($('#apellidos').val()))
+				$('#apellidos').addClass('formulario-incorrecto');
+			if(!/^[\w\d]+$/.test($('#num').val()))
+				$('#num').addClass('formulario-incorrecto');
+			if($('.especialidad:checked').length == 0)
+				$('#texto1').addClass('formulario-incorrecto');
+			if($('.dia-seleccionado').length == 0)
+				$('#texto2').addClass('formulario-incorrecto');
+			return $('.formulario-incorrecto').length == 0;
+		}
+	</script>

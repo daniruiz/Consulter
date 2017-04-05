@@ -1,3 +1,5 @@
+<%@page contentType="text/html; charset=UTF-8" %>
+
 <!doctype html>
 
 <html>
@@ -16,18 +18,17 @@
 	<body>
 		<nav>
 			<!-- gestor -->
-			<span data-dir="listado-citas.jsp">lista de citas</span>
-			<span data-dir="alta-medico.jsp">alta m&eacute;dico</span>
-			<span data-dir="alta-paciente.jsp">alta paciente</span>
+			<span data-dir="listado-citas">lista de citas</span>
+			<span data-dir="listado-medicos">listado medicos</span>
+			<span data-dir="listado-pacientes">listado pacientes</span>
+			<span data-dir="alta-medico">alta m&eacute;dico</span>
+			<span data-dir="alta-paciente">alta paciente</span>
+			<span data-dir="pedir-cita">nueva cita</span>
 
-			<!-- medico -->
+			
+			<!-- medico
 			<span data-dir="ficha.jsp">ficha de paciente</span>
-			<span data-dir="citas-medico.jsp">Mis citas</span>
-
-			<!--paciente-->
-			<span data-dir="listado-especialistas.jsp">listado especialistas</span>
-			<span data-dir="pedir-cita.jsp">nueva cita</span>
-			<span data-dir="citas-paciente.jsp">Mis citas</span>
+			<span data-dir="citas-medico.jsp">Mis citas</span> -->
 
 
 		</nav>

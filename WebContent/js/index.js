@@ -1,32 +1,57 @@
 $(document).ready(function() {
 	setTimeout(adaptacion, 800);
-	cambioPestana($('nav span:first'));
-	$('nav span').click(function(){ cambioPestana($(this)) });
+	cargarDir();
+
+	$('nav span').click(function(){
+		if(!$(this).hasClass('seleccionado'))
+			cambiarPagina($(this).data('dir'));
+	});
 	$(window).resize(function(){ adaptacion(); });
 
 	$('body').click(function(){
 		if($(window).width() <= 950) mostrarMenuLateral(false);
 	});
-	$('#mostrar_menu').click(function(e) {
+	$('#mostrar_menu').click(function(e){
 		e.stopPropagation();
 		mostrarMenuLateral();
 	});
 });
 
-function cambioPestana(e) {
-	$('nav span.seleccionado').attr('class', '');
-	e.attr('class', 'seleccionado');
-	var dir = 'contenido_dinamico/' + e.data().dir;
+window.addEventListener("popstate", cargarDir, false); // Activar botones navegación
+
+
+
+function cambiarPagina(dir){
+	history.pushState("", "", dir);
+	cargarDir();
+}
+
+function cargarDir() {
+	var dir = location.pathname.substring(1);
+	if(/acceso/.test(dir)) location.href = '/acceso'; // redirección a login
+
+	var pestana = $('nav span[data-dir="' + dir + '"]');
+	if(pestana.length == 0) {
+		pestana = $('nav span:first');
+		dir = pestana.data('dir');
+	}
+	cambioPestana(pestana);
+
+	if(/^listado.+$/.test(dir)) dir = 'listado'
+	dir = 'contenido_dinamico/' + dir + '.jsp';
 	$.get(dir, function(data){
-        $('main').fadeOut(200, function(){
-            $(this).html(data).fadeIn(200);
+		$('main').fadeOut(200, function(){
+			$(this).html(data).fadeIn(200);
 			$('body').scrollTop(0);
-            $('footer').show();
-        });
-        tamMain();
-	}).fail(function() {
-		alert('Error al cargar la pagina');
+			$('footer').show();
+		});
+		tamMain();
 	});
+}
+
+function cambioPestana(e) {
+	$('nav span.seleccionado').removeClass('seleccionado');
+	e.addClass('seleccionado');
 }
 
 function adaptacion(){
@@ -43,7 +68,7 @@ function mostrarMenuLateral(mostrar) {
 	if(mostrar == undefined)
 		$('body').toggleClass('mostrar_panel_lateral');
 	if(mostrar == false)
-		$('body').attr('class', '');
+		$('body').removeClass('mostrar_panel_lateral');
 	if(mostrar == true)
-		$('body').attr('class', 'mostrar_panel_lateral');
+		$('body').addClass('mostrar_panel_lateral');
 }
