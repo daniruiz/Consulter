@@ -1,3 +1,28 @@
+//-------- FOMULARIO USUARIO
+$('#formulario-usuario').submit(function(e){
+	var dni = $('#formulario-usuario input[name="dni"]').val();
+	e.preventDefault();
+	/*$.get('', dni function(data){
+		var value = data;
+		if(data == 'true'){*/
+	$('#formulario-usuario').hide();
+	$('#formulario-cita').show();
+	$('#dni').val(dni);
+	$('#texto1').append(dni);
+	/*} else {
+			$('#formulario-usuario input').hide();
+			$('#formulario-usuario div').show();/*
+		}
+	});*/
+	return false;
+});
+
+$('#formulario-usuario > div > div .boton-azul').click(function(){
+	cambiarPagina('/alta-paciente');
+	cargarDir();
+});
+
+
 //-------- INICIALIZACIÓN
 var diaManana = new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
 	dia = ('0' + diaManana.getDate()).slice(-2),
@@ -160,14 +185,15 @@ function quitaMedicosFueraDeRango() {
 
 
 //-------- ENVIAR FORMULARIO
-$('section form').submit(function(e){
+$('#formulario-cita').submit(function(e){
 	e.preventDefault();
 	var hora = $('#medicos-disponibles .hora-disponible.seleccionado'),
 		medico = hora.parents('div[data-id]').data('id');
 	if(validarFormulario()){
 		var datos = {
-			'dia': $('#dia').text(),
-			'hora': hora.val(),
+			'dni': $('#dni').val(),
+			'dia': $('#dia').val(),
+			'hora': hora.text(),
 			'medico': medico
 		},
 			json = JSON.stringify(datos);
@@ -178,6 +204,6 @@ $('section form').submit(function(e){
 function validarFormulario(){
 	$('.formulario-incorrecto').removeClass('formulario-incorrecto');
 	if($('.hora-disponible.seleccionado:not(.oculto)').length == 0)
-		$('#texto1').addClass('formulario-incorrecto');
+		$('#texto2').addClass('formulario-incorrecto');
 	return $('.formulario-incorrecto').length == 0;
 }

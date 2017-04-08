@@ -42,9 +42,9 @@
 					</div>
 					<h1>Usuario</h1>
 				</div>
-				<div id="search">
+				<!--<div id="search">
 					<img src="img/search.svg">
-				</div>
+				</div>-->
 			</header>
 			<main></main>
 			<footer></footer>

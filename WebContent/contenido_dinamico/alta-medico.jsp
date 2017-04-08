@@ -87,7 +87,7 @@
 			e.preventDefault();
 			if(validarFormulario()){
 				var dias = $('.dia-seleccionado').map(function(){
-					return this.text();
+					return $(this).text();
 				}).get(),
 					esp = $('input[name=especialidad]:checked').map(function(){
 						return this.value;
@@ -98,9 +98,9 @@
 						'num': $('#num').val(),
 						'esp': esp,
 						'dias': dias,
-						'minutos': $('input[name=min]').val()
 					},
 					json = JSON.stringify(datos);
+				console.log(json);
 
 			} else $('html, body').animate({scrollTop: 0},200); 
 			return false;

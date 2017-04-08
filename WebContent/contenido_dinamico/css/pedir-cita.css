@@ -2,7 +2,7 @@ section, main {
 	overflow: visible;
 	width: 100%;
 }
-section { padding: 20px 0 0!important; }
+section { padding: 0 }
 section > form > div {
 	overflow: visible;
 	display: table;
@@ -11,6 +11,19 @@ form label {
 	width: 183px;
 	display: inline-block;
 }
+#formulario-usuario { margin-top: 50px; }
+#formulario-usuario input[type=text] { max-width: 420px; }
+#formulario-usuario div {
+	overflow: auto;
+	text-align: center;
+}
+#formulario-usuario > div > div  { display: none; }
+#formulario-usuario > div > div > .boton-azul {
+	line-height: 39px;
+	margin: auto;
+	float: none;
+}
+#formulario-cita { display: none; }
 .time_pick {
 	width: 49%;
 	overflow: visible;
@@ -36,9 +49,11 @@ section input[type="text"] {
 	left: 50%!important;
 	margin-left: -3px!important;
 }
-#rango-horario {
-	overflow: visible;
-	height: 50px;
+#rango-horario { overflow: visible; }
+#rango-horario::after {
+	display: block;
+	clear: both;
+	content: "";
 }
 #rango-inicio {
 	width: 100%;
@@ -108,7 +123,7 @@ section input[type="text"] {
 #medicos-no-disponibles {
 	display: none;
 	text-align: center;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 }
 @media only screen and (max-width: 500px) {
@@ -118,5 +133,5 @@ section input[type="text"] {
 	}
 }
 @media only screen and (max-width: 350px) {
-	#selector-horario { margin-left: -10px; }
+	#selector-horario { display: none; }
 }
