@@ -11,7 +11,7 @@
 		<script src="lib/jquery.js"></script>
 		<script src="js/index.js"></script>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-title"content="Consulter">
+		<meta name="apple-mobile-web-app-title" content="Consulter">
 		<link rel="icon" href="img/icon.ico">
 		<title>Consulter</title>
 	</head>

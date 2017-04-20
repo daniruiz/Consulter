@@ -1,26 +1,6 @@
 #envoltorio { background: #f6f6f6; }
 main { max-width: 1120px; }
-.date_pick {
-	display: block;
-	width: 50%;
-	margin: auto;
-}
-input {
-	cursor: pointer;
-	width: 100%;
-	border: 2px solid black;
-	color: black;
-	background: transparent;
-	height: 40px;
-	padding: 0 10px;
-	font-size: 14px;
-	font-weight: bold !important;
-	transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
-	-webkit-transition: background .2s, box-shadow .2s, color .2s, border-color, .2s;
-	border-radius: 2px;
-	margin: auto;
-	display: block;
-}
+#dia { text-align: center; }
 .hora {
 	margin-top: 20px;
 	color: #808080;
@@ -39,6 +19,7 @@ section {
 	width: 250px;
 }
 section h3 { color: black; }
+section h5 { margin: 5px 20px; }
 section span { float: right; }
 @media only screen and (max-width: 1160px) {
 	section {
