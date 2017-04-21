@@ -1,8 +1,17 @@
+
+	var dni = window.location.hash.substring(1);
+	if(dni != ''){
+		$('#formulario-usuario').hide();
+		$('#dni').val(dni);
+		$('#texto1').append(dni);
+		$('#formulario-cita').css('display', 'block');
+	}
+
 //-------- FOMULARIO USUARIO
 $('#formulario-usuario').submit(function(e){
 	var dni = $('#formulario-usuario input[name="dni"]').val();
 	e.preventDefault();
-	/*$.get('', dni function(data){
+	/*$.get('/existe-paciente', {'dni' : dni}, function(data){
 		var value = data;
 		if(data == 'true'){*/
 	$('#formulario-usuario').hide();
@@ -105,7 +114,7 @@ function moverSlider(lado, desplazamiento) {
 		'width' : (fin - inicio) * 30 / MINUTOS_POR_PIXEL
 	});
 	actualizarHora();
-	quitaMedicosFueraDeRango()
+	if($('.especialidad:checked').length == 1) quitaMedicosFueraDeRango()
 }
 
 function actualizarHora(){

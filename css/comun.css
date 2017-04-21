@@ -79,19 +79,31 @@ html, body {
 	font-family: Roboto, sans-serif;
 }
 html { overflow-x: hidden; }
-.boton-azul {
+.boton-azul, .boton-granate, .boton-rojo {
 	border-radius: 5px!important;
 	font-weight: bold !important;
 	color: white;
 	margin-top: 5px;
 	text-align: center;
-	border: 3px solid #2F3E9E;
 	cursor: pointer;
-	background: #1875D1;
 	font-size: 16px;
 	height: 45px;
 	width: 130px;
 	float: right;
+	border: 3px solid;
+	line-height: 40px;
+}
+.boton-azul {
+	background: #1875D1;
+	border-color: #2F3E9E;
+}
+.boton-granate {
+	background: #A32C36;
+    border-color: #551419;
+}
+.boton-rojo {
+	background: #551419;
+    border-color: #551419;
 }
 .calendario-semanal { overflow: auto; }
 .calendario-semanal > div > span, .calendario-semanal > span {

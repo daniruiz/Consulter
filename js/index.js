@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	if(localStorage.getItem('usuario') == null) location.href = '/acceso';
+	$('header h1').text(localStorage.getItem('usuario'));
 	setTimeout(adaptacion, 800);
 	cargarDir();
 
@@ -15,20 +17,25 @@ $(document).ready(function() {
 		e.stopPropagation();
 		mostrarMenuLateral();
 	});
+	$('#cortina').click(function(){ ocultarCortina() });
+	$('#cerrar-session').click(function(){
+		localStorage.clear();
+		window.location.href = '/acceso';
+	});
 });
 
 window.addEventListener("popstate", cargarDir, false); // Activar botones navegación
 
 
-
 function cambiarPagina(dir){
+	ocultarCortina();
 	history.pushState("", "", dir);
 	cargarDir();
 }
 
 function cargarDir() {
 	var dir = location.pathname.substring(1);
-	if(/acceso/.test(dir)) location.href = '/acceso'; // redirección a login
+	if(/acceso/.test(dir)) window.location.href = '/acceso'; // redirección a login
 
 	var pestana = $('nav span[data-dir="' + dir + '"]');
 	if(pestana.length == 0) {
@@ -38,7 +45,7 @@ function cargarDir() {
 	cambioPestana(pestana);
 
 	if(/^listado.+$/.test(dir)) dir = 'listado'
-	dir = 'contenido_dinamico/' + dir + '.jsp';
+	dir = '/contenido_dinamico/' + dir + '.jsp';
 	$.get(dir, function(data){
 		$('main').fadeOut(200, function(){
 			$(this).html(data).fadeIn(200);
@@ -71,4 +78,13 @@ function mostrarMenuLateral(mostrar) {
 		$('body').removeClass('mostrar_panel_lateral');
 	if(mostrar == true)
 		$('body').addClass('mostrar_panel_lateral');
+}
+
+function mostrarCortina(){
+	$('#cortina').show();
+}
+function ocultarCortina(){
+	$('#cortina').hide();
+	$('body').removeClass('mostrar-cortina');
+	$('.mostrar-cortina').removeClass('mostrar-cortina');
 }

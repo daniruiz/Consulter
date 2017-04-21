@@ -20,7 +20,7 @@
 			<input id="seguro" type="text" placeholder="Compa&ntilde;&iacute;a de seguro m&eacute;dico">
 
 			<br><br>
-			<input type="submit" value="enviar" class="boton-azul">
+			<input type="submit" value="guardar" class="boton-azul">
 		</div>
 	</form>
 </section>

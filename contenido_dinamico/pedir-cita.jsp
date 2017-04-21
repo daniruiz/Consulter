@@ -8,7 +8,7 @@
 		<form id="formulario-usuario">
 			<div>
 				<input type="text" name="dni" placeholder="DNI del paciente">
-				<input type="submit" value="enviar" class="boton-azul">
+				<input type="submit" value="buscar" class="boton-azul">
 				<div>
 					<h1>El paciente no est&aacute; dado de alta</h1>
 					<div class="boton-azul">Dar de alta</div>
@@ -29,7 +29,7 @@
 
 				<br>
 
-				<span>&#8226; Especialista </span>
+				<span>&#8226; Especialidad </span>
 				<br>
 				<label><input type="radio" class="especialidad" name="especialidad" value="1"> Cardiolog&iacute;a</label>
 				<label><input type="radio" class="especialidad" name="especialidad" value="2"> Dermatolog&iacute;a</label>
@@ -66,7 +66,7 @@
 
 				<br>
 
-				<input type="submit" value="enviar" class="boton-azul">
+				<input type="submit" value="guardar" class="boton-azul">
 			</div>
 		</form>
 	</section>

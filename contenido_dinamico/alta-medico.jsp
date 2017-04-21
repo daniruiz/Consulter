@@ -79,7 +79,7 @@
 			</div>
 
 			<br><br>
-			<input type="submit" value="enviar" class="boton-azul">
+			<input type="submit" value="guardar" class="boton-azul">
 			</form>
 		</section>
 	<script>
