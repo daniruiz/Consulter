@@ -20,8 +20,6 @@
 		<nav>
 			<!-- gestor -->
 			<span data-dir="listado-citas">lista de citas</span>
-			<!--<span data-dir="listado-medicos">listado medicos</span>
-			<span data-dir="listado-pacientes">listado pacientes</span>-->
 			<span data-dir="alta-medico">alta m&eacute;dico</span>
 			<span data-dir="alta-paciente">alta paciente</span>
 			<span data-dir="pedir-cita">nueva cita</span>

@@ -33,7 +33,7 @@ public class Conexion {
 		String entorno = getPropiedad("db.entorno");*/
 		//this.USER = "user";
 		//this.PASS = "pass";
-		this.JDBC = "jdbc:sqlite:C:/sqlite/db/sqlite.db";
+		this.JDBC = "jdbc:sqlite:/sqliteDB/AppClinicaFISS.db";
 			
 	}
 	

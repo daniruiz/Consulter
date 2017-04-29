@@ -44,7 +44,7 @@ function cargarDir() {
 	}
 	cambioPestana(pestana);
 
-	if(/^listado.+$/.test(dir)) dir = 'listado'
+	
 	dir = '/contenido_dinamico/' + dir + '.jsp';
 	$.get(dir, function(data){
 		$('main').fadeOut(200, function(){

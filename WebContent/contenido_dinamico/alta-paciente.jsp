@@ -35,7 +35,26 @@
 				'dni': $('#dni').val(),
 				'seguro': $('#seguro').val()
 			},
-				json = JSON.stringify(datos);
+			json = {
+					"opcion" : "insertar",
+					"datos" : JSON.stringify(datos)
+			},
+			objConfigAjax = {
+				method : "POST",
+				url: "ServletPaciente",
+				data : json
+			}
+			$.ajax(objConfigAjax)
+				.done(function(data) {
+					data = JSON.parse(data);
+					alert("Paciente insertado correctamente");
+					cambiarPagina('/listado-pacientes');
+				})
+				.fail(function() {
+					alert( "Error guardando los datos." );
+					location.reload();
+		  		});
+			
 		} else $('html, body').animate({scrollTop: 0},200); 
 		return false;
 	});

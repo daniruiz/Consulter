@@ -1,5 +1,8 @@
 #envoltorio { background: #f6f6f6; }
-main { max-width: 1120px; }
+main {
+	/*max-width: inherit;
+	width: inherit;*/
+}
 #dia { text-align: center; }
 .hora {
 	margin-top: 20px;

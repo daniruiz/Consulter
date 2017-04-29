@@ -7,13 +7,13 @@ import javax.servlet.http.HttpSession;
 import es.consulter.conexion.Conexion;
 
 public abstract class Control implements InControl{
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private HttpSession session;
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
+	protected HttpSession session;
 	
 	protected Conexion conexion;
 	
-	private boolean estado;
+	protected boolean estado;
 	private String resultado;
 	
 	protected HttpServletRequest getRequest() {

@@ -87,8 +87,8 @@
 			e.preventDefault();
 			if(validarFormulario()){
 				var dias = $('.dia-seleccionado').map(function(){
-					return $(this).text();
-				}).get(),
+						return $(this).text();
+					}).get(),
 					esp = $('input[name=especialidad]:checked').map(function(){
 						return this.value;
 					}).get(),
@@ -99,9 +99,27 @@
 						'esp': esp,
 						'dias': dias,
 					},
-					json = JSON.stringify(datos);
-				console.log(json);
-
+					json = {
+						"opcion" : "insertar",
+						"datos" : JSON.stringify(datos)
+					},
+					objConfigAjax = {
+						method : "POST",
+						url: "ServletMedico",
+						data : json
+					}
+					
+				$.ajax(objConfigAjax)
+					.done(function(data) {
+						data = JSON.parse(data);					    
+					    alert("Médico insertado correctamente");
+					    cambiarPagina('/')
+					})
+					.fail(function() {
+						alert("Ha habido un error al guardar los datos.");
+						location.reload();
+					});
+				
 			} else $('html, body').animate({scrollTop: 0},200); 
 			return false;
 		});
