@@ -1,9 +1,28 @@
 #envoltorio { background: #f6f6f6; }
 main {
-	/*max-width: inherit;
-	width: inherit;*/
+	width: 100%;
+    max-width: inherit;
+    overflow: auto;
+    margin-bottom: 0;
 }
-#dia { text-align: center; }
+#contenedor-listado {
+    padding: 20px;
+    overflow: auto;
+}
+footer {
+    display: none!important;
+}
+#dia {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    top: 80px;
+    width: 100px;
+    z-index: 1;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 .hora {
 	margin-top: 20px;
 	color: #808080;
@@ -27,19 +46,29 @@ hr {
 	float: left;
 	margin: 1px;
 }
+.contenedor-especialidad {
+    width: 283px;
+    margin-right: 10px;
+    padding-right: 12px;
+    border-right: 1px solid #e0e0e0;
+    float: left;
+}
 section {
 	cursor: pointer;
 	vertical-align: top;
 	padding: 10px 20px!important;
-	display: inline-block;
+	display: block;
 	border-bottom: 1px solid #f3f3f3;
-	margin: 10px;
-	width: 250px;
+	margin: 10px 10px 0!important;
 	position: relative;
 }
 section h3 { color: black; }
 section h5 { margin: 5px 20px; }
-section span { float: right; }
+section span {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
 #icono-editar {
 	visibility: hidden;
 	height: 20px;

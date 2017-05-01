@@ -1,8 +1,14 @@
+$(window).resize(adaptarMainListado);
+function adaptarMainListado(){
+    $('main').height($(window).height() - 105);
+}
+adaptarMainListado();
 var hoy = new Date(),
-	dia = ('0' + hoy.getDate()).slice(-2),
-	mes = ('0' + (hoy.getMonth() + 1)).slice(-2),
-	aino = hoy.getFullYear();
-$('#dia').text(dia + '/' + mes + '/' + aino);
+    dia = ('0' + hoy.getDate()).slice(-2),
+    mes = ('0' + (hoy.getMonth() + 1)).slice(-2),
+    aino = hoy.getFullYear();
+$('#dia').val(dia + '/' + mes + '/' + aino);
+
 
 $('section').click(function(){
 	var posicion = $(this).offset(),
@@ -27,3 +33,16 @@ $('#funcion-eliminar').click(function(){
 	});
 });
 $('#funcion-cancelar').click(function(){ ocultarCortina(); });
+
+
+// Elimina la función onWindowResize especifica de esta página para que no afecte a las demás
+$(window).bind('cambioURL', recuperaWindowResizeAntiguo);
+function recuperaWindowResizeAntiguo(){
+    $(window).off('resize', adaptarMainListado)
+    .off('popstate', recuperaWindowResizeAntiguo);
+}
+
+
+
+
+

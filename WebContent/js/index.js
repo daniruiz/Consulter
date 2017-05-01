@@ -8,7 +8,7 @@ $(document).ready(function() {
 		if(!$(this).hasClass('seleccionado'))
 			cambiarPagina($(this).data('dir'));
 	});
-	$(window).resize(function(){ adaptacion(); });
+	$(window).resize(adaptacion);
 
 	$('body').click(function(){
 		if($(window).width() <= 950) mostrarMenuLateral(false);
@@ -34,6 +34,7 @@ function cambiarPagina(dir){
 }
 
 function cargarDir() {
+    $(window).trigger('cambioURL');
 	var dir = location.pathname.substring(1);
 	if(/acceso/.test(dir)) window.location.href = '/acceso'; // redirección a login
 
@@ -68,7 +69,7 @@ function adaptacion(){
 }
 
 function tamMain(){
-	$('main').css('min-height', $(window).height() - 200);
+	$('main').css({'min-height' : $(window).height() - 200, 'height' : 'inherit'});
 }
 
 function mostrarMenuLateral(mostrar) {
