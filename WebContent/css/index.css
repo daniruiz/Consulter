@@ -29,7 +29,6 @@ nav {
 	top: 0;
 	padding: 20px 0;
 	width: 250px;
-	border-right: 2px solid #f3f3f3;
 }
 nav span {
 	padding: 20px;
@@ -42,7 +41,7 @@ nav span {
 	font-size: 12px;
 	display: block;
 	color: #9c9c9c;
-	border-bottom: 2px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
 	user-select: none;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -60,6 +59,7 @@ nav span.seleccionado {	color: #212121; }
 	-webkit-transition: margin-left .2s;
 	will-change: margin-left;
 }
+.mostrar_panel_lateral #envoltorio { border-left: 1px solid #f3f3f3; }
 .mostrar_panel_lateral #envoltorio, .mostrar_panel_lateral header { margin-left: 250px; }
 @keyframes mostrarheader {
   0% {
@@ -185,7 +185,7 @@ footer {
 }
 @media only screen and (max-width: 950px) {
 	body.mostrar_panel_lateral * { cursor: pointer; }
-	nav { border: none; }
+	#envoltorio { border: none; }
 	#envoltorio {
 		outline: none;
 		width: 100%;

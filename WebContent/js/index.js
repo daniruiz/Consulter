@@ -1,15 +1,17 @@
 $(document).ready(function() {
 	if(localStorage.getItem('usuario') == null) location.href = '/acceso';
 	$('header h1').text(localStorage.getItem('usuario'));
-	setTimeout(adaptacion, 800);
-	cargarDir();
+    
+    
+	setTimeout(function(){ adaptacion(); cargarDir() }, 800);   // Delay para efecto de entrada
 
+    
 	$('nav span').click(function(){
 		if(!$(this).hasClass('seleccionado'))
 			cambiarPagina($(this).data('dir'));
 	});
-	$(window).resize(adaptacion);
 
+    // funciones mostrar/ocultar menu lateral
 	$('body').click(function(){
 		if($(window).width() <= 950) mostrarMenuLateral(false);
 	});
@@ -17,11 +19,16 @@ $(document).ready(function() {
 		e.stopPropagation();
 		mostrarMenuLateral();
 	});
+    
+    // funciones mostrar/oculta cortina
 	$('#cortina').click(function(){ ocultarCortina() });
 	$('#cerrar-session').click(function(){
 		localStorage.clear();
 		window.location.href = '/acceso';
 	});
+    
+    
+    $(window).resize(adaptacion);
 });
 
 window.addEventListener("popstate", cargarDir, false); // Activar botones navegación
@@ -34,7 +41,6 @@ function cambiarPagina(dir){
 }
 
 function cargarDir() {
-    $(window).trigger('cambioURL');
 	var dir = location.pathname.substring(1);
 	if(/acceso/.test(dir)) window.location.href = '/acceso'; // redirección a login
 
@@ -55,6 +61,7 @@ function cargarDir() {
 		});
 		tamMain();
 	});
+    $(window).trigger('cambioURL');
 }
 
 function cambioPestana(e) {
