@@ -23,6 +23,7 @@
 			<span data-dir="alta-medico">alta m&eacute;dico</span>
 			<span data-dir="alta-paciente">alta paciente</span>
 			<span data-dir="pedir-cita">nueva cita</span>
+            <span data-dir="ranking-medico">ranking medico</span>
 
 			
 			<!-- medico
