@@ -9,30 +9,34 @@ function cargarListado(datos){
     datos = JSON.parse(json);
     $('#contenedor-listado').width(40);
     $.each(datos, function(i, dato){
-        var especialidad = dato['especialidad'],
-            contenedor, html = '';
-
+        var especialidad = dato['especialidad'], html = '';
         if($('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]').length == 0){
             $('#contenedor-listado').append('<div class="contenedor-especialidad" data-especialidad="' + especialidad + '"><h3>' + especialidad + '</h3>');
             $('#contenedor-listado').width($('#contenedor-listado').width() + 293);       
         }
-
         var contenedor = $('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]'),
             hora = parseInt(dato['hora'].substring(0, 2)),
             horaAnterior;
-
         if(contenedor.find('section').length > 0)
             horaAnterior = parseInt(contenedor.children('section:last-child').data('hora').substring(0, 2))
         else horaAnterior = 0;
-
         if(hora > horaAnterior)
             html = '<div class="hora"><span>' + hora + ':00</span><hr></div>';
-
         html += '<section data-id="' + dato['idCita'] + '" data-hora="' + dato['hora'] + '" class="con-sombra"><div id="icono-editar"></div><h3>' + dato['paciente'] + '</h3><h5 id="dni" data-dni="' + dato['dni'] + '">DNI: ' + dato['dni'] + '</h5><h5>Médico: ' + dato['nombreMedico'] + '</h5><span>' + dato['hora'] + '</span></section>';
-        $('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]').append(html);
+        contenedor.append(html);
     });
+
+    cargarFuncionesListado();
+    colorEspecialidades();
+}
+
+function cargarFuncionesListado(){
     adaptarMainListado();
     $(window).resize(adaptarMainListado);
+
+    $('main').scroll(function(){
+        $('.contenedor-especialidad > h3').css('margin-top', $(this).scrollTop()-40)
+    });
 
     $('section').click(function(){
         var posicion = $(this).offset(),
@@ -45,6 +49,15 @@ function cargarListado(datos){
     });
 }
 
+function colorEspecialidades(){
+    var colores = ['#2980b9', '#ed6f45', '#2c3e50', '#A32C36', '#329d8a', '#3E50B4', '#16a085'], i = 0;
+    $('.contenedor-especialidad > h3').each(function(){
+        if(i == colores.length) i = 0;
+        $(this).css('border-color', colores[i]);
+        i++;
+    })
+}
+
 function adaptarMainListado(){
     $('main').height($(window).height() - 105);
 }
@@ -52,10 +65,9 @@ function adaptarMainListado(){
 
 $('#funcion-editar').click(function(){
     var idCita = $('section.mostrar-cortina').data('id'),
-        dni = $('section.mostrar-cortina #dni').data('dni');
-    $.post('/eliminar-cita', {'idCita' : idCita}).always(function(){
-        cambiarPagina('/pedir-cita#' + dni);
-    });
+        dni = $('section.mostrar-cortina #dni').data('dni'),
+        idCita = $('section.mostrar-cortina').data('id');
+    cambiarPagina('pedir-cita#dni=' + dni + '&idCita=' + idCita);
 });
 $('#funcion-eliminar').click(function(){
     var idCita = $('section.mostrar-cortina').data('id');
@@ -67,13 +79,8 @@ $('#funcion-cancelar').click(function(){ ocultarCortina(); });
 
 
 // Elimina la función onWindowResize especifica de esta página para que no afecte a las demás
-$(window).bind('cambioURL', recuperaWindowResizeAntiguo);
+$(window).on('cambioURL', recuperaWindowResizeAntiguo);
 function recuperaWindowResizeAntiguo(){
     $(window).off('resize', adaptarMainListado)
         .off('cambioURL', recuperaWindowResizeAntiguo);
 }
-
-
-
-
-
