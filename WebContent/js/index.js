@@ -36,7 +36,7 @@ window.addEventListener("popstate", cargarDir, false); // Activar botones navega
 
 function cambiarPagina(dir){
 	ocultarCortina();
-	history.pushState("", "", dir);
+	history.pushState("", "", '/' + dir);
 	cargarDir();
 }
 

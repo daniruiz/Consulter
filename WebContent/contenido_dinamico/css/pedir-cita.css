@@ -11,14 +11,14 @@ form label {
 	width: 183px;
 	display: inline-block;
 }
-#formulario-usuario { margin-top: 50px; }
-#formulario-usuario input[type=text] { max-width: 420px; }
-#formulario-usuario div {
+#formulario-dni-paciente { margin-top: 50px; }
+#formulario-dni-paciente input[type=text] { max-width: 420px; }
+#formulario-dni-paciente div {
 	overflow: auto;
 	text-align: center;
 }
-#formulario-usuario > div > div  { display: none; }
-#formulario-usuario > div > div > .boton-azul {
+#formulario-dni-paciente > div > div  { display: none; }
+#formulario-dni-paciente > div > div > .boton-azul {
 	line-height: 39px;
 	margin: auto;
 	float: none;
