@@ -7,7 +7,7 @@
             <form id="formulario-dni-paciente">
                 <div>
                     <input id="dni" type="text" name="dni" placeholder="DNI del paciente">
-                    <input id="consultarPaciente" type="submit" value="enviar" class="boton-azul">
+                    <input id="consultarPaciente" type="submit" value="enviar" class="boton-verde">
                     <div id="ocultoPacienteInexistente">
                         <h1>El paciente no est&aacute; dado de alta</h1>
                         <div id="darAltaPaciente" class="boton-azul">Dar de alta</div>

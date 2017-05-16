@@ -48,7 +48,7 @@
 				.done(function(data) {
 					data = JSON.parse(data);
 					alert("Paciente insertado correctamente");
-					cambiarPagina('/listado-pacientes');
+					cambiarPagina('listado-pacientes');
 				})
 				.fail(function() {
 					alert( "Error guardando los datos." );

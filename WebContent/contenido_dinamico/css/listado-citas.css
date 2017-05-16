@@ -1,4 +1,7 @@
-#envoltorio { background: #f6f6f6; }
+#envoltorio {
+    background: #f6f6f6;
+    overflow: hidden;
+}
 main {
     width: 100%;
     max-width: inherit;
@@ -34,14 +37,18 @@ hr {
     position: absolute;
     margin: auto;
     z-index: 101;
-    margin-left: -16px;
-    margin-top: 200px;
+    margin-left: -27px;
+    margin-top: 150px;
+    width: 300px;
 }
 #menu-opciones.mostrar-cortina { visibility: visible; }
 #menu-opciones span {
-    width: 93px;
+    width: 98px;
     float: left;
-    margin: 1px;
+    margin: 3px 1px;
+}
+#menu-opciones span:first-child {
+    width: 298px;
 }
 .contenedor-especialidad {
     margin-top: 60px;
@@ -51,6 +58,10 @@ hr {
     border-right: 1px solid #e0e0e0;
     float: left;
     position: relative;
+}
+.contenedor-especialidad * {
+    transition: opacity .6s;
+    -webkit-transition: opacity .6s;
 }
 .contenedor-especialidad > h3 {
     width: 200px;

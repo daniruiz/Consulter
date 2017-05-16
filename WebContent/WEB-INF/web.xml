@@ -17,5 +17,6 @@
         <url-pattern>/alta-paciente</url-pattern>
         <url-pattern>/pedir-cita</url-pattern>
         <url-pattern>/ranking-medico</url-pattern>
+        <url-pattern>/observaciones-paciente</url-pattern>
     </servlet-mapping>
 </web-app>

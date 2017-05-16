@@ -1,9 +1,10 @@
-var hash = window.location.hash,
-    hashVariables = hash.match(/dni=(\d{8}[a-zA-Z])&idCita=(\d+)/),
+var hash =  window.location.hash,
+    matchHashDni = hash.match(/dni=(\d{8}[a-zA-Z])/),
+    matchHashIdCita = hash.match(/idCita=(\d+)/),
     ID_CITA = 0, DNI = 0;
-if(hashVariables != null){
-    DNI = hashVariables[1];
-    ID_CITA = hashVariables[2];
+if(matchHashDni != null && matchHashIdCita != null){
+    DNI = matchHashDni[1];
+    ID_CITA = matchHashIdCita[1];
 }
 if(DNI != 0){
     $('#formulario-dni-paciente').hide();
@@ -15,7 +16,7 @@ if(DNI != 0){
 //-------- FOMULARIO USUARIO
 $('#formulario-dni-paciente').submit(function(e){
     var dni = $('#formulario-dni-paciente input[name="dni"]').val();
-    if(/\d[8][a-zA-Z]/.test(dni)){
+    if(/\d{8}[a-zA-Z]/.test(dni)){
         e.preventDefault();
         /*$.get('/existe-paciente', {'dni' : dni}, function(data){
             var value = data;
@@ -34,7 +35,7 @@ $('#formulario-dni-paciente').submit(function(e){
 });
 
 $('#formulario-dni-paciente > div > div .boton-azul').click(function(){
-    cambiarPagina('/alta-paciente');
+    cambiarPagina('alta-paciente');
     cargarDir();
 });
 

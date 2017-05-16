@@ -113,7 +113,7 @@
 					.done(function(data) {
 						data = JSON.parse(data);					    
 					    alert("Médico insertado correctamente");
-					    cambiarPagina('/')
+					    cambiarPagina('')
 					})
 					.fail(function() {
 						alert("Ha habido un error al guardar los datos.");
