@@ -1,12 +1,14 @@
 function cargarRanking(datos){
-    datos = JSON.parse(json);
+    var datos = JSON.parse(json), especialidad, contenedor;
     $('#contenedor-ranking').width(40);
-    $.each(datos, function(especialidad, posiciones){
+    
+    $.each(datos, function(i, objetoDatos){
+        especialidad = objetoDatos['nombreEspecialidad']
         $('#contenedor-ranking').append('<div class="contenedor-especialidad" data-especialidad="' + especialidad + '"><h3>' + especialidad + '</h3>');
         $('#contenedor-ranking').width($('#contenedor-ranking').width() + 293); 
-        var contenedor = $('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]'), html = '';
-        $.each(posiciones, function(i, posicion){
-            contenedor.append('<section class="con-sombra pos-' + (i+1) + '"><h1>' + (i+1) + '</h1><h3>' + posicion[0] + '</h3><span>' + posicion[1] + ' citas</span></section>');
+        contenedor = $('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]');
+        $.each(objetoDatos['lista'], function(i, posicion){
+            contenedor.append('<section class="con-sombra pos-' + (i+1) + '"><h1>' + (i+1) + '</h1><h3>' + posicion['nombreMedico'] + '</h3><span>' + posicion['totalCitas'] + ' citas</span></section>');
         });
     });
 
