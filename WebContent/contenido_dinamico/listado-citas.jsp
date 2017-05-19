@@ -3,8 +3,8 @@
 <jsp:useBean id="Page" scope="page" class="es.consulter.cita.PaginaCita"></jsp:useBean>
 
 <%
-Page.setRequest(request);
-Page.onLoad();
+	Page.setRequest(request);
+	Page.onLoad();
 %>
 
 <link rel="stylesheet" type='text/css' href="/contenido_dinamico/css/listado-citas.css" />

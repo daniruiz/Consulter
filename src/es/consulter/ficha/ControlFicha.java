@@ -245,5 +245,17 @@ public class ControlFicha extends Control {
 		}
 		
 	}
+
+	public static ModeloFicha loadHistoryObs(int idCita) {
+		ModeloFicha historicoFicha = null;
+		
+		try {
+			String selectHistoryObs = "";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 }

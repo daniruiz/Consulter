@@ -34,6 +34,8 @@ public class FiltroSesionUsuario implements Filter {
         
         listaRecursos.add("/js/");
         listaRecursos.add("/css/");
+        listaRecursos.add("/contenido_dinamico/js/");
+        listaRecursos.add("/contenido_dinamico/css/");
         listaRecursos.add("/include/");
     }
 
