@@ -12,10 +12,14 @@ form label {
 	display: inline-block;
 }
 #formulario-dni-paciente { margin-top: 50px; }
-#formulario-dni-paciente input[type=text] { max-width: 420px; }
+#formulario-dni-paciente #dni {
+    max-width: 420px;
+    cursor: text;
+}
 #formulario-dni-paciente div {
 	overflow: auto;
 	text-align: center;
+    width: 560px;
 }
 #formulario-dni-paciente > div > div  { display: none; }
 #formulario-dni-paciente > div > div > .boton-azul {
@@ -125,6 +129,12 @@ section input[type="text"] {
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;
+}
+@media only screen and (max-width: 1050px) {
+    #formulario-dni-paciente div {
+        max-width: 420px;
+        width: 85%;
+    }
 }
 @media only screen and (max-width: 500px) {
 	.time_pick {

@@ -21,14 +21,14 @@ import es.consulter.utils.Usuario;
  * Servlet Filter implementation class FiltroSesionUsuaio
  */
 @WebFilter("/*")
-public class FiltroSesionUsuaio implements Filter {
+public class FiltroSesionUsuario implements Filter {
 
     private final List<String> listaRecursos;
 
 	/**
      * Default constructor. 
      */
-    public FiltroSesionUsuaio() {
+    public FiltroSesionUsuario() {
         //System.out.println("Constructor");
         listaRecursos = new ArrayList<String>();
         
