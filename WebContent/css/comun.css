@@ -79,7 +79,7 @@ html, body {
 	font-family: Roboto, sans-serif;
 }
 html { overflow-x: hidden; }
-.boton-azul, .boton-granate, .boton-rojo {
+.boton-azul, .boton-granate, .boton-rojo, .boton-verde {
 	border-radius: 5px!important;
 	font-weight: bold !important;
 	color: white;
@@ -103,7 +103,11 @@ html { overflow-x: hidden; }
 }
 .boton-rojo {
 	background: #551419;
-    border-color: #551419;
+    border-color: #A32C36;
+}
+.boton-verde {
+    background: #009587;
+    border-color: #00756a;
 }
 .calendario-semanal { overflow: auto; }
 .calendario-semanal > div > span, .calendario-semanal > span {

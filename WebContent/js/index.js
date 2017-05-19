@@ -45,7 +45,7 @@ function cargarDir() {
 	if(/acceso/.test(dir)) window.location.href = '/acceso'; // redirección a login
 
 	var pestana = $('nav span[data-dir="' + dir + '"]');
-	if(pestana.length == 0) {
+	if(pestana.length == 0 && dir != 'observaciones-paciente') {
 		pestana = $('nav span:first');
 		dir = pestana.data('dir');
 	}

@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html; charset=UTF-8" %>
 
 <jsp:useBean id="Page" scope="page" class="es.consulter.cita.PaginaCita"></jsp:useBean>
@@ -12,6 +11,7 @@ Page.onLoad();
 
 <input type="text" id="dia" disabled>
 <div id="menu-opciones">
+    <span id="funcion-observacion" class="boton-verde">añadir observación</span>
     <span id="funcion-editar" class="boton-azul">editar</span>
     <span id="funcion-eliminar" class="boton-granate">eliminar</span>
     <span id="funcion-cancelar" class="boton-rojo">cancelar</span>

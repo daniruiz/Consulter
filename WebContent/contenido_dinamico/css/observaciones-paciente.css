@@ -1,0 +1,64 @@
+main {
+    width: 100%; 
+    max-width: inherit;
+    margin-bottom: 0;
+}
+textarea {
+    border-width: 4px;
+    font: normal 16px/26px 'Roboto'!important;
+    transition: inherit;
+    -webkit-transition: inherit
+}
+#formulario-observaciones {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+}
+#formulario-observaciones > div {
+    font-weight: bold;
+    line-height: 40px;
+    font-size: 18px;
+}
+#dni {
+    font-family: monospace;
+    letter-spacing: 1px;
+    padding-left: 5px;
+    border-left: 5px solid black;
+}
+#nombre-paciente {
+    font-weight: normal;
+    color: #9c9c9c;
+}
+#observaciones-existentes {
+    background: #f6f6f6;
+    border-width: 1px 0;
+    border: solid #f3f3f3;
+    margin-bottom: 0;
+    padding-bottom: 60px!important;
+}
+#observaciones-existentes section {
+    max-width: 600px;
+    width: 70%;
+    margin: 20px auto;
+}
+.fecha {
+    margin-top: 20px;
+    color: #808080;
+}
+.fecha span { margin-left: 10px; }
+.fecha hr {
+    width: 300px;
+    margin: 5px 0 20px;
+}
+@media only screen and (max-width: 850px) {
+    #formulario-observaciones { width: 100% }
+}
+@media only screen and (max-width: 700px) {
+    #formulario-observaciones div { width: 100% }
+}
+@media only screen and (max-width: 540px) {
+    .fecha hr { width: 100% }
+}
+@media only screen and (max-width: 400px) {
+    #observaciones-existentes section { width: 100%; }
+}
