@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 
-<jsp:useBean id="Page" scope="page" class="es.consulter.cita.PaginaCita">
+<jsp:useBean id="Pagina" scope="page" class="es.consulter.cita.PaginaCita">
 	<jsp:setProperty name="Pagina" property="pageContext" value="<%=pageContext%>" />
 </jsp:useBean>
 
