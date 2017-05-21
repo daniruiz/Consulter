@@ -41,7 +41,7 @@ function cambiarPagina(dir){
 }
 
 function cargarDir() {
-	var dir = location.pathname.substring(1);
+	var dir = location.pathname.substring(1), variablesGET;
 	if(/acceso/.test(dir)) window.location.href = '/acceso'; // redirección a login
 
 	var pestana = $('nav span[data-dir="' + dir + '"]');
@@ -51,8 +51,8 @@ function cargarDir() {
 	}
 	cambioPestana(pestana);
 
-	
-	dir = '/contenido_dinamico/' + dir + '.jsp';
+	variablesGET = window.location.hash.substring(1);
+	dir = '/contenido_dinamico/' + dir + '.jsp?' + variablesGET;
 	$.get(dir, function(data){
 		$('main').fadeOut(200, function(){
 			$(this).html(data).fadeIn(200);
