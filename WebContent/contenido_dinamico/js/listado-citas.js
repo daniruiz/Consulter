@@ -92,8 +92,7 @@ $('#funcion-editar').click(function(){
     var idCita = $('section.mostrar-cortina').data('id'),
         dni = $('section.mostrar-cortina #dni').data('dni'),
         idCita = $('section.mostrar-cortina').data('id');
-    //cambiarPagina('pedir-cita#dni=' + dni + '&idCita=' + idCita);
-    cambiarPagina('pedir-cita?dni=' + dni + '&idCita=' + idCita);
+    cambiarPagina('pedir-cita#dni=' + dni + '&idCita=' + idCita);
 });
 $('#funcion-eliminar').click(function(){
     var idCita = $('section.mostrar-cortina').data('id');
