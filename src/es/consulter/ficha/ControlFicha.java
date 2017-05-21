@@ -23,6 +23,10 @@ public class ControlFicha extends Control {
 		super(request, response);
 	}
 
+	public void setConexion(Conexion conexion) {
+		this.conexion = conexion;
+	}
+	
 	/**
 	 * 	Método para administrar la inserción de una especialidad
 	 * @throws Exception 
@@ -31,31 +35,34 @@ public class ControlFicha extends Control {
 	public void iniciarInsertar()  {
 		
 		try {
-			conexion = new Conexion();
-			conexion.conectar();
 			
-			String query = " insert into Ficha (IDPACIENTE, IDESPECIALISTA,IDESPECIALIDAD, TEXTO_CONSULTA,"
-					+ "MED_ULT_MOD, FECHA_ULT_MOD, IDFICHA)"
-			        + " values (?, ?, ?,?,?,?,?)";
+			String query = 	" insert into Ficha (IDPACIENTE, IDESPECIALIDAD)" + 
+							" values (?, ?)";
 			
 			conexion.prepareSTMT(query);
-			conexion.addParameter(4, ficha.getIdpaciente());
-			conexion.addParameter(6, ficha.getIdespecialista());
-			conexion.addParameter(3, ficha.getIdespecialdad());
-			conexion.addParameter(5, ficha.getTexto());
-			conexion.addParameter(2, ficha.getMedico_mod());
-			conexion.addParameter(1, ficha.getFecha_mod());
-			conexion.addParameter(7, ficha.getIdficha());
+			conexion.addParameter(1, ficha.getIdpaciente());
+			conexion.addParameter(2, ficha.getIdespecialdad());
 			conexion.ejecutarUpdt();
 			conexion.closePrepared();
-			
-			conexion.desconectar();
 			
 			System.out.println("Se ha insertado en la tabla");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void iniciarInsertar(int idPaciente, int idEspecialidad)  {
+		try {
+			ficha = new ModeloFicha();
+			ficha.setIdpaciente(idPaciente);
+			ficha.setIdespecialdad(idEspecialidad);
+			
+			iniciarInsertar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -257,5 +264,5 @@ public class ControlFicha extends Control {
 		
 		return null;
 	}
-	
+
 }

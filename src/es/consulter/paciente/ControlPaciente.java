@@ -34,7 +34,7 @@ public class ControlPaciente extends Control {
 			
 			String query =  " insert into Pacientes (NOMBRE, APELLIDOS, " + 
 							" COMPANIA_SEGUROS, DNI) " + 
-							" values (?, ?, ?, ?)";
+							" values (?, ?, ?, UPPER(?))";
 			
 			conexion.prepareSTMT(query);
 			conexion.addParameter(1, paciente.getNombre());
@@ -178,8 +178,9 @@ public class ControlPaciente extends Control {
 			conexion = new Conexion();
 			conexion.conectar();
 
-			String query = "select IDPACIENTE from Pacientes where DNI = ?";
-
+			String query = "select IDPACIENTE from Pacientes where UPPER(DNI) = UPPER(?) ";
+			
+			System.out.println("Comprobamos dni: " + dni);
 			conexion.prepareSelect(query);
 			conexion.addParameterSelect(1, dni);
 			ResultSet rs = conexion.ejecutarSelect();
@@ -187,10 +188,10 @@ public class ControlPaciente extends Control {
 			if (rs.next()) {
 				int id = rs.getInt("IDPACIENTE");
 				ok = true;
-				session.setAttribute("id_paciente_cita", id);
+				session.setAttribute("id_paciente_nuevacita", id);
 
 			}
-
+			rs.close();
 			conexion.closePreparedSelect();
 			conexion.desconectar();
 

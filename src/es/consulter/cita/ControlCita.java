@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import es.consulter.conexion.Conexion;
+import es.consulter.ficha.ControlFicha;
 import es.consulter.paciente.ControlPaciente;
 import es.consulter.utils.Control;
 
@@ -27,9 +28,7 @@ public class ControlCita extends Control{
 	@Override
 	public void iniciarInsertar() {
 		try {
-			getDataParameter();
-			
-			int index = session.getAttribute("index") != null ? (Integer)session.getAttribute("index") : 10;
+			/*int index = session.getAttribute("index") != null ? (Integer)session.getAttribute("index") : 10;
 			
 			ModeloCita[] dato = new Gson().fromJson(
 					(String)session.getAttribute("listadoCitas"), ModeloCita[].class);
@@ -39,9 +38,9 @@ public class ControlCita extends Control{
 			index++;
 			session.setAttribute("index", index);
 			
-			session.setAttribute("listadoCitas", new Gson().toJson(dato));
+			session.setAttribute("listadoCitas", new Gson().toJson(dato));*/
 			
-			/*conexion = new Conexion();
+			conexion = new Conexion();
 			conexion.conectar();
 			
 			conexion.transaction();
@@ -49,29 +48,107 @@ public class ControlCita extends Control{
 			
 			getDataParameter();
 			
-			String query =  " insert into Cita_Paciente (IDPACIENTE, IDMEDICO, HORA, " + 
-							"  DIA, IDCITA) "
-							+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
+			cargarDatosPaciente();
+			
+			String query =  " insert into Citas_Pacientes (IDPACIENTE, HORA, " + 
+							"  DIA, IDFICHA) " + 
+							" values (?, ?, ?, ?)";
 			
 			conexion.prepareSTMT(query);
 			conexion.addParameter(1, cita.getIdPaciente());
-			conexion.addParameter(2, cita.getIdMedico());
-			conexion.addParameter(3, cita.getHora());
-			conexion.addParameter(4, cita.getDia());
-			conexion.addParameter(5, cita.getIdCita());
+			conexion.addParameter(2, cita.getHora());
+			conexion.addParameter(3, cita.getDia());
+			conexion.addParameter(4, cita.getIdFicha());
 			conexion.ejecutarUpdt();
 			conexion.closePrepared();
 			
 			conexion.commit();
-			conexion.desconectar();*/
+			conexion.desconectar();
 			
 			setResultado("Cita insertada correctamente.");
-			System.out.println("Se ha insertado en la tabla");
+			System.out.println("Se ha insertado en la tabla cita");
 		} catch (Exception e) {
 			//conexion.rollback();
 			e.printStackTrace();
-			setResultado("Cita insertada correctamente.");
+			conexion.rollback();
+			conexion.desconectar();
+			setResultado("Cita no fue insertada correctamente.");
 		}
+	}
+
+	private void cargarDatosPaciente() {
+		try {
+			boolean tieneFicha = false;
+			int idEspecialidad = 0;
+			String selectEspecialidad = " SELECT ME.IDESPECIALIDAD " + 
+										" FROM MEDICO_ESPECIALIDAD ME " + 
+										" WHERE ME.IDMEDICO = ? " + 
+										" AND ME.ACTUAL = 1";
+			
+			conexion.prepareSelect(selectEspecialidad);
+			conexion.addParameterSelect(1, cita.getIdMedico());
+			ResultSet rs = conexion.ejecutarSelect();
+			
+			try {
+				if(rs.next()){
+					idEspecialidad = rs.getInt("IDESPECIALIDAD");
+				}else{
+					throw new Exception("Médico sin especialidad");
+				}
+			} finally {
+				rs.close();
+				conexion.closePreparedSelect();
+			}
+			
+			
+			tieneFicha = recogerFicha(idEspecialidad);
+			
+			if(!tieneFicha){
+				crearFicha(idEspecialidad);
+				recogerFicha(idEspecialidad);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private boolean recogerFicha(int idEspecialidad) {
+		boolean tieneFicha = false;
+		try {
+			String selectFicha = 	" SELECT F.IDFICHA " + 
+									" FROM FICHA F " + 
+									" WHERE F.IDPACIENTE = ? " + 
+									" AND F.IDESPECIALIDAD = ? ";
+			
+			conexion.prepareSelect(selectFicha);
+			conexion.addParameterSelect(1, cita.getIdPaciente());
+			conexion.addParameterSelect(2, idEspecialidad);
+			ResultSet rs = conexion.ejecutarSelect();
+			
+			try {
+				if(rs.next()){
+					cita.setIdFicha(rs.getInt("IDFICHA"));
+					tieneFicha = true;
+				}else{
+					tieneFicha = false;
+				}
+			} finally {
+				rs.close();
+				conexion.closePreparedSelect();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return tieneFicha;
+	}
+
+	private void crearFicha(int idEspecialidad) {
+		ControlFicha control = new ControlFicha(request, response);
+		control.setConexion(conexion);
+		control.iniciarInsertar(cita.getIdPaciente(), idEspecialidad);
 	}
 
 	private void cambiarCita() {
@@ -98,11 +175,12 @@ public class ControlCita extends Control{
 		try {
 			String datos = request.getParameter("datos");
 			System.out.println("datos: " + datos);
-			//visualizarParametros();
 			
 			Gson gson = new Gson();
 			if(datos != null){
 				cita = gson.fromJson(datos, ModeloCita.class);
+				
+				cita.setIdPaciente((Integer)session.getAttribute("id_paciente_nuevacita"));
 				
 				System.out.println(gson.toJson(cita));
 			}
@@ -190,8 +268,8 @@ public class ControlCita extends Control{
 			conexion = new Conexion();
 			conexion.conectar();
 			
-			String query = "select (IDPACIENTE, IDMEDICO, DIA, HORA from Cita_Paciente"
-					+ " where IDCITA = ?";
+			String query = 	" select (IDPACIENTE, IDMEDICO, DIA, HORA from Cita_Paciente" + 
+							" where IDCITA = ?";
 			
 			conexion.prepareSelect(query);
 			conexion.addParameterSelect(1, cita.getIdPaciente());
@@ -200,7 +278,7 @@ public class ControlCita extends Control{
 			{ 
 				cita.setIdPaciente(rs.getInt ("NOMBRE"));
 				cita.setIdMedico(rs.getInt ("APELLIDO"));
-				cita.setDia(rs.getInt("NUM_COMPANIERO"));
+				//cita.setDia(rs.getInt("NUM_COMPANIERO"));
 				cita.setHora(rs.getString("DNI"));
 			   
 				 
@@ -221,6 +299,8 @@ public class ControlCita extends Control{
 	public void consultarMedicosEspecialidad(){
 		try {
 			medicos = new ModeloMedicoDisponible[3];
+			
+			
 			
 			ModeloMedicoDisponible medico = new ModeloMedicoDisponible();
 			medico.setIdMedico(1);
@@ -253,6 +333,21 @@ public class ControlCita extends Control{
 		ControlPaciente controlPaciente = new ControlPaciente(request, response);
 		String dni = request.getParameter("dniComprobar");
 		return controlPaciente.comprobarDNI(dni);
+	}
+
+	public void desconectar() {
+		try {
+			conexion.desconectar();
+		} catch (Exception e) { }
+	}
+
+	public void iniciarConexion() {
+		try {
+			conexion = new Conexion();
+			conexion.conectar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

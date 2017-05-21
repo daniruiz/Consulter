@@ -3,24 +3,24 @@ package es.consulter.utils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import es.consulter.conexion.Conexion;
 
-public abstract class Control implements InControl{
+public abstract class Pagina implements InControl{
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected HttpSession session;
-	
+	protected PageContext pageContext;
 	protected Conexion conexion;
 	
-	protected boolean estado;
-	private String resultado;
 	
 	protected HttpServletRequest getRequest() {
 		return request;
 	}
 	private void setRequest(HttpServletRequest request) {
 		this.request = request;
+		setSession(request.getSession());
 	}
 	
 	protected HttpServletResponse getResponse() {
@@ -37,31 +37,22 @@ public abstract class Control implements InControl{
 		this.session = session;
 	}
 	
-	public boolean isEstado() {
-		return estado;
+	protected PageContext getPageContext() {
+		return pageContext;
 	}
-	protected void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-	
-	public String getResultado() {
-		return resultado;
-	}
-	protected void setResultado(String resultado) {
-		this.resultado = resultado;
-	}
-	
-	public Control(HttpServletRequest request, HttpServletResponse response) {
-		super();
-		this.setRequest(request);
-		this.setResponse(response);
-		setSession(request.getSession());
+	public void setPageContext(PageContext pageContext) {
+		this.pageContext = pageContext;
+		setRequest((HttpServletRequest) this.pageContext.getRequest());
+		setResponse((HttpServletResponse) this.pageContext.getResponse());
 		
+		onLoad();
 	}
 	
-	public abstract void iniciarInsertar();
-	public abstract void iniciarActualizar();
-	public abstract void iniciarEliminar();
-	public abstract void cargarDatos();
+	public Pagina() {
+		super();
+	}
+	
+	protected abstract void onLoad();
+	protected abstract void cargarDatos();
 	
 }

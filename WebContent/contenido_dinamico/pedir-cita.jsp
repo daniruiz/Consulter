@@ -1,5 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 
+<jsp:useBean id="Pagina" scope="page" class="es.consulter.cita.PaginaCita">
+	<jsp:setProperty name="Pagina" property="pageContext" value="<%=pageContext%>" />
+</jsp:useBean>
+
     <link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/pedir-cita.css">
     <link rel="stylesheet" type='text/css'href="/lib/css/timepicki.css"/>
     <link rel="stylesheet" type='text/css'href="/lib/css/bootstrap-datepicker.css"/>
@@ -7,7 +11,7 @@
             <form id="formulario-dni-paciente">
                 <div>
                     <input id="dni" type="text" name="dni" placeholder="DNI del paciente">
-                    <input id="consultarPaciente" type="submit" value="enviar" class="boton-verde">
+                    <input id="consultarPaciente" type="button" value="enviar" class="boton-verde">
                     <div id="ocultoPacienteInexistente">
                         <h1>El paciente no est&aacute; dado de alta</h1>
                         <div id="darAltaPaciente" class="boton-azul">Dar de alta</div>

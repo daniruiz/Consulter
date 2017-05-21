@@ -4,9 +4,10 @@ public class ModeloCita {
 
 	 private int idCita;
 	 private int idmedico;
-	 private int dia;
+	 private String dia;
 	 private String hora;
 	 private int idpaciente;
+	 private int idFicha;
 	 
 	 private String nombreMedico,
 	 				especialidad,
@@ -74,16 +75,22 @@ public class ModeloCita {
 	public void setHora(String hora) {
 		  this.hora = hora;
 		 }
-	public int getDia() {
+	public String getDia() {
 		  return dia;
 		 }
-	public void setDia(int dia) {
+	public void setDia(String dia) {
 		  this.dia = dia;
 		 }
 
 	public ModeloCita() {
 		super();
 
+	}
+	public int getIdFicha() {
+		return idFicha;
+	}
+	public void setIdFicha(int idFicha) {
+		this.idFicha = idFicha;
 	}
 	}
 

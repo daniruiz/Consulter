@@ -44,6 +44,7 @@ public class ServletCita extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		ControlCita control = new ControlCita(request, response);
+		control.iniciarConexion();
 		JSONObject json = new JSONObject();
 		
 		switch (opcion) {
@@ -65,6 +66,7 @@ public class ServletCita extends HttpServlet {
 			break;
 		}
 		
+		control.desconectar();
 		PrintWriter out = response.getWriter();
 		
 		json.put("estado", control.isEstado());
