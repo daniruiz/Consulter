@@ -18,20 +18,12 @@
         <body>
             <div id="cortina"></div>
             <nav>
-                <!-- gestor -->
                 <img src="/img/logo.svg">
                 <span data-dir="listado-citas">lista de citas</span>
                 <span data-dir="alta-medico">alta m&eacute;dico</span>
                 <span data-dir="alta-paciente">alta paciente</span>
                 <span data-dir="pedir-cita">nueva cita</span>
                 <span data-dir="ranking-medico">ranking medico</span>
-
-
-                <!-- medico
-<span data-dir="ficha.jsp">ficha de paciente</span>
-<span data-dir="citas-medico.jsp">Mis citas</span> -->
-
-
             </nav>
             <div id="envoltorio">
                 <header>

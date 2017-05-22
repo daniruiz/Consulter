@@ -16,10 +16,53 @@ if(DNI != 0){
 //-------- FOMULARIO USUARIO
 
 $("#consultarPaciente").on("click", function(){
-	var dni = $('#dni').val();
+    var dni = $('#dni').val();
     if(/\d{8}[a-zA-Z]/.test(dni)){
-       
-    	var json = {
+
+        var json = {
+            "opcion" : "consultarDNI",
+            "dniComprobar" : dni
+        },
+            objConfigAjax = {
+                method : "POST",
+                url: "ServletCita",
+                data : json
+            }
+
+        $.ajax(objConfigAjax).done(function(data) {
+            var json = JSON.parse(data);
+
+            //alert(json.existePaciente);
+
+            if(json.existePaciente){
+                $('#formulario-dni-paciente').hide();
+                $('#formulario-cita').show();
+                $('#dni').val(dni);
+                $('#texto1').append(dni);
+
+            }else{
+                $('#ocultoPacienteInexistente').show();
+            }
+
+            /*alert("Guardada cita para " + medico + " a la hora " + hora);
+            cambiarPagina('listado-citas');*/
+
+        }).fail(function() {
+            alert( "Ha habido un error al guardar los datos." );
+            location.reload();
+        });
+
+
+    } else alert('introduzca un DNI valido');
+
+});
+
+$('#formulario-dni-paciente').submit(function(e){
+    e.preventDefault();
+    var dni = $('#dni').val();
+    if(/\d{8}[a-zA-Z]/.test(dni)){
+
+        var json = {
                 "opcion" : "consultarDNI",
                 "dniComprobar" : dni
             },
@@ -28,58 +71,32 @@ $("#consultarPaciente").on("click", function(){
                 url: "ServletCita",
                 data : json
             }
-    	
+
         $.ajax(objConfigAjax).done(function(data) {
-        	var json = JSON.parse(data);
-        	
-        	//alert(json.existePaciente);
-        	
-        	if(json.existePaciente){
-        		$('#formulario-dni-paciente').hide();
+            var json = JSON.parse(data);
+
+            if(json.existePaciente){
+                $('#formulario-dni-paciente').hide();
                 $('#formulario-cita').show();
                 $('#dni').val(dni);
                 $('#texto1').append(dni);
-                
-        	}else{
-        		$('#ocultoPacienteInexistente').show();
-        	}
-        	
-            /*alert("Guardada cita para " + medico + " a la hora " + hora);
-            cambiarPagina('listado-citas');*/
-            
+
+            } else {
+                $('#ocultoPacienteInexistente').show();
+            }
+
         }).fail(function() {
             alert( "Ha habido un error al guardar los datos." );
             location.reload();
         });
-        
-        
-    } else alert('introduzca un DNI valido');
-    
-});
 
-$('#formulario-dni-paciente').submit(function(e){
-    var dni = $('#formulario-dni-paciente input[name="dni"]').val();
-    if(/\d{8}[a-zA-Z]/.test(dni)){
-        e.preventDefault();
-        /*$.get('/existe-paciente', {'dni' : dni}, function(data){
-            var value = data;
-            if(data == 'true'){*/
-        $('#formulario-dni-paciente').hide();
-        $('#formulario-cita').show();
-        $('#dni').val(dni);
-        $('#texto1').append(dni);
-        /*} else {
-                $('#formulario-dni-paciente input').hide();
-                $('#formulario-dni-paciente div').show();/*
-            }
-        });*/
+
     } else alert('introduzca un DNI valido');
     return false;
 });
 
-$('#formulario-dni-paciente > div > div .boton-azul').click(function(){
-    cambiarPagina('alta-paciente');
-    cargarDir();
+$('#darAltaPaciente').click(function(){
+    cambiarPagina('alta-paciente#dni=' + $('#dni').val());
 });
 
 
@@ -209,9 +226,9 @@ function pedirMedicosDisponibles() {
                 'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00']
             }
         }
-        
+
         var html = '';
-        
+
         $.each(medicos, function(nombre, medico){
             html += '<div data-id="' + medico.id + '"><h4>' + nombre + '</h4><div>';
             $.each(medico.horas, function(i, hora){
@@ -251,7 +268,7 @@ $('#formulario-cita').submit(function(e){
     e.preventDefault();
     var $hora = $('#medicos-disponibles .hora-disponible.seleccionado'),
         hora = $hora.text();
-        medico = $hora.parents('div[data-id]').data('id');
+    medico = $hora.parents('div[data-id]').data('id');
     if(validarFormulario()){
         var datos = {
             'dni': $('#dni').val(),
@@ -260,17 +277,17 @@ $('#formulario-cita').submit(function(e){
             'idmedico': medico,
             "especialidad" : $('input[name=especialidad]:checked').attr("data-name")
         },
-        json = {
-            "opcion" : "guardarCita",
-            "datos" : JSON.stringify(datos),
-            "idCita" : ID_CITA
-        },
-        objConfigAjax = {
-            method : "POST",
-            url: "ServletCita",
-            data : json
-        }
-        
+            json = {
+                "opcion" : "guardarCita",
+                "datos" : JSON.stringify(datos),
+                "idCita" : ID_CITA
+            },
+            objConfigAjax = {
+                method : "POST",
+                url: "ServletCita",
+                data : json
+            }
+
         $.ajax(objConfigAjax).done(function(data) {
             alert("Guardada cita para " + medico + " a la hora " + hora);
             cambiarPagina('listado-citas');
