@@ -1,5 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 
+<jsp:useBean id="Pagina" scope="page" class="es.consulter.utils.PaginaIndex">
+	<jsp:setProperty name="Pagina" property="pageContext" value="<%=pageContext%>" />
+</jsp:useBean>
+
     <!doctype html>
 
     <html>
@@ -9,11 +13,18 @@
             <link rel="stylesheet" type="text/css" href="css/index.css">
             <link rel="stylesheet" type="text/css" href="css/comun.css">
             <script src="lib/jquery.js"></script>
-            <script src="js/index.js"></script>
+            <script src="js/index.js?version=<%=Pagina.getRandomNumber()%>"></script>
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-title" content="Consulter">
             <link rel="icon" href="img/icon.ico">
             <title>Consulter</title>
+            
+            <script type="text/javascript">
+            
+            	perfil = <%=Pagina.getPerfil()%>
+            	//alert(index);
+            </script>
+            
         </head>
         <body>
             <div id="cortina"></div>

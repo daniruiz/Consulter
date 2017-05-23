@@ -1,6 +1,8 @@
 package es.consulter.cita;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +17,13 @@ import es.consulter.utils.Control;
 public class ControlCita extends Control{
 
 	private ModeloCita cita;
-	private ModeloMedicoDisponible [] medicos;
+	private List<ModeloMedicoDisponible> medicos;
 	
-	public ModeloMedicoDisponible[] getMedicos() {
+	public List<ModeloMedicoDisponible> getMedicos() {
 		return medicos;
+	}
+	public String getJsonMedicosDisponibles(){
+		return "'" + new Gson().toJson(medicos) + "'";
 	}
 
 	public ControlCita(HttpServletRequest request, HttpServletResponse response) {
@@ -51,14 +56,15 @@ public class ControlCita extends Control{
 			cargarDatosPaciente();
 			
 			String query =  " insert into Citas_Pacientes (IDPACIENTE, HORA, " + 
-							"  DIA, IDFICHA) " + 
-							" values (?, ?, ?, ?)";
+							"  DIA, IDFICHA, IDMEDICO) " + 
+							" values (?, ?, ?, ?, ?)";
 			
 			conexion.prepareSTMT(query);
 			conexion.addParameter(1, cita.getIdPaciente());
 			conexion.addParameter(2, cita.getHora());
 			conexion.addParameter(3, cita.getDia());
 			conexion.addParameter(4, cita.getIdFicha());
+			conexion.addParameter(5, cita.getIdMedico());
 			conexion.ejecutarUpdt();
 			conexion.closePrepared();
 			
@@ -153,10 +159,26 @@ public class ControlCita extends Control{
 
 	private void cambiarCita() {
 		try {
-			int idCita = request.getParameter("idCita") == null ? 0 
-					: Integer.parseInt(request.getParameter("idCita"));
+			/*int idCita = request.getParameter("idCita") == null ? 0 
+					: Integer.parseInt(request.getParameter("idCita"));*/
+			
+			int idCita = (Integer)session.getAttribute("idCita_cambiar");
 			
 			if(idCita != 0){
+				// Si eliminamos cita, recogemos primera el id del paciente
+				String selectIdPaciente = 	" SELECT IDPACIENTE " + 
+											" FROM CITAS_PACIENTES " + 
+											" WHERE IDCITA = ? ";
+				
+				conexion.prepareSelect(selectIdPaciente);
+				conexion.addParameterSelect(1, idCita);
+				ResultSet rs = conexion.ejecutarSelect();
+				if(rs.next()){
+					session.setAttribute("id_paciente_nuevacita", rs.getInt("IDPACIENTE"));
+				}
+				rs.close();
+				conexion.closePreparedSelect();
+				
 				System.out.println("Eliminamos la cita antigua: " + idCita);
 				
 				cita = new ModeloCita();
@@ -180,7 +202,11 @@ public class ControlCita extends Control{
 			if(datos != null){
 				cita = gson.fromJson(datos, ModeloCita.class);
 				
+				// Despues de comprobar el DNI, se ha almacenado el idPaciente suyo.
+				// lo recuperamos para insertar la cita a su id
 				cita.setIdPaciente((Integer)session.getAttribute("id_paciente_nuevacita"));
+				// Eliminamos de sesión el id recogido con la comprobación.
+				session.removeAttribute("id_paciente_nuevacita");
 				
 				System.out.println(gson.toJson(cita));
 			}
@@ -222,7 +248,7 @@ public class ControlCita extends Control{
 		try {
 			boolean conexionIniciada = false;
 			
-			ModeloCita[] dato = new Gson().fromJson(
+			/*ModeloCita[] dato = new Gson().fromJson(
 					(String)session.getAttribute("listadoCitas"), ModeloCita[].class);
 			
 			int idCita = Integer.parseInt(request.getParameter("idCita"));
@@ -235,17 +261,22 @@ public class ControlCita extends Control{
 			
 			session.setAttribute("listadoCitas", new Gson().toJson(dato));
 			
-			System.out.println(new Gson().toJson(dato));
+			System.out.println(new Gson().toJson(dato));*/
 			
-			/*if(conexion == null){
+			if(conexion == null){
 				conexion = new Conexion();
 				conexion.conectar();
 			}else{
 				conexionIniciada = true;
 			}
 			
+			if(cita == null){
+				cita = new ModeloCita();
+				int idCita = Integer.parseInt(request.getParameter("idCita"));
+				cita.setIdCita(idCita);
+			}
 			
-			String query = "delete from Cita_Paciente where IDCITA = ?";
+			String query = "delete from Citas_Pacientes where IDCITA = ?";
 			
 			conexion.prepareSTMT(query);
 			conexion.addParameter(1, cita.getIdCita());
@@ -253,7 +284,7 @@ public class ControlCita extends Control{
 			conexion.closePrepared();
 			
 			if(!conexionIniciada)
-				conexion.desconectar();*/
+				conexion.desconectar();
 			
 			System.out.println("Se ha eliminado la cita.");
 		} catch (Exception e) {
@@ -298,11 +329,54 @@ public class ControlCita extends Control{
 	
 	public void consultarMedicosEspecialidad(){
 		try {
-			medicos = new ModeloMedicoDisponible[3];
+			medicos = new ArrayList<ModeloMedicoDisponible>();
+			//System.out.println("\tConsultaMedicos");
 			
+			int idEspecialidad = Integer.parseInt(request.getParameter("idEspecialidad"));
 			
+			String selectMedicosDisponibles = 
+					"SELECT HORA, IDMEDICO, NOMBRE || ' ' || APELLIDO AS MEDICO " + 
+					" FROM HORAS_CITA H " + 
+					" JOIN PERSONAL_MEDICO M " + 
+					" WHERE NOT EXISTS ( " + 
+					" 	SELECT * FROM CITAS_PACIENTES CP " +  
+					" 	WHERE CP.HORA = H.HORA AND CP.IDMEDICO = M.IDMEDICO " + 
+					" ) " + 
+					" AND M.IDMEDICO = ? " + 
+					" ORDER BY IDMEDICO, IDHORA";
 			
-			ModeloMedicoDisponible medico = new ModeloMedicoDisponible();
+			conexion.prepareSelect(selectMedicosDisponibles);
+			conexion.addParameterSelect(1, idEspecialidad);
+			ResultSet rs = conexion.ejecutarSelect();
+			
+			ModeloMedicoDisponible medico = null;
+			int idMedicoActual = -1;
+			
+			while(rs.next()){
+				int idMedico = rs.getInt("IDMEDICO");
+				
+				if(idMedicoActual != idMedico){
+					if(idMedicoActual != -1){
+						medicos.add(medico);
+					}
+					
+					medico = new ModeloMedicoDisponible();
+					medico.setIdMedico(idMedico);
+					medico.setNombreMedico(rs.getString("MEDICO"));
+					
+				}
+				
+				idMedicoActual = idMedico;
+				medico.addHora(rs.getString("HORA"));
+				
+			}
+			rs.close();
+			conexion.closePreparedSelect();
+			if(medico != null)	
+				medicos.add(medico);
+			
+			System.out.println(getJsonMedicosDisponibles());
+			/*ModeloMedicoDisponible medico = new ModeloMedicoDisponible();
 			medico.setIdMedico(1);
 			medico.setNombreMedico("Roberto Pérez");
 			String [] arrayHoras = {"08:00", "08:30", "09:00", "09:30", "10:00", "10:30"};
@@ -322,7 +396,7 @@ public class ControlCita extends Control{
 			String [] arrayHoras3 = {"08:00", "08:30", "09:00", "09:30", "10:30", 
 					"11:00", "11:30", "12:00", "12:30", "13:00", "15:00", "15:30"};
 			medico.setHoras(arrayHoras3);
-			medicos[2] = medico;
+			medicos[2] = medico;*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -345,6 +419,29 @@ public class ControlCita extends Control{
 		try {
 			conexion = new Conexion();
 			conexion.conectar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void aniadirObservacion() {
+		try {
+			System.out.println("Añadimos observación");
+			int idCita = (Integer)session.getAttribute("idCita_observacion");
+			String texto = request.getParameter("texto");
+			String fecha = request.getParameter("fecha");
+			
+			String insertObservacion = 	" INSERT INTO HISTORICO_PACIENTE " + 
+										" (TEXTO_CONSULTA, FECHA_MOD, IDCITA) " + 
+										" VALUES (?, ?, ?) ";
+			
+			conexion.prepareSTMT(insertObservacion);
+			conexion.addParameter(1, texto);
+			conexion.addParameter(2, fecha);
+			conexion.addParameter(3, idCita);
+			conexion.ejecutarUpdt();
+			conexion.closePrepared();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

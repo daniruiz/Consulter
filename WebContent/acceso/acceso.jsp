@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" />
-		<link rel="stylesheet" type="text/css" href="index.css">
+		<link rel="stylesheet" type="text/css" href="acceso.css">
 		<link rel="stylesheet" type="text/css" href="/css/comun.css">
 		<script src="/lib/jquery.js"></script>
-        <script src="index.js"></script>
+        <script src="acceso.js"></script>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-title"content="Consulter">
 		<link rel="icon" href="/img/icon.ico">

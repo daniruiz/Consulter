@@ -17,9 +17,14 @@ import es.consulter.utils.Pagina;
 public class PaginaCita extends Pagina{
 	
 	private String jsonListadoCitas;
+	private String jsonObservacionesCita;
 	
 	public String getJsonListadoCitas() {
 		return "'" + jsonListadoCitas + "'";
+	}
+	
+	public String getObservacionesCita() {
+		return "'" + jsonObservacionesCita + "'";
 	}
 
 	public void setRequest(HttpServletRequest request){
@@ -48,7 +53,7 @@ public class PaginaCita extends Pagina{
 		
 		switch (pagina) {
 		case "observaciones-paciente":
-			//cargarObservaciones();
+			cargarObservaciones();
 			break;
 		case "listado-citas":
 			cargarListadoCitas();
@@ -63,10 +68,38 @@ public class PaginaCita extends Pagina{
 	}
 
 	private void cargarObservaciones() {
+		System.out.println("idCita: " + request.getParameter("idCita"));
 		
 		int idCita = Integer.parseInt(request.getParameter("idCita"));
 		
-		ModeloFicha ficha = ControlFicha.loadHistoryObs(idCita);
+		session.setAttribute("idCita_observacion", idCita);
+		
+		ModeloCita cita = new ModeloCita ();
+		
+		try {
+			String select = " SELECT TEXTO_CONSULTA, FECHA_MOD " + 
+							" FROM HISTORICO_PACIENTE " + 
+							" WHERE IDCITA = ? " + 
+							" ORDER BY IDHIST DESC";
+			
+			conexion.prepareSelect(select);
+			conexion.addParameter(1, idCita);
+			ResultSet rs = conexion.ejecutarSelect();
+			
+			while(rs.next()){
+				String observacion = rs.getString("TEXTO_CONSULTA");
+				String fecha = rs.getString("FECHA_MOD");
+				cita.addObservacion(observacion, fecha);
+			}
+			
+			rs.close();
+			conexion.closePreparedSelect();
+			
+			jsonObservacionesCita = new Gson().toJson(cita);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void cargarListadoCitas() {
@@ -77,10 +110,10 @@ public class PaginaCita extends Pagina{
 			
 			String selectCitas = 	" SELECT " +  
 									" CP.IDCITA, CP.HORA, CP.DIA, " + 
-									" P.NOMBRE || ' ' || P.APELLIDOS AS PACIENTE, " + 
+									" ifnull(P.NOMBRE, '') || ' ' || ifnull(P.APELLIDOS, '') AS PACIENTE, " + 
 									" P.DNI," + 
 									" M.IDMEDICO," + 
-									" M.NOMBRE || ' ' || M.APELLIDO AS MEDICO, " + 
+									" ifnull(M.NOMBRE, '') || ' ' || ifnull(M.APELLIDO, '') AS MEDICO, " + 
 									" ME.IDESPECIALIDAD, E.NOMBRE AS ESPECIALIDAD " + 
 									" FROM CITAS_PACIENTES CP " + 
 									" INNER JOIN PACIENTES P " + 
@@ -210,11 +243,20 @@ public class PaginaCita extends Pagina{
 	private String checkPage() {
 		String pagina = "";
 		
-		pagina = request.getRequestURI();
-		
-		pagina = pagina.substring(pagina.lastIndexOf("/") + 1, pagina.lastIndexOf("."));
-		
-		System.out.println("PaginaCita " + pagina);
+		try {
+			pagina = request.getRequestURI();
+			
+			if(pagina.contains(".jsp")){
+				pagina = pagina.substring(pagina.lastIndexOf("/") + 1, pagina.lastIndexOf("."));
+			}else{
+				pagina = pagina.substring(pagina.lastIndexOf("/") + 1);
+			}
+			
+			
+			System.out.println("PaginaCita " + pagina);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return pagina;
 	}
@@ -222,6 +264,7 @@ public class PaginaCita extends Pagina{
 	
 
 	private void cargarCita() {
+		System.out.println("idCita a cambiar: " + request.getParameter("idCita"));
 		if(requestedChange()){
 			// Si detectamos la petición de un idCita para cambiar, lo almacenamos para
 			// que se use en el controlador una vez que inserte la nueva cita.
@@ -230,6 +273,8 @@ public class PaginaCita extends Pagina{
 			
 			//Cargamos el DNI del paciente al que corresponde esta cita.
 			
+		}else{
+			session.removeAttribute("idCita_cambiar");
 		}
 	}
 

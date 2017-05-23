@@ -37,6 +37,8 @@ public class FiltroSesionUsuario implements Filter {
         listaRecursos.add("/contenido_dinamico/js/");
         listaRecursos.add("/contenido_dinamico/css/");
         listaRecursos.add("/include/");
+        listaRecursos.add("/lib/");
+        listaRecursos.add("/img/");
     }
 
 	/**
@@ -58,7 +60,10 @@ public class FiltroSesionUsuario implements Filter {
 		boolean comprobarUsuarioSesion = false;
 		String redirect = "";
 		try {
-			String url = hRequest.getServletPath();
+			//String url = hRequest.getServletPath();
+			String url = hRequest.getRequestURL().toString();
+			
+			System.out.println("Checkamos: " + url);
 			
 			if(isUrlRecurso(url)){
 				System.out.println("Es un recurso, seguimos.");
@@ -71,20 +76,36 @@ public class FiltroSesionUsuario implements Filter {
 				
 				if(isAcceso(url)){
 					// Entramos en acceso, si ya se está logado entramos al index
-					redirect = "index.jsp";
+					redirect = "listado-citas";
+					
+					continuar = ( user == null || !user.isValido() );
+					
+					if(continuar){
+						System.out.println("Vamos a acceso, seguimos.");
+					}else{
+						System.out.println("Vamos a acceso con sesión, redirigimos a '" + redirect + "'.");
+					}
+				}else{
+					
+					// Entramos en cualquier página con obligación de autenticación
+					redirect = "/acceso/acceso.jsp";
 					continuar = user != null && user.isValido();
 					
-				}else{
-					// Entramos en cualquier página con obligación de autenticación
-					redirect = "acceso.jsp";
-					continuar = user == null || (user != null && user.isValido());
+					if(continuar){
+						System.out.println("Estamos dentro de la aplicacion, seguimos.");
+					}else{
+						System.out.println("Estamos dentro de la aplicacion sin sesión, redirigimos.");
+					}
 				}
-				
+				System.out.println(" ");
 			}
 			
-			System.out.println("Estamos en: " + url);
+			if(continuar){
+				chain.doFilter(request, response);
+			}else{
+				hResponse.sendRedirect(redirect);
+			}
 			
-			chain.doFilter(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -94,22 +115,23 @@ public class FiltroSesionUsuario implements Filter {
 	}
 
 	private boolean isLogin(String url) {
-		return url.toLowerCase().equals("login");
+		return url.toLowerCase().contains("login");
 	}
 
 	private boolean isAcceso(String url) {
-		return url.toLowerCase().equals("acceso.jsp");
+		return url.toLowerCase().contains("acceso.")/* || url.equals("http://localhost:8080/")*/;
 	}
 
 	private boolean isUrlRecurso(String url) {
 		boolean recurso = false;
 		
 		for(int i = 0; i < listaRecursos.size() && !recurso; i++){
-			recurso = url.indexOf(listaRecursos.get(i)) == -1;
+			recurso = url.indexOf(listaRecursos.get(i)) != -1;
 		}
 			
 		return recurso;
 	}
+	
 
 	/**
 	 * @see Filter#init(FilterConfig)

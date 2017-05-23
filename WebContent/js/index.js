@@ -1,3 +1,6 @@
+var perfil = 0;
+
+
 $(document).ready(function() {
 	if(localStorage.getItem('usuario') == null) location.href = '/acceso';
 	$('header h1').text(localStorage.getItem('usuario'));
@@ -23,8 +26,12 @@ $(document).ready(function() {
     // funciones mostrar/oculta cortina
 	$('#cortina').click(function(){ ocultarCortina() });
 	$('#cerrar-session').click(function(){
-		localStorage.clear();
-		window.location.href = '/acceso';
+		
+		$.post("desconectar").done(function(){
+			localStorage.clear();
+			window.location.href = '/';
+		});
+		
 	});
     
     
@@ -53,6 +60,7 @@ function cargarDir() {
 
 	variablesGET = window.location.hash.substring(1);
 	dir = '/contenido_dinamico/' + dir + '.jsp?' + variablesGET;
+	//alert("Vamos a " + dir);
 	$.get(dir, function(data){
 		$('main').fadeOut(200, function(){
 			$(this).html(data).fadeIn(200);

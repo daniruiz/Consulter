@@ -4,7 +4,12 @@
 	<jsp:setProperty name="Pagina" property="pageContext" value="<%=pageContext%>" />
 </jsp:useBean>
 
-
+	
+	<script>
+		
+		
+	</script>
+	
     <link rel="stylesheet" type="text/css" href="/contenido_dinamico/css/observaciones-paciente.css">
     <section id="seccion-principal">
         <form id="formulario-observaciones">
@@ -18,7 +23,7 @@
     </section>
     <section id="observaciones-existentes">
     </section>
-    <script src="/contenido_dinamico/js/observaciones-paciente.js"></script>
+    <script src="/contenido_dinamico/js/observaciones-paciente.js?version=<%=Pagina.getRandomNumber()%>"></script>
     <script>
         var datos = [
             {
@@ -39,5 +44,6 @@
             }
         ];
         json = JSON.stringify(datos);
+        json = <%=Pagina.getObservacionesCita()%>
         cargarObservaciones(json);
     </script>

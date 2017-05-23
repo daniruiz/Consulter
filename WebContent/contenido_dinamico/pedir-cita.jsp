@@ -77,4 +77,4 @@
         <script src="/lib/timepicki.js"></script>
         <script src="/lib/bootstrap-datepicker.js"></script>
 
-        <script src="/contenido_dinamico/js/pedir-cita.js"></script>
+        <script src="/contenido_dinamico/js/pedir-cita.js?version=<%=Pagina.getRandomNumber()%>"></script>

@@ -14,6 +14,8 @@ public class ControlLogin {
 		private static final long serialVersionUID = 4171706330009621015L;
 	{
 		put("admin", "1234");
+		put("gestor", "1234");
+		put("medico", "1234");
 	}};
 	
 	private HttpServletRequest request;
@@ -53,7 +55,16 @@ public class ControlLogin {
 			existe = true;
 			Usuario usuario = new Usuario();
 			usuario.setUsuario(user);
+			usuario.setValido(true);
 			session.setAttribute("usuario", usuario);
+			int perfil = user.equals("gestor") ? 1 : 2;
+			session.setAttribute("perfil", perfil);
+			try {
+				//response.sendRedirect("listado-citas");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		return existe;

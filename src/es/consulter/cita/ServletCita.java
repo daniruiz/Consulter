@@ -62,6 +62,9 @@ public class ServletCita extends HttpServlet {
 		case "eliminarCita":
 			control.iniciarEliminar();
 			break;
+		case "aniadirObservacion":
+			control.aniadirObservacion();
+			break;
 		default:
 			break;
 		}

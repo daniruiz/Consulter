@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-    <display-name>Consulter</display-name>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-    <servlet>
-        <servlet-name>Consulter</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Consulter</servlet-name>
-        <url-pattern>/listado-medicos</url-pattern>
-        <url-pattern>/listado-citas</url-pattern>
-        <url-pattern>/listado-pacientes</url-pattern>
-        <url-pattern>/alta-medico</url-pattern>
-        <url-pattern>/alta-paciente</url-pattern>
-        <url-pattern>/pedir-cita</url-pattern>
-        <url-pattern>/ranking-medico</url-pattern>
-        <url-pattern>/observaciones-paciente</url-pattern>
-    </servlet-mapping>
+  <display-name>Consulter</display-name>
+  <welcome-file-list>
+    <welcome-file>acceso/acceso.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>Consulter</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Consulter</servlet-name>
+    <url-pattern>/listado-medicos</url-pattern>
+    <url-pattern>/listado-citas</url-pattern>
+    <url-pattern>/listado-pacientes</url-pattern>
+    <url-pattern>/alta-medico</url-pattern>
+    <url-pattern>/alta-paciente</url-pattern>
+    <url-pattern>/pedir-cita</url-pattern>
+    <url-pattern>/ranking-medico</url-pattern>
+    <url-pattern>/observaciones-paciente</url-pattern>
+  </servlet-mapping>
 </web-app>

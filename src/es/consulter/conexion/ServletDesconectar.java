@@ -1,27 +1,24 @@
 package es.consulter.conexion;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ServletLogin
+ * Servlet implementation class ServletDesconectar
  */
-@WebServlet(
-		name = "Login", 
-		urlPatterns = {"/Login", "/login"})
-public class ServletLogin extends HttpServlet {
+@WebServlet("/desconectar")
+public class ServletDesconectar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletLogin() {
+    public ServletDesconectar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +27,21 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		out.println("<h1>Sin acceso.</h1>");
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		session.invalidate();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Hola login");
-		ControlLogin control = new ControlLogin(request, response);
-		control.autenticar();
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		System.out.println("Desconectamos");
 	}
 
 }

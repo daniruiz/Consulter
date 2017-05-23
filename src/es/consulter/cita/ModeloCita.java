@@ -1,5 +1,8 @@
 package es.consulter.cita;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModeloCita {
 
 	 private int idCita;
@@ -13,6 +16,8 @@ public class ModeloCita {
 	 				especialidad,
 	 				paciente,
 	 				dni;
+	 
+	 private List<ObservacionCita> listaObservaciones;
 	 
 	public int getIdmedico() {
 		return idmedico;
@@ -84,7 +89,7 @@ public class ModeloCita {
 
 	public ModeloCita() {
 		super();
-
+		listaObservaciones= new ArrayList<ObservacionCita>();
 	}
 	public int getIdFicha() {
 		return idFicha;
@@ -92,6 +97,35 @@ public class ModeloCita {
 	public void setIdFicha(int idFicha) {
 		this.idFicha = idFicha;
 	}
+	
+	public void addObservacion(String observacion, String fecha){
+		listaObservaciones.add(new ObservacionCita(observacion, fecha));
 	}
+	
+	private class ObservacionCita{
+		private String 	observacion,
+						fecha;
+		
+		protected ObservacionCita (String observacion, String fecha){
+			this.observacion = observacion;
+			this.fecha = fecha;
+		}
+		
+		protected String getObservacion() {
+			return observacion;
+		}
+		protected void setObservacion(String observacion) {
+			this.observacion = observacion;
+		}
+
+		protected String getFecha() {
+			return fecha;
+		}
+		protected void setFecha(String fecha) {
+			this.fecha = fecha;
+		}
+		
+	}
+}
 
 

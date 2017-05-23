@@ -48,6 +48,10 @@ public abstract class Pagina implements InControl{
 		onLoad();
 	}
 	
+	public double getRandomNumber(){
+		return (Math.random() / Math.random()) * 10;
+	}
+	
 	public Pagina() {
 		super();
 	}
