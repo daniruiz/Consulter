@@ -47,8 +47,9 @@ hr {
     float: left;
     margin: 3px 1px;
 }
-#menu-opciones span:first-child {
-    width: 298px;
+#funcion-observacion {
+    width: 180px!important;
+    margin-right: 10px!important;
 }
 .contenedor-especialidad {
     margin-top: 60px;
@@ -88,15 +89,16 @@ section h5 { margin: 5px 20px; }
 section span {
     position: absolute;
     right: 10px;
-    bottom: 5px;
+    top: 5px;
 }
 #icono-editar {
     visibility: hidden;
     height: 20px;
     width: 20px;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 14px;
+    top: 50%;
+    margin-top: -10px;
     background: url(/img/edit.svg);
 }
 section:hover #icono-editar { visibility: visible; }

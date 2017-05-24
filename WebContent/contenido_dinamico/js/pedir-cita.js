@@ -15,7 +15,8 @@ if(DNI != 0){
 
 //-------- FOMULARIO USUARIO
 
-$("#consultarPaciente").on("click", function(){
+$('#formulario-dni-paciente').submit(function(e){
+    e.preventDefault();
     var dni = $('#dni').val();
     if(/\d{8}[a-zA-Z]/.test(dni)){
 
@@ -23,49 +24,6 @@ $("#consultarPaciente").on("click", function(){
             "opcion" : "consultarDNI",
             "dniComprobar" : dni
         },
-            objConfigAjax = {
-                method : "POST",
-                url: "ServletCita",
-                data : json
-            }
-
-        $.ajax(objConfigAjax).done(function(data) {
-            var json = JSON.parse(data);
-
-            //alert(json.existePaciente);
-
-            if(json.existePaciente){
-                $('#formulario-dni-paciente').hide();
-                $('#formulario-cita').show();
-                $('#dni').val(dni);
-                $('#texto1').append(dni);
-
-            }else{
-                $('#ocultoPacienteInexistente').show();
-            }
-
-            /*alert("Guardada cita para " + medico + " a la hora " + hora);
-            cambiarPagina('listado-citas');*/
-
-        }).fail(function() {
-            alert( "Ha habido un error al guardar los datos." );
-            location.reload();
-        });
-
-
-    } else alert('introduzca un DNI valido');
-
-});
-
-$('#formulario-dni-paciente').submit(function(e){
-    e.preventDefault();
-    var dni = $('#dni').val();
-    if(/\d{8}[a-zA-Z]/.test(dni)){
-
-        var json = {
-                "opcion" : "consultarDNI",
-                "dniComprobar" : dni
-            },
             objConfigAjax = {
                 method : "POST",
                 url: "ServletCita",
@@ -212,9 +170,9 @@ $('.especialidad, #dia').change(function(){pedirMedicosDisponibles()});
 
 function pedirMedicosDisponibles() {
     if($('.especialidad:checked').length == 1){
-    	var idEspecialidad = $('.especialidad:checked').val();
-    	
-    	var json = {
+        var idEspecialidad = $('.especialidad:checked').val();
+
+        var json = {
                 "opcion" : "consultarMedicosEspecialidad",
                 "idEspecialidad" : idEspecialidad
             },
@@ -225,64 +183,32 @@ function pedirMedicosDisponibles() {
             }
 
         $.ajax(objConfigAjax).done(function(data) {
-            //alert("medicosDisponibles => " + data);
-        	var jsonMedicos = JSON.parse(data);
-        	
-        	var html = '';
-        	
-        	$.each(jsonMedicos.medicosDisponibles, function(id, medico){
-                html += '<div data-id="' + medico.idMedico + '">' + 
-                ' <h4 data-idMedico="' + medico.idMedico + '">' + medico.nombreMedico + '</h4><div>';
-                $.each(medico.horas, function(i, hora){
-                    html += '<span class="hora-disponible">' + hora + '</span> ';
-                });
-                html += '</div></div>'
-            });
-            $('#medicos-disponibles').html(html);
-
-            $('#medicos-disponibles span').click(function(){
-                $('#medicos-disponibles span.seleccionado').removeClass('seleccionado');
-                $(this).addClass('seleccionado');
-            });
-            quitaMedicosFueraDeRango();
-        	
+            var jsonMedicos = JSON.parse(data);
+            muestraMedicos(jsonMedicos.medicosDisponibles)
         }).fail(function() {
             alert( "Ha habido un error al guardar los datos." );
             location.reload();
         });
-    	
-        /*var medicos = {
-            'Roberto Perez' : {
-                'id' : 2,
-                'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00']
-            },
-            'Luis Moreno' : {
-                'id' : 3,
-                'horas' : ['08:00','08:30','09:30','10:30','11:00','12:00','12:30','13:30','14:00']
-            },
-            'Isabel Hernandez' : {
-                'id' : 1,
-                'horas' : ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00']
-            }
-        }*/
-
-        var html = '';
-
-        /*$.each(medicos, function(nombre, medico){
-            html += '<div data-id="' + medico.id + '"><h4>' + nombre + '</h4><div>';
-            $.each(medico.horas, function(i, hora){
-                html += '<span class="hora-disponible">' + hora + '</span> ';
-            });
-            html += '</div></div>'
-        });
-        $('#medicos-disponibles').html(html);
-
-        $('#medicos-disponibles span').click(function(){
-            $('#medicos-disponibles span.seleccionado').removeClass('seleccionado');
-            $(this).addClass('seleccionado');
-        });
-        quitaMedicosFueraDeRango();*/
     }
+}
+
+function muestraMedicos(medicosDisponibles){
+    var html = '';
+    $.each(medicosDisponibles, function(id, medico){
+        html += '<div data-id="' + medico.idMedico + '">' + 
+            ' <h4 data-idMedico="' + medico.idMedico + '">' + medico.nombreMedico + '</h4><div>';
+        $.each(medico.horas, function(i, hora){
+            html += '<span class="hora-disponible">' + hora + '</span> ';
+        });
+        html += '</div></div>'
+    });
+    $('#medicos-disponibles').html(html);
+
+    $('#medicos-disponibles span').click(function(){
+        $('#medicos-disponibles span.seleccionado').removeClass('seleccionado');
+        $(this).addClass('seleccionado');
+    });
+    quitaMedicosFueraDeRango();
 }
 
 function quitaMedicosFueraDeRango() {
@@ -307,10 +233,10 @@ $('#formulario-cita').submit(function(e){
     e.preventDefault();
     var $hora = $('#medicos-disponibles .hora-disponible.seleccionado'),
         hora = $hora.text();
-    
+
     idMedico = $hora.parents('div[data-id]').data('id');
     medico = $('h4[data-idMedico="' + idMedico + '"]').html();
-    
+
     if(validarFormulario()){
         var datos = {
             'dni': $('#dni').val(),

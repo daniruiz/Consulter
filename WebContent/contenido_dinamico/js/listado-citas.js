@@ -4,6 +4,8 @@ var hoy = new Date(),
     aino = hoy.getFullYear();
 $('#dia').val(dia + '/' + mes + '/' + aino);
 
+if(PERFIL == 1) $('#funcion-observacion').hide();
+else $('#funcion-editar, #funcion-eliminar').hide();
 
 function cargarListado(datos){
     datos = JSON.parse(json);
@@ -66,13 +68,14 @@ function animacionMostrarLista(){
         time = 0;
         $('.contenedor-especialidad * ').each(function(){
             mostrarElemento($(this), time);
-            time += 1;
+            time += 5;
         })
-    })
+    });
 }
 function mostrarElemento($e, time){
     setTimeout(function(){
         $e.css('opacity', '1');
+        $('main').scrollLeft(0);
     }, time);
 }
 
@@ -86,8 +89,7 @@ $('#funcion-observacion').click(function(){
         nombre = $('section.mostrar-cortina h3').text(),
         idCita = $('section.mostrar-cortina').data('id');
     
-    cambiarPagina('observaciones-paciente#idCita=' + idCita);
-    //cambiarPagina('observaciones-paciente?idCita=' + idCita);
+    cambiarPagina('observaciones-paciente#idCita=' + idCita + '&dni=' + dni + '&nombrePaciente=' + nombre);
 });
 
 $('#funcion-editar').click(function(){

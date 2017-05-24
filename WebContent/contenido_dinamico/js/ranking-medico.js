@@ -8,7 +8,10 @@ function cargarRanking(datos){
         $('#contenedor-ranking').width($('#contenedor-ranking').width() + 293); 
         contenedor = $('.contenedor-especialidad[data-especialidad="'+ especialidad +'"]');
         $.each(objetoDatos['lista'], function(i, posicion){
-            contenedor.append('<section class="con-sombra pos-' + (i+1) + '" style="opacity:0"><h1>' + (i+1) + '</h1><h3>' + posicion['nombreMedico'] + '</h3><span>' + posicion['totalCitas'] + ' citas</span></section>');
+            contenedor.append('<section class="con-sombra pos-' + (i+1) + '" style="opacity:0"><h1>' + (i+1)+((i+1) > 1 ? 'º' : '' ) + '</h1>\
+                    <h3>' + posicion['nombreMedico'] + '</h3>\
+                    <h3>' + posicion['totalCitas'] + ' cita' + ((posicion['totalCitas']  > 1) ? 's' : '') + '</h3>\
+                </section>');
         });
     });
 
@@ -48,6 +51,7 @@ function animacionMostrarRanking(){
 function mostrarElemento($e, time){
     setTimeout(function(){
         $e.css('opacity', '1');
+        $('main').scrollLeft(0);
     }, time);
 }
 

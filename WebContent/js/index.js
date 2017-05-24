@@ -1,6 +1,3 @@
-var perfil = 0;
-
-
 $(document).ready(function() {
 	if(localStorage.getItem('usuario') == null) location.href = '/acceso';
 	$('header h1').text(localStorage.getItem('usuario'));
@@ -25,13 +22,12 @@ $(document).ready(function() {
     
     // funciones mostrar/oculta cortina
 	$('#cortina').click(function(){ ocultarCortina() });
+    
 	$('#cerrar-session').click(function(){
-		
-		$.post("desconectar").done(function(){
+		$.post("/desconectar").done(function(){
 			localStorage.clear();
 			window.location.href = '/';
 		});
-		
 	});
     
     

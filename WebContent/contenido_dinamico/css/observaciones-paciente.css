@@ -36,6 +36,13 @@ textarea {
     margin-bottom: 0;
     padding-bottom: 60px!important;
 }
+#observaciones-existentes > h1 {
+    font-weight: normal;
+    text-shadow: 0 0 1px #555;
+    color: #AAA;
+    text-align: center;
+    margin-top: 78px;
+}
 #observaciones-existentes section {
     max-width: 600px;
     width: 70%;
