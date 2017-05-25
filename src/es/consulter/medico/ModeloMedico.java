@@ -6,8 +6,16 @@ public class ModeloMedico {
 	 private String nombre;
 	 private String apellido;
 	 private int numColegiado;
+	 private String [] diasSemana;
+	 private int tiempo_consulta;
+	 
+	 private String dni;
+	 private int id_usuario;
+	 private int idmedico;
 	 
 	 private int [] especialidad;
+	 
+	 
 	 public String[] getDiasSemana() {
 		return diasSemana;
 	}
@@ -15,19 +23,10 @@ public class ModeloMedico {
 		this.diasSemana = diasSemana;
 	}
 
-
-	private String [] diasSemana;
-	 private int tiempo_consulta;
-	 
-	 private String dni;
-	 private int id_usuario;
-	 private int idmedico;
-	 
-	 
 	 public int getIdMedico() {
 		 return idmedico;
 	 }
-	 public void setIdMedico(int id) {
+	 public void setIdMedico(int idmedico) {
 		 this.idmedico = idmedico;
 	 }
 	

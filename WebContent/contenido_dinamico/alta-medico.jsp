@@ -94,10 +94,10 @@
 					}).get(),
 					datos = {
 						'nombre': $('#nombre').val(),
-						'apellidos': $('#apellidos').val(),
-						'num': $('#num').val(),
-						'esp': esp,
-						'dias': dias,
+						'apellido': $('#apellidos').val(),
+						'numColegiado': $('#num').val(),
+						'especialidad': esp,
+						'diasSemana': dias,
 					},
 					json = {
 						"opcion" : "insertar",

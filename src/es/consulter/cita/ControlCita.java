@@ -335,15 +335,17 @@ public class ControlCita extends Control{
 			int idEspecialidad = Integer.parseInt(request.getParameter("idEspecialidad"));
 			
 			String selectMedicosDisponibles = 
-					"SELECT HORA, IDMEDICO, NOMBRE || ' ' || APELLIDO AS MEDICO " + 
+					" SELECT H.HORA, M.IDMEDICO, M.NOMBRE || ' ' || M.APELLIDO AS MEDICO " + 
 					" FROM HORAS_CITA H " + 
 					" JOIN PERSONAL_MEDICO M " + 
+					" INNER JOIN MEDICO_ESPECIALIDAD ME ON M.IDMEDICO = ME.IDMEDICO " +
+					" AND ME.ACTUAL = 1 " + 
 					" WHERE NOT EXISTS ( " + 
 					" 	SELECT * FROM CITAS_PACIENTES CP " +  
 					" 	WHERE CP.HORA = H.HORA AND CP.IDMEDICO = M.IDMEDICO " + 
 					" ) " + 
-					" AND M.IDMEDICO = ? " + 
-					" ORDER BY IDMEDICO, IDHORA";
+					" AND ME.IDESPECIALIDAD = ? " + 
+					" ORDER BY M.IDMEDICO, H.IDHORA";
 			
 			conexion.prepareSelect(selectMedicosDisponibles);
 			conexion.addParameterSelect(1, idEspecialidad);
