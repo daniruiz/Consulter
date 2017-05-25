@@ -5,7 +5,7 @@ public class ModeloMedico {
 	 
 	 private String nombre;
 	 private String apellido;
-	 private int numColegiado;
+	 private String numColegiado;
 	 private String [] diasSemana;
 	 private int tiempo_consulta;
 	 
@@ -44,11 +44,11 @@ public class ModeloMedico {
 	  this.apellido = apellido;
 	 }
 	 
-	public int getNumColegiado() {
+	public String getNumColegiado() {
 		return numColegiado;
 	}
 
-	public void setNumColegiado(int numColegiado) {
+	public void setNumColegiado(String numColegiado) {
 		this.numColegiado = numColegiado;
 	}
 
