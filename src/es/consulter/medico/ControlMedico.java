@@ -51,13 +51,26 @@ public class ControlMedico extends Control {
 			conexion.addParameter(1, medico.getNombre());
 			conexion.addParameter(2, medico.getApellido());
 			conexion.addParameter(3, medico.getNumColegiado());
-			//conexion.addParameter(4, medico.getEspecialidad());
-			//conexion.addParameter(4, medico.getTiempoConsulta());
 			conexion.addParameter(4, medico.getDni());
-			//conexion.addParameter(7, medico.getIdUsuario());
-			//conexion.addParameter(8, medico.getIdMedico());
 			conexion.ejecutarUpdt();
 			conexion.closePrepared();
+			
+			String selectIdMedicoNuevo = 	" SELECT IDMEDICO " + 
+											" FROM PERSONAL_MEDICO " + 
+											" WHERE NOMBRE = ? " + 
+											" AND APELLIDO = ? ";
+			
+			conexion.prepareSelect(selectIdMedicoNuevo);
+			conexion.addParameterSelect(1, medico.getNombre());
+			conexion.addParameterSelect(2, medico.getApellido());
+			ResultSet rs = conexion.ejecutarSelect();
+			if(rs.next()){
+				int idMedico = rs.getInt("IDMEDICO");
+				System.out.println("Recuperamos el id " + idMedico + " del medico insertado.");
+				medico.setIdMedico(idMedico);
+			}
+			rs.close();
+			conexion.closePreparedSelect();
 			
 			int activo = 1;
 			
@@ -81,7 +94,6 @@ public class ControlMedico extends Control {
 				conexion.ejecutarUpdt();
 				conexion.closePrepared();
 				
-				if (activo == 1) activo = 0;
 			}
 			
 			conexion.desconectar();
@@ -97,7 +109,9 @@ public class ControlMedico extends Control {
 		try {
 			String datos = request.getParameter("datos");
 			
-			visualizarParametros();
+			System.out.println("Viene un médico!! => " + datos);
+			
+			//visualizarParametros();
 			
 			Gson gson = new Gson();
 			if(datos != null){
@@ -228,53 +242,5 @@ public class ControlMedico extends Control {
 		}
 	}
 
-	private void ejemploConexionSelect(){
-		try {
-			conexion = new Conexion();
-			conexion.conectar();
-			
-			String select = " SELECT 2 + ? AS SUMA FROM DUAL ";
-			
-			conexion.prepareSelect(select);
-			conexion.addParameterSelect(1, 5);
-			ResultSet rs = conexion.ejecutarSelect();
-			
-			int resultado = Integer.MIN_VALUE;
-			while(rs.next()){
-				resultado = rs.getInt("SUMA");
-			}
-			rs.close();
-			conexion.closePreparedSelect();
-			
-			conexion.desconectar();
-			
-			System.out.println("Hemos obtenido " + resultado);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	private void ejemploConexionActualizacion(){
-		try {
-			conexion = new Conexion();
-			conexion.conectar();
-			
-			String insert = " INSERT INTO TABLA (COLUMNA1, COLUMNA2) VALUES (?, ?) ";
-			
-			conexion.prepareSTMT(insert);
-			conexion.addParameter(1, "Texto");
-			conexion.addParameter(2, 3);
-			conexion.ejecutarUpdt();
-			conexion.closePrepared();
-			
-			conexion.desconectar();
-			
-			System.out.println("Se ha insertado/actualizado en la tabla");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
 }
