@@ -10,7 +10,7 @@ $('#nombre-paciente').text(NOMBRE_PACIENTE);
 
 $('#formulario-observaciones').submit(function(e){
     e.preventDefault();
-    var texto = $('#texto-observacion').val();
+    var texto = $('#texto-observacion').val().replace(/(\r\n|\n|\r)/gm," ");;
     if(texto != ''){
         var hoy = new Date(),
             dia = ('0' + hoy.getDate()).slice(-2),
