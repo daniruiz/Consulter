@@ -1,6 +1,7 @@
 package es.consulter.cita;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,18 +56,7 @@ public class ControlCita extends Control{
 			
 			cargarDatosPaciente();
 			
-			String query =  " insert into Citas_Pacientes (IDPACIENTE, HORA, " + 
-							"  DIA, IDFICHA, IDMEDICO) " + 
-							" values (?, ?, ?, ?, ?)";
-			
-			conexion.prepareSTMT(query);
-			conexion.addParameter(1, cita.getIdPaciente());
-			conexion.addParameter(2, cita.getHora());
-			conexion.addParameter(3, cita.getDia());
-			conexion.addParameter(4, cita.getIdFicha());
-			conexion.addParameter(5, cita.getIdMedico());
-			conexion.ejecutarUpdt();
-			conexion.closePrepared();
+			insertarCita();
 			
 			conexion.commit();
 			conexion.desconectar();
@@ -82,6 +72,20 @@ public class ControlCita extends Control{
 		}
 	}
 
+	private void insertarCita() throws SQLException {
+		String query =  " insert into Citas_Pacientes (IDPACIENTE, HORA, " + 
+						"  DIA, IDFICHA, IDMEDICO) " + 
+						" values (?, ?, ?, ?, ?)";
+		
+		conexion.prepareSTMT(query);
+		conexion.addParameter(1, cita.getIdPaciente());
+		conexion.addParameter(2, cita.getHora());
+		conexion.addParameter(3, cita.getDia());
+		conexion.addParameter(4, cita.getIdFicha());
+		conexion.addParameter(5, cita.getIdMedico());
+		conexion.ejecutarUpdt();
+		conexion.closePrepared();
+	}
 	private void cargarDatosPaciente() {
 		try {
 			boolean tieneFicha = false;
@@ -448,8 +452,76 @@ public class ControlCita extends Control{
 			e.printStackTrace();
 		}
 	}
+	public void cargarArchivoCitas() {
+		try {
+			String datos = request.getParameter("datos");
+			
+			System.out.println("ArchivoCitas => " + datos);
+			
+			int cntInsertado = 0;
+			if(datos != null && !datos.equals("")){
+				
+				ModeloArchivoCitas [] listadoCitas = new Gson().fromJson(datos, ModeloArchivoCitas[].class);
+				
+				String selectDatosPaciente = 
+						" SELECT P.IDPACIENTE, F.IDFICHA, ME.IDMEDICO " + 
+						" FROM PACIENTES P " +  
+						" INNER JOIN FICHA F ON P.IDPACIENTE = F.IDPACIENTE " + 
+						" INNER JOIN ESPECIALIDAD E ON F.IDESPECIALIDAD = E.ID " + 
+						" INNER JOIN MEDICO_ESPECIALIDAD ME ON E.ID = ME.IDESPECIALIDAD " + 
+						" AND ME.IDMEDICO = ? " + 
+						" WHERE DNI = ? ";
+				
+				ResultSet rs = null;
+				for(ModeloArchivoCitas citaArchivo : listadoCitas){
+					int idPaciente = 0, idFicha = 0;
+					boolean cargadoDatos = false;
+					conexion.prepareSelect(selectDatosPaciente);
+					conexion.addParameterSelect(1, citaArchivo.idMedico);
+					conexion.addParameterSelect(2, citaArchivo.dniPaciente);
+					rs = conexion.ejecutarSelect();
+					if(rs.next()){
+						idPaciente = rs.getInt("IDPACIENTE");
+						idFicha = rs.getInt("IDFICHA");
+						cargadoDatos = true;
+					}
+					rs.close();
+					conexion.closePreparedSelect();
+					
+					if(cargadoDatos){
+						cita = new ModeloCita();
+						cita.setIdPaciente(idPaciente);
+						cita.setIdFicha(idFicha);
+						cita.setIdmedico(Integer.valueOf(citaArchivo.idMedico));
+						cita.setHora(citaArchivo.hora);
+						cita.setDia(citaArchivo.dia);
+						insertarCita();
+						
+						cntInsertado++;
+						System.out.println("Cita insertada.");
+					}else{
+						System.out.println("Cita no insertada!!!");
+					}
+					
+				}
+				
+			}
+			
+			System.out.println("Se han insertado " + cntInsertado + " citas.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
+	private class ModeloArchivoCitas{
+		String 	dia,
+				hora,
+				idMedico,
+				dniPaciente;
+		
+	}
 	
 	
 	
