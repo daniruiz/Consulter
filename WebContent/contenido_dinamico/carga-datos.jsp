@@ -81,6 +81,19 @@
                 }
             });
             json = JSON.stringify(datos);
+            alert(json);
+            
+            $.post("ServletCita", {"opcion" : "subirArchivoCitas", "datos" : json})
+            .done(function(){
+            	alert("Archivo de citas cargado correctamente.");
+            })
+            .fail(function(){
+            	
+            })
+            .always(function(){
+            	
+            });
+            
             console.log(json);
         });
     </script>
