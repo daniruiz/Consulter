@@ -80,7 +80,7 @@ public class PaginaCita extends Pagina{
 			String select = " SELECT TEXTO_CONSULTA, FECHA_MOD " + 
 							" FROM HISTORICO_PACIENTE " + 
 							" WHERE IDCITA = ? " + 
-							" ORDER BY IDHIST DESC";
+							" ORDER BY IDHIST ASC";
 			
             
 			conexion.prepareSelect(select);
