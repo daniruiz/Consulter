@@ -23,9 +23,9 @@ Aplicación realizada para la práctica de la asignatura de Fundamentos de Ingen
 ### Desarrollo
 
 La aplicación se desarrollo empleando:
-	> HTML5
-	> CSS3
-	> JavaScript (Con la librería jQuery)
-	> Java
-	> Tomcat8
-	> SqLite
+* HTML5
+* CSS3
+* JavaScript (Con la librería jQuery)
+* Java
+* Tomcat8
+* SqLite
