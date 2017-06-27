@@ -1,6 +1,6 @@
 # Consulter
 
-Aplicación realizada para la práctica de la asignatura de Fundamentos de Ingeniería de Softwarer.
+Aplicación realizada para la práctica de la asignatura de Fundamentos de Ingeniería de Software.
 
 
 
